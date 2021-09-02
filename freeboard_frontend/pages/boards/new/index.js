@@ -24,14 +24,31 @@ import {
   ErrorText
 } from "../../../styles/indexcss";
 import { useState } from 'react'
+import { useMutation, gql } from '@apollo/client'
+
+//gql mutiation
+const CREAT_BOARD = gql`
+  mutation createBoard($createBoardInput:CreateBoardInput!){
+  createBoard(createBoardInput: $createBoardInput)
+  {
+    _id
+    writer
+    title
+  }
+}
+`
 
 export default function BoardsNewPage() {
-  
+
   const [writer, setWriter] = useState("")
   const [password, setPassword] = useState("")
   const [title, setTitle] = useState("")
-  const [content, setContent] = useState("")
-  
+  const [contents, setContent] = useState("")
+  const [youtube, setYoutube] = useState("")
+  // const [zipcode, setZipcode] = useState("")
+  // const [address, setAddress] = useState("")
+  // const [addressDetail, setAddressDetail] = useState("")
+
   const [writerError, setWriterError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [titleError, setTitleError] = useState("")
@@ -55,29 +72,53 @@ export default function BoardsNewPage() {
 
   }
 
+  // function onChangeZipcode(event) { 
+  //   setZipcode(event.target.value)
+  // }
+
+  function onChangeYoytube(event) {
+    setYoutube(event.target.value)
+  }
+
+
+  //빈칸 검사 함수
   function onClickSignup() {
-    
+
     if (writer === "") {
       setWriterError("작성자를 입력해 주십시오.")
-      
+
     }
     if (password === "") {
       setPasswordError("비밀번호를 입력해 주십시오.")
     }
-    if (title === "") { 
+    if (title === "") {
       setTitleError("제목을 입력해 주십시오.")
     }
     if (content === "") {
       setContentError("내용을 입력해 주십시오.")
     }
+
   }
-  
-  
-  
-  
-  
-  
-  
+
+  //gql 요청
+  const [creatBoard] = useMutation(CREAT_BOARD) //Mutation 사용하겠다!
+
+  async function CreateBoardAIP() {
+    const result = await creatBoard({
+      variables: {
+        createBoardInput: {
+          writer: writer,
+          password: password,
+          title: title,
+          contents: contents,
+          youtubeUrl: youtube
+        }
+      }
+    })
+    console.log(result)
+  }
+
+
   return (
     <Wrapper>
       <Title>게시판 등록</Title>
@@ -119,7 +160,7 @@ export default function BoardsNewPage() {
       </InputWrapper>
       <InputWrapper>
         <Label>유튜브</Label>
-        <Youtube name="youtube" placeholder="링크를 복사해주세요." />
+        <Youtube onChange={onChangeYoytube} name="youtube" placeholder="링크를 복사해주세요." />
       </InputWrapper>
       <ImageWrapper>
         <Label>사진첨부</Label>
@@ -150,7 +191,7 @@ export default function BoardsNewPage() {
       </OptionWrapper>
       <ButtonWrapper>
         <CancelButton>취소하기</CancelButton>
-        <SubmitButton onClick={onClickSignup}>등록하기</SubmitButton>
+        <SubmitButton onClick={onClickSignup, CreateBoardAIP}>등록하기</SubmitButton>
       </ButtonWrapper>
     </Wrapper>
   );
