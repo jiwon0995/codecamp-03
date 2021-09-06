@@ -3,31 +3,24 @@ import {
   Wrapper,
   ProfileBox,
   InputBox,
-  Contents,
   YoutubeBox,
   Writer,
   Title,
   WriterBox,
-  WriteDay
-} from "../../../../styles/detailPageCss"
-import { useQuery, gql } from "@apollo/client"
-import { useRouter } from "next/router"
+  WriteDay,
+  ContentsBox } from '../detail/BoardDetail.styles'
 
-
-export default function BoardsDetailPage() { 
-  const router = useRouter()
-  const { } = useQuery(FETCH_BOARD, {
-    variables: {}
-  })
+export default function BoardDetailUI(props) { 
+  
   return (
     <Wrapper>
       <WriterWrapper>
         <ProfileBox>
           <img src="/profile.png"></img>
-            <WriterBox>    
-              <Writer>노원두</Writer>
-              <WriteDay>Dtae:2021.02.18</WriteDay>
-            </WriterBox>
+          <WriterBox>
+            <Writer>{props.data && props.data.fetchBoard.writer}</Writer>
+            <WriteDay>Date:2021.02.18</WriteDay>
+          </WriterBox>
         </ProfileBox>
         <div>
           <img src="/link.png"></img>
@@ -35,11 +28,11 @@ export default function BoardsDetailPage() {
         </div>
       </WriterWrapper>
       <InputBox>
-        <Title>게시글 제목입니다.</Title>
+        <Title>{props.data && props.data.fetchBoard.title}</Title>
       </InputBox>
       <InputBox>
         <img src="/image.png"></img>
-        <Contents>contents</Contents>
+        <ContentsBox>{props.data && props.data.fetchBoard.contents}</ContentsBox>
       </InputBox>
       <InputBox>
         <YoutubeBox><img src="/video.png"></img></YoutubeBox>
@@ -54,6 +47,6 @@ export default function BoardsDetailPage() {
           <div>1920</div>
         </LikeHate>
       </LikeHateBox> */}
-    </Wrapper>  
+    </Wrapper>    
   )
 }
