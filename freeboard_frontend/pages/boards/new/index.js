@@ -25,64 +25,63 @@ import {
 } from "../../../styles/indexcss";
 import { useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
+import { useRouter } from "next/router";
 
 //gql mutiation
 const CREAT_BOARD = gql`
-  mutation createBoard($createBoardInput:CreateBoardInput!){
-  createBoard(createBoardInput: $createBoardInput)
-  {
-    _id
-    writer
-    title
-  }
+  mutation ($createBoardInput:CreateBoardInput!){
+    createBoard(createBoardInput: $createBoardInput)
+    {
+      _id
+      writer
+      title
+    }     
 }
 `
 
 export default function BoardsNewPage() {
-
+  const router = useRouter()
+  const [createBoard] = useMutation(CREAT_BOARD) //Mutation 사용하겠다!
+  // 작성자, 비밀번호, 제목, 내용 값을 state에 담기. 초기값은 빈 문자열
   const [writer, setWriter] = useState("")
   const [password, setPassword] = useState("")
   const [title, setTitle] = useState("")
   const [contents, setContent] = useState("")
-  const [youtube, setYoutube] = useState("")
-  // const [zipcode, setZipcode] = useState("")
-  // const [address, setAddress] = useState("")
-  // const [addressDetail, setAddressDetail] = useState("")
-
+  // 에러 메세지  state에 담기. 초기값이 빈 문자열이라 보이지 않음 
   const [writerError, setWriterError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [titleError, setTitleError] = useState("")
   const [contentError, setContentError] = useState("")
-
+  //onchange함수. 각 함수별로 이벤트가 발생하면 그 값을 각 state에 담는다. 
+  //조건문 내용: 값이 들어오면 에러메세지에 빈문자열을 넣어준다
   function onChangeWriter(event) {
     setWriter(event.target.value)
-
+    if (event.target.value !== "") { 
+      setWriterError("")
+    }
   }
   function onChangePassword(event) {
     setPassword(event.target.value)
-
+    if (event.target.value !== "") { 
+      setPasswordError("")
+    }
   }
   function onChangeTitle(event) {
     setTitle(event.target.value)
-
+    if (event.target.value !== "") { 
+      setTitleError("")
+    }
   }
 
   function onChangeContent(event) {
     setContent(event.target.value)
-
+    if (event.target.value !== "") { 
+      setContentError("")
+    }
   }
-
-  // function onChangeZipcode(event) { 
-  //   setZipcode(event.target.value)
-  // }
-
-  function onChangeYoytube(event) {
-    setYoutube(event.target.value)
-  }
-
 
   //빈칸 검사 함수
-  function onClickSignup() {
+  async function onClickSignup() {
 
     if (writer === "") {
       setWriterError("작성자를 입력해 주십시오.")
@@ -94,31 +93,24 @@ export default function BoardsNewPage() {
     if (title === "") {
       setTitleError("제목을 입력해 주십시오.")
     }
-    if (content === "") {
+    if (contents === "") {
       setContentError("내용을 입력해 주십시오.")
     }
-
-  }
-
-  //gql 요청
-  const [creatBoard] = useMutation(CREAT_BOARD) //Mutation 사용하겠다!
-
-  async function CreateBoardAIP() {
-    const result = await creatBoard({
-      variables: {
-        createBoardInput: {
-          writer: writer,
-          password: password,
-          title: title,
-          contents: contents,
-          youtubeUrl: youtube
+    //모두 값이 들어오면 mutation을 요청한다
+    if (writer!=="" && password!=="" && title!== "" && contents!== "") { 
+      const result = await createBoard({
+        variables: {
+          createBoardInput: {
+            writer: writer,
+            password: password,
+            title: title,
+            contents: contents,
+          }
         }
-      }
-    })
-    console.log(result)
+      })
+      router.push(`detail/${ result.data.createBoard._id}`)
+    }
   }
-
-
   return (
     <Wrapper>
       <Title>게시판 등록</Title>
@@ -160,7 +152,7 @@ export default function BoardsNewPage() {
       </InputWrapper>
       <InputWrapper>
         <Label>유튜브</Label>
-        <Youtube onChange={onChangeYoytube} name="youtube" placeholder="링크를 복사해주세요." />
+        <Youtube name="youtube" placeholder="링크를 복사해주세요." />
       </InputWrapper>
       <ImageWrapper>
         <Label>사진첨부</Label>
@@ -191,7 +183,7 @@ export default function BoardsNewPage() {
       </OptionWrapper>
       <ButtonWrapper>
         <CancelButton>취소하기</CancelButton>
-        <SubmitButton onClick={onClickSignup, CreateBoardAIP}>등록하기</SubmitButton>
+        <SubmitButton onClick={onClickSignup}>등록하기</SubmitButton>
       </ButtonWrapper>
     </Wrapper>
   );
