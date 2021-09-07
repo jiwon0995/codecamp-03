@@ -106,6 +106,10 @@ export default function BoardNewContaniner() {
       onChangeContent={onChangeContent}
       onClickSignup={onClickSignup}
       buttonColorChange={buttonColorChange}
+      writerError={writerError}
+      passwordError={passwordError}
+      titleError={titleError}
+      contentError={contentError}
     />
   )
 }
