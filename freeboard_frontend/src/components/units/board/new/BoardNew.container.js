@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { useMutation } from '@apollo/client'
 import { useRouter } from "next/router";
 import BoardNewUI from '../../../units/board/new/BoardNew.presenter'
-import { CREAT_BOARD } from '../new/BoardNew.queries'
+import { CREAT_BOARD, UPDATE_PRODEUT } from '../new/BoardNew.queries'
 
-export default function BoardNewContaniner() { 
+
+export default function BoardNewContaniner(props) {
   const router = useRouter()
   const [createBoard] = useMutation(CREAT_BOARD) //Mutation 사용하겠다!
+  const [updateBoard] = useMutation(UPDATE_PRODEUT)
   // 작성자, 비밀번호, 제목, 내용 값을 state에 담기. 초기값은 빈 문자열
   const [writer, setWriter] = useState("")
   const [password, setPassword] = useState("")
@@ -95,9 +97,27 @@ export default function BoardNewContaniner() {
           }
         }
       })
-      router.push(`detail/${result.data.createBoard._id}`)
+      router.push(`/boards/detail/${result.data.createBoard._id}`)
     }
   }
+  async function onClickUpdata() {
+    try {
+      const result = await updateBoard({
+        variables: {
+          boardId: router.query.detail,
+          password: password,
+          updateBoardInput: {
+            title: title,
+            contents: contents,
+          }
+        }
+      })
+      router.push(`/boards/detail/${result.data.updateBoard._id}`)
+    } catch (error){
+      console.log(error)
+    } 
+  }
+
   return (
     <BoardNewUI
       onChangeWriter={onChangeWriter}
@@ -110,6 +130,8 @@ export default function BoardNewContaniner() {
       passwordError={passwordError}
       titleError={titleError}
       contentError={contentError}
+      isEdit={props.isEdit}
+      onClickUpdata={onClickUpdata}
     />
   )
 }

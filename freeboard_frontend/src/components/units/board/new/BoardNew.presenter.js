@@ -27,7 +27,7 @@ export default function BoardNewUI(props) {
   return (
     <>
       <Wrapper>
-        <Title>게시판 등록</Title>
+        <Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</Title>
         <WriterWrapper>
           <InputWrapper>
             <Label>작성자</Label>
@@ -97,7 +97,10 @@ export default function BoardNewUI(props) {
         </OptionWrapper>
         <ButtonWrapper>
           <CancelButton>취소하기</CancelButton>
-          <SubmitButton onClick={props.onClickSignup} buttonColorChange={props.buttonColorChange}>등록하기</SubmitButton>
+          {!props.isEdit && (<SubmitButton onClick={props.onClickSignup} buttonColorChange={props.buttonColorChange}>
+            등록하기</SubmitButton>)}
+          {props.isEdit && (<SearchButton onClick={props.onClickUpdata} isActive={true}>
+            수정하기</SearchButton>)}
         </ButtonWrapper>
       </Wrapper>
       

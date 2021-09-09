@@ -11,17 +11,35 @@ export default function BoardDetailContainer() {
   const [deleteBoard] = useMutation(DELETE_BOARD)
   
   //board 삭제 
-  async function onClickBoard(event) { 
-    await deleteBoard({
-      variables: { boardId: router.query.detail },
-      refetchQueries: [{ query: FETCH_BOARD }]
-    })
+  async function onClickBoard() { 
+    try { 
+      await deleteBoard({
+        variables: { boardId: router.query.detail }
+        // refetchQueries: [{ query: FETCH_BOARD }]
+      })
+      alert("게시물이 삭제되었습니다.")
+      router.push("/boards/list")
+    } catch (error) {
+      alert(error.message)
+    }
   }
+
+  //board update
+  function onClickMoveEdit() { 
+    router.push(`/boards/detail/${router.query.detail}/edit`)
+  }
+
+  function onClickList() { 
+    router.push("/boards/list")
+  }
+
   return (
     <BoardDetailUI
       router={router}
       data={data}
       onClickBoard={onClickBoard}
+      onClickList={onClickList}
+      onClickMoveEdit={onClickMoveEdit}
     />
   )
 }

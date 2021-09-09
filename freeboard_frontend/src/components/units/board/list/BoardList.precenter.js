@@ -23,9 +23,10 @@ export default function BoardListUI(props) {
           <Column>{index+1}</Column>
           <Column>{el.title}</Column>
           <Column>{el.writer}</Column>
-          <Column>{el.createdAt}</Column>
+          <Column>{el.createdAt.slice(0,10)}</Column>
         </Row>
       ))}
+      <button onClick={props.onClickCreateBoard}>게시글 등록하기</button>
     </Wrapper>
   )
 }

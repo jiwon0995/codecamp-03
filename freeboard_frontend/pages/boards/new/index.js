@@ -5,5 +5,5 @@ import BoardNewContaniner from '../../../src/components/units/board/new/BoardNew
 
 export default function BoardsNewPage() {
   
-  return <BoardNewContaniner/>
+  return <BoardNewContaniner isEdit={false}/>
 }

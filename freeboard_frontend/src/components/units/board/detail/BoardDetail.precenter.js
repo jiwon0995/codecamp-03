@@ -31,18 +31,18 @@ export default function BoardDetailUI(props) {
         </div>
       </WriterWrapper>
       <InputBox>
-        <Title>{props.data?.fetchBorad.title}</Title>
+        <Title>{props.data?.fetchBoard.title}</Title>
       </InputBox>
       <InputBox>
         <img src="/image.png"></img>
-        <ContentsBox>{props.data?.fetchBorad.contents}</ContentsBox>
+        <ContentsBox>{props.data?.fetchBoard.contents}</ContentsBox>
       </InputBox>
       <InputBox>
         <YoutubeBox><img src="/video.png"></img></YoutubeBox>
       </InputBox>
       <BottomWrapper>
-        <Button>목록으로</Button>
-        <Button>수정하기</Button>
+        <Button onClick={props.onClickList}>목록으로</Button>
+        <Button onClick={props.onClickMoveEdit}>수정하기</Button>
         <Button onClick={props.onClickBoard}>삭제하기</Button>
       </BottomWrapper>
   </Wrapper>      
