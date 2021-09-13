@@ -72,7 +72,7 @@ export default function BoardNewContaniner(props) {
 
   //빈칸 검사 함수
   async function onClickSignup() {
-
+    
     if (writer === "") {
       setWriterError("작성자를 입력해 주십시오.")
     }

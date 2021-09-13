@@ -25,9 +25,7 @@ export default function DynamicBoardWrite() {
   function onChangeMycontents(event) {
     setMyContents(event.target.value)
   }
-
   //mutation 응답받기, router.push이용해서 페이지 이동해서 응답받은 내용 페이지에 보여주기.
-
   async function aaa() {
     try {
       const result = await createBoard({ //변수 result에 mutation 응답 저장

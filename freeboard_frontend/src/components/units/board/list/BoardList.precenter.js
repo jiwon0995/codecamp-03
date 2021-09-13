@@ -1,8 +1,8 @@
-import { Column, Row, Wrapper} from '../../board/list/BoardList.styles'
+import { Column, Row, Wrapper } from '../../board/list/BoardList.styles'
 
 
-export default function BoardListUI(props) { 
-
+export default function BoardListUI(props) {
+  console.log(props)
   return (
     <Wrapper>
       <Row>
@@ -11,19 +11,19 @@ export default function BoardListUI(props) {
         <Column>직상자</Column>
         <Column>날짜</Column>
       </Row>
-        {/* <Row>
+      {/* <Row>
           <Column>{props.data?.fetchBoards.createdAt}</Column>
         <Column>{props.data?.fetchBoards.title}</Column>
         <Column>{props.data?.fetchBoards.writer}</Column>
         <Column>{props.data?.fetchBoards.createdAt}</Column>
         </Row> */}
-      
-      {props.data?.fetchBoards.map((el,index) => (
+
+      {props.data?.fetchBoards.map((el, index) => (
         <Row key={el._id}>
-          <Column>{index+1}</Column>
-          <Column>{el.title}</Column>
+          <Column>{index + 1}</Column>
+          <Column id={el._id} onClick={props.onClickDetailBoard}>{el.title}</Column>
           <Column>{el.writer}</Column>
-          <Column>{el.createdAt.slice(0,10)}</Column>
+          <Column>{el.createdAt.slice(0, 10)}</Column>
         </Row>
       ))}
       <button onClick={props.onClickCreateBoard}>게시글 등록하기</button>
