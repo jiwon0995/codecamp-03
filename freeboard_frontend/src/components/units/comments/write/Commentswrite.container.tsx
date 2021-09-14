@@ -3,10 +3,11 @@ import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
 import CommentsWriteUI from './CommentsWrite.presenter';
 import { CREATE_COMMENT } from './CommentsWrite.queries';
-
+import { FETCH_COMMENTS } from '../list/CommentsList.queried';
 
 export default function CommentsWrite() {
 	const [createBoardComment] = useMutation(CREATE_COMMENT);
+	
 	const router = useRouter();
 
 	const [writer, setWriter] = useState('');
@@ -36,12 +37,12 @@ export default function CommentsWrite() {
 					contents: contents,
 					rating: 4,
 				},
-				// refetchQueries: [
-				// 	{
-				// 		query: FETCH_COMMENTS,
-				// 		variables: { boardId: router.query.detail },
-				// 	},
-				// ],
+				refetchQueries: [
+					{
+						query: FETCH_COMMENTS,
+						variables: { boardId: router.query.detail },
+					},
+				],
 			},
 		});
 	

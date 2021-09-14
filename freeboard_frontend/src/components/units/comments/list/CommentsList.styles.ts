@@ -4,10 +4,14 @@ export const Wrapper = styled.div`
   width: 1200px;
   margin: 100px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   border-bottom: solid 1px #BDBDBD;
   /* background-color: blue; */
   
+`
+export const Box = styled.div`
+display: flex;
 `
 export const WriterBox = styled.div`
   display: flex;

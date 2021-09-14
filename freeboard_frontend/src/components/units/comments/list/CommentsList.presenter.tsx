@@ -7,7 +7,8 @@ import {
 	WriterBox1,
 	Top,
 	Contents,
-	CommnetsAt
+	CommnetsAt,
+	Box
 } from './CommentsList.styles';
 
 
@@ -16,7 +17,7 @@ export default function CommentsListUI(props) {
 	return (
 		<Wrapper>
 			{props.data?.fetchBoardComments.map((el) => (
-				<div key={el._id}>
+				<Box key={el._id}>
 					<WriterBox>
 						<div>
 							<img src="/Vector.png" />
@@ -25,7 +26,7 @@ export default function CommentsListUI(props) {
 							<WriterBox1>
 								<Writer>{el.writer}</Writer>
 								<div>
-									<div>{el.rating}</div>
+									{/* <div>{el.rating}</div> */}
 									<img src="/star.png" />
 									<img src="/star.png" />
 									<img src="/star.png" />
@@ -41,7 +42,7 @@ export default function CommentsListUI(props) {
 						<Icon src="/write.png" />
 						<Icon src="/delete.png" />
 					</IconBox>
-				</div>
+				</Box>
 			))}
 		</Wrapper>
 	);
