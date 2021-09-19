@@ -55,11 +55,9 @@ export default function BoardListUI(props) {
 					</Row>
 				</TableTop>
 				{props.data?.fetchBoards.map((el, index) => (
-					<Row key={el._id}>
+					<Row key={el._id} id={el._id} onClick={props.onClickMoveDetail}>
 						<ColumnBasic>{10 - index}</ColumnBasic>
-						<ColumnTitle id={el._id} onClick={props.onClickMoveDetail}>
-							{el.title}
-						</ColumnTitle>
+						<ColumnTitle>{el.title}</ColumnTitle>
 						<ColumnBasic>{el.writer}</ColumnBasic>
 						<ColumnBasic>{el.createdAt.slice(0, 10)}</ColumnBasic>
 					</Row>
@@ -72,7 +70,6 @@ export default function BoardListUI(props) {
 								key={props.startPage + index}
 								onClick={props.onClickPage}
 								id={String(props.startPage + index)}
-								
 							>
 								{props.startPage + index}
 							</Pagenation>
@@ -80,6 +77,9 @@ export default function BoardListUI(props) {
 					</PageWrapper>
 					<RightOutlined onClick={props.onClickNextPage} />
 				</PageWrapperWrapper>
+				<div>
+					<button onClick={props.onClickNewBoard}>게시물 등록하기</button>
+				</div>
 			</Wrapper>
 		</WrapperWrapper>
 	);

@@ -1,10 +1,12 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
+// import { ICreateBoardInput, IMutation } from '../../../../commons/types/generated/types';
 import BoardWriteUI from './BoardWrite.presenter';
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries';
-import { IMyUpdateBoardInput } from './BoardWrite.types';
+import { IMyUpdateBoardInput,IMyCreateBoardInput } from './BoardWrite.types';
 import { Youtube } from './BordWrite.styles';
+
 
 export default function BoardWrite(props) {
 	const router = useRouter();
@@ -14,6 +16,9 @@ export default function BoardWrite(props) {
 	const [title, setTitle] = useState('');
 	const [contents, setContents] = useState('');
 	const [youtubeUrl, setYoutubeUrl] = useState('');
+	const [address, setAddress] = useState('')
+	const [zipcode, setZipcode] = useState('')
+	const [addressDetail, setAddressDetail] = useState('')
 	//에러메세지 state에 저장
 	const [writerError, setWriterError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
@@ -21,6 +26,7 @@ export default function BoardWrite(props) {
 	const [contentsError, setContentsError] = useState('');
 	//등록하기 버튼 조건에 맞으면 버튼 색 변화주기
 	const [isActive, setIsActive] = useState(false);
+	const [isOpen, setIsOpen] = useState(false)
 	//mutation으로 createBoard하기
 	          //함수 사용할 떄는 createBoard(variables)
 	const [createBoard] = useMutation(CREATE_BOARD);
@@ -94,7 +100,33 @@ export default function BoardWrite(props) {
 	function onChangeYoutubeUrl(event) { 
 		setYoutubeUrl(event.target.value)
 	}
+	function onChangeAddressDetail(event) {
+		setAddressDetail(event.target.value)
+	}
+	function onClickAddressSearch(){
+		setIsOpen(true)
+	}
+	function onCompleteAddressSearch (data:any) {
+		setAddress(data.address)
+		setZipcode(data.zonecode)
+		setIsOpen(false)
+	}
 	//등록버튼 함수
+
+	//타입스크립트 지정해주기
+	const mycreateBoardInput: IMyCreateBoardInput = {
+		writer,
+		title,
+		contents,
+		youtubeUrl,
+		password,
+		boardAddress: {
+			zipcode,
+			address,
+			addressDetail,
+		},
+	};
+
 	async function onClickSubmit() {
 		if (writer === '') {
 			setWriterError('작성자를 입력해주세요.');
@@ -112,14 +144,8 @@ export default function BoardWrite(props) {
 			try {
 				const result = await createBoard({
 					variables: {
-						createBoardInput: {
-							writer: writer,
-							title: title,
-							contents: contents,
-							password: password,
-							youtubeUrl: youtubeUrl,
+						createBoardInput: mycreateBoardInput,
 						},
-					},
 				});
 				router.push(`/boards/${result.data.createBoard._id}`);
 			} catch (error) {
@@ -132,14 +158,27 @@ export default function BoardWrite(props) {
 		if (
 			!title &&
 			!contents &&
-			!youtubeUrl ) {
-			alert("수정된 내용이 없습니다.")
-			return
+			!youtubeUrl &&
+			!zipcode &&
+			!address &&
+			!addressDetail
+		) {
+			alert('수정된 내용이 없습니다.');
+			return;
 		}
 		const myUpdateboardIuput: IMyUpdateBoardInput = {}
+		
 		if (title) myUpdateboardIuput.title = title
 		if (contents) myUpdateboardIuput.contents = contents;
 		if (youtubeUrl) myUpdateboardIuput.youtubeUrl = youtubeUrl;
+		if (zipcode || address || addressDetail) {
+			myUpdateboardIuput.boardAddress = {};
+			if (zipcode) myUpdateboardIuput.boardAddress.zipcode = zipcode;
+			if (address) myUpdateboardIuput.boardAddress.address = address;
+			if (addressDetail)
+				myUpdateboardIuput.boardAddress.addressDetail = addressDetail;
+		}
+	
 		try { 
 			const result = await updateBoard({
 				variables: {
@@ -170,6 +209,12 @@ export default function BoardWrite(props) {
 			onClickUpdate={onClickUpdate}
 			data={props.data}
 			onChangeYoutubeUrl={onChangeYoutubeUrl}
+			onClickAddressSearch={onClickAddressSearch}
+			isOpen={isOpen}
+			onChangeAddressDetail={onChangeAddressDetail}
+			onCompleteAddressSearch={onCompleteAddressSearch}
+			address={address}
+			zipcode={zipcode}
 		/>
 	);
 }

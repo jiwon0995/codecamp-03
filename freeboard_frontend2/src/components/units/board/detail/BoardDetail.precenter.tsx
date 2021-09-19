@@ -1,22 +1,24 @@
 import { WrapperWrapper } from '../write/BordWrite.styles';
 import {
-  CardWrapper,
-  Wrapper2,
-  Header,
-  AvatarWrapper,
-  Avatar,
-  Info,
-  CreatedAt,
-  Body,
-  Title2,
-  Contents2,
-  BottomWrapper,
-  Button,
-  Writer2,
-	Youtube
-
-} from './BoardDetail.styles'
-
+	CardWrapper,
+	Wrapper2,
+	Header,
+	AvatarWrapper,
+	Avatar,
+	Info,
+	CreatedAt,
+	Body,
+	Title2,
+	Contents2,
+	BottomWrapper,
+	Button,
+	Writer2,
+	Youtube,
+	IconWrapper,
+	LinkIcon,
+	LocationIcon,
+} from './BoardDetail.styles';
+import { Tooltip } from 'antd';
 
 export default function BoardDetailUI(props) { 
 	return (
@@ -33,6 +35,15 @@ export default function BoardDetailUI(props) {
 								</CreatedAt>
 							</Info>
 						</AvatarWrapper>
+						<IconWrapper>
+							<LinkIcon src="/link.png"></LinkIcon>
+							<Tooltip
+								placement="topRight"
+								title={`${props.data?.fetchBoard.boardAddress?.address} ${props.data?.fetchBoard.boardAddress?.addressDetail}`}
+							>
+								<LocationIcon src="/location.png" />
+							</Tooltip>
+						</IconWrapper>
 					</Header>
 					<Body>
 						<Title2>{props.data?.fetchBoard.title}</Title2>

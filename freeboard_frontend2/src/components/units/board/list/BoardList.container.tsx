@@ -25,8 +25,12 @@ export default function BoardList() {
 
 
   function onClickMoveDetail(event) { 
-    router.push(`/boards/${event.target.id}`)
-  }
+    router.push(`/boards/${event.currentTarget.id}`)
+	}
+	
+	function onClickNewBoard() {
+		router.push("/boards/new")
+	}
   return (
 		<>
 			<BoardListUI
@@ -36,7 +40,7 @@ export default function BoardList() {
 				onClickNextPage={onClickNextPage}
 				onClickPrevPage={onClickPrevPage}
 				startPage={startPage}
-				
+				onClickNewBoard={onClickNewBoard}
 			/>
 		</>
 	);

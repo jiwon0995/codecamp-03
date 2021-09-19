@@ -77,3 +77,8 @@ export const Button = styled.button`
 export const Youtube = styled(ReactPlayer)`
   margin: auto;
 `
+export const IconWrapper = styled.div`
+  text-align: center;
+`
+export const LinkIcon = styled.img``;
+export const LocationIcon = styled.img``

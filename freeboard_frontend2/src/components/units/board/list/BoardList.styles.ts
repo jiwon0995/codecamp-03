@@ -15,11 +15,11 @@ export const Row = styled.div`
   height: 52px;
   line-height: 52px;
   border-bottom: 1px solid gray;
-
-  /* :hover {
+  cursor: pointer;
+  :hover {
     background-color: #cccccc;
     color : white;
-  } */
+  }
 `;
 export const ColumnHeaderBasic = styled.div`
   width: 10%;
@@ -32,17 +32,13 @@ export const ColumnHeaderTitle = styled.div`
 export const ColumnBasic = styled.div`
   width: 10%;
   text-align: center;
+  
 `;
 
 export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
-  cursor: pointer;
-
-  :hover {
-    background-color: #cccccc;
-    color : white;
-  }
+  
 `;
 export const Footer = styled.div`
   display: flex;

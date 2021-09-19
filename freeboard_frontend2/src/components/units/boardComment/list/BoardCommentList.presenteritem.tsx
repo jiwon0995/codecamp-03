@@ -21,6 +21,7 @@ import { useMutation } from '@apollo/client';
 import { IMutation, IMutationDeleteBoardCommentArgs } from '../../../../commons/types/generated/types';
 import { DELET_BOARD_COMMNET, FETCH_BOARD_COMMENTS } from './BoardCommentList.queries'
 import { Modal } from 'antd'
+import InfiniteScroll from 'react-infinite-scroller';
 
 export default function BoardCommentListUIItem(props) { 
 	const router = useRouter()

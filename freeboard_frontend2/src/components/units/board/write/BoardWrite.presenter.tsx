@@ -23,10 +23,17 @@ import {
 	SubmitButton,
 	WrapperWrapper,
 } from './BordWrite.styles';
+import DaumPostcode from 'react-daum-postcode';
+import Modal from 'antd/lib/modal/Modal';
 
 export default function BoardWriteUI(props) {
 	return (
 		<WrapperWrapper>
+			{props.isOpen && (
+				<Modal visible={true}>
+					<DaumPostcode onComplete={props.onCompleteAddressSearch} autoClose />
+				</Modal>
+			)}
 			<Wrapper>
 				<Title>{props.isEdit ? '게시물 수정' : '게시물 등록'}</Title>
 				<WriterWrapper>
@@ -73,18 +80,35 @@ export default function BoardWriteUI(props) {
 				<InputWrapper>
 					<Label>주소</Label>
 					<ZipcodeWrapper>
-						<Zipcode placeholder="07250" />
-						<SearchButton>우편번호 검색</SearchButton>
+						<Zipcode
+							name="zipcode"
+							placeholder="07250"
+							readOnly
+							value={
+								props.zipcode || props.data?.fetchBoard.boardAddress?.zipcode
+							}
+						/>
+						<SearchButton onClick={props.onClickAddressSearch}>
+							우편번호 검색
+						</SearchButton>
 					</ZipcodeWrapper>
-					<Address></Address>
-					<Address></Address>
+					<Address
+						readOnly
+						value={
+							props.address || props.data?.fetchBoard.boardAddress?.address
+						}
+					></Address>
+					<Address
+						onChange={props.onChangeAddressDetail}
+						defaultValue={props.data?.fetchBoard.boardAddress?.addressDetail}
+					></Address>
 				</InputWrapper>
 				<InputWrapper>
 					<Label>유튜브</Label>
 					<Youtube
 						placeholder="링크를 복사해주세요."
 						onChange={props.onChangeYoutubeUrl}
-						defaultValue={props.data?.fetchboard.youtubeUrl}
+						defaultValue={props.data?.fetchBoard.youtubeUrl}
 					/>
 				</InputWrapper>
 				<ImageWrapper>
