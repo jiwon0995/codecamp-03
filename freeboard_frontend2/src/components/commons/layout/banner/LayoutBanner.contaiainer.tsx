@@ -26,13 +26,13 @@ export default function LayoutBanner() {
   return (
 		<Slider {...settings}>
 			<div>
-				<Banner src="/banner1.webp" />
+				<Banner src="/banner3.png" />
 			</div>
 			<div>
-				<Banner src="/banner2.webp" />
+				<Banner src="/banner2.png" />
 			</div>
 			<div>
-				<Banner src="/banner3.jpeg" />
+				<Banner src="/banner1.png" />
 			</div>
 		</Slider>
 	);
