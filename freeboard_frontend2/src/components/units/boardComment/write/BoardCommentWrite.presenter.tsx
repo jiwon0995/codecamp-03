@@ -22,17 +22,20 @@ export default function BoardCommentWriteUI(props) {
 						placeholder="비밀번호"
 						onChange={props.onChangePassword}
 					/>
-					<Star onChange={props.onChangeStar} />
+					<Star onChange={props.onChangeStar}/>
 				</InputWrapper>
 				<ContentsWrapper>
 					<Contents
+						maxLength={100}
 						placeholder="개인정보어쩌구"
 						onChange={props.onChangeContents}
+						defaultValue={props.el?.contents}
 					/>
 
 					<BottomWrapper>
-						<ContentsLength>0/100</ContentsLength>
+						<ContentsLength>{props.contents.length}/100</ContentsLength>
 						<Button
+							// 각 아이다를 가져온다
 							id={props.el?._id}
 							onClick={props.isEdit ? props.onClickUpdate : props.onClickWrite}>
 							{props.isEdit ? "수정하기" : "등록하기"}

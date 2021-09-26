@@ -6,7 +6,7 @@ export const ItemWrapper = styled.div`
   padding-top: 8px;
   height: 128px;
   border-bottom: 1px solid lightgray;
-  /* background-color: lightpink; */
+  background-color: #ffffff;
 `
 export const FlexWrapper = styled.div`
   display: flex;

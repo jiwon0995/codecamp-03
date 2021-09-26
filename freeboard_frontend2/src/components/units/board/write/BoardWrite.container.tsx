@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 // import { ICreateBoardInput, IMutation } from '../../../../commons/types/generated/types';
 import BoardWriteUI from './BoardWrite.presenter';
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries';
@@ -28,7 +28,7 @@ export default function BoardWrite(props) {
 	const [isActive, setIsActive] = useState(false);
 	const [isOpen, setIsOpen] = useState(false)
 	//mutation으로 createBoard하기
-	          //함수 사용할 떄는 createBoard(variables)
+	//함수 사용할 떄는 createBoard(variables)
 	const [createBoard] = useMutation(CREATE_BOARD);
 	const [updateBoard] = useMutation(UPDATE_BOARD);
 	//onchange함수
@@ -38,6 +38,7 @@ export default function BoardWrite(props) {
 		if (event.target.value !== '') {
 			setWriterError('');
 		}
+		//모든 내용이 입력됐는지 확인
 		if (
 			event.target.value !== '' &&
 			password !== '' &&
@@ -97,124 +98,129 @@ export default function BoardWrite(props) {
 			setIsActive(false);
 		}
 	}
-	function onChangeYoutubeUrl(event) { 
-		setYoutubeUrl(event.target.value)
-	}
-	function onChangeAddressDetail(event) {
-		setAddressDetail(event.target.value)
-	}
-	function onClickAddressSearch(){
-		setIsOpen(true)
-	}
-	function onCompleteAddressSearch (data:any) {
-		setAddress(data.address)
-		setZipcode(data.zonecode)
-		setIsOpen(false)
-	}
-	//등록버튼 함수
+		function onChangeYoutubeUrl(event: ChangeEvent<HTMLInputElement>) {
+			setYoutubeUrl(event.target.value)
+		}
+		function onChangeAddressDetail(event: any) {
+			setAddressDetail(event.target.value)
+		}
+		//우편번호 검색 버튼을 누르면 모달창이 열리게하는 함수
+		function onClickAddressSearch() {
+			setIsOpen(true)
+		}
+		//다음 주소 검색에서 나온 데이터 저장하는 함수
+		//라이브러리에서 제공하는 타입이 없을 경우 any로 해준다
+		function onCompleteAddressSearch(data: any) {
+			setAddress(data.address)
+			setZipcode(data.zonecode)
+			//모달종료
+			setIsOpen(false)
+		}
+		//등록버튼 함수
 
-	//타입스크립트 지정해주기
-	const mycreateBoardInput: IMyCreateBoardInput = {
-		writer,
-		title,
-		contents,
-		youtubeUrl,
-		password,
-		boardAddress: {
-			zipcode,
-			address,
-			addressDetail,
-		},
-	};
+		//타입스크립트 지정해주기
+		const mycreateBoardInput: IMyCreateBoardInput = {
+			writer,
+			title,
+			contents,
+			youtubeUrl,
+			password,
+			boardAddress: {
+				zipcode,
+				address,
+				addressDetail,
+			},
+		};
 
-	async function onClickSubmit() {
-		if (writer === '') {
-			setWriterError('작성자를 입력해주세요.');
-		}
-		if (password === '') {
-			setPasswordError('비밀번호를 입력해주세요.');
-		}
-		if (title === '') {
-			setTitleError('제목을 입력해주세요.');
-		}
-		if (contents === '') {
-			setContentsError('내용을 입력해주세요.');
-		}
-		if (writer !== '' && password !== '' && title !== '' && contents !== '') {
-			try {
-				const result = await createBoard({
-					variables: {
-						createBoardInput: mycreateBoardInput,
+		async function onClickSubmit() {
+			if (writer === '') {
+				setWriterError('작성자를 입력해주세요.');
+			}
+			if (password === '') {
+				setPasswordError('비밀번호를 입력해주세요.');
+			}
+			if (title === '') {
+				setTitleError('제목을 입력해주세요.');
+			}
+			if (contents === '') {
+				setContentsError('내용을 입력해주세요.');
+			}
+			if (writer !== '' && password !== '' && title !== '' && contents !== '') {
+				try {
+					const result = await createBoard({
+						variables: {
+							createBoardInput: mycreateBoardInput,
 						},
-				});
-				router.push(`/boards/${result.data.createBoard._id}`);
-			} catch (error) {
-				console.log(error);
-			}    
+					});
+					router.push(`/boards/${result.data.createBoard._id}`);
+				} catch (error) {
+					console.log(error);
+				}
+			}
 		}
-	}
 
-	async function onClickUpdate() {
-		if (
-			!title &&
-			!contents &&
-			!youtubeUrl &&
-			!zipcode &&
-			!address &&
-			!addressDetail
-		) {
-			alert('수정된 내용이 없습니다.');
-			return;
-		}
-		const myUpdateboardIuput: IMyUpdateBoardInput = {}
-		
-		if (title) myUpdateboardIuput.title = title
-		if (contents) myUpdateboardIuput.contents = contents;
-		if (youtubeUrl) myUpdateboardIuput.youtubeUrl = youtubeUrl;
-		if (zipcode || address || addressDetail) {
-			myUpdateboardIuput.boardAddress = {};
-			if (zipcode) myUpdateboardIuput.boardAddress.zipcode = zipcode;
-			if (address) myUpdateboardIuput.boardAddress.address = address;
-			if (addressDetail)
-				myUpdateboardIuput.boardAddress.addressDetail = addressDetail;
+		async function onClickUpdate() {
+			if (
+				!title &&
+				!contents &&
+				!youtubeUrl &&
+				!zipcode &&
+				!address &&
+				!addressDetail
+			) {
+				alert('수정된 내용이 없습니다.');
+				return;
+			}
+			// 바뀐것만 추가해서 채우기
+			const myUpdateboardIuput: IMyUpdateBoardInput = {}
+			if (title) myUpdateboardIuput.title = title
+			if (contents) myUpdateboardIuput.contents = contents;
+			if (youtubeUrl) myUpdateboardIuput.youtubeUrl = youtubeUrl;
+			if (zipcode || address || addressDetail) {
+				myUpdateboardIuput.boardAddress = {};
+				if (zipcode) myUpdateboardIuput.boardAddress.zipcode = zipcode;
+				if (address) myUpdateboardIuput.boardAddress.address = address;
+				if (addressDetail)
+					myUpdateboardIuput.boardAddress.addressDetail = addressDetail;
+			}
+	
+			try {
+				const result = await updateBoard({
+					variables: {
+						boardId: router.query.boardId,
+						password: password,
+						updateBoardInput: myUpdateboardIuput, //바뀐것만 보내기
+					},
+				});
+				router.push(`/boards/${result.data.updateBoard._id}`);
+			} catch (error) {
+				alert(error.message)
+			}
 		}
 	
-		try { 
-			const result = await updateBoard({
-				variables: {
-					boardId: router.query.boardId,
-					password: password,
-					updateBoardInput: myUpdateboardIuput,
-				},
-			});
-			router.push(`/boards/${result.data.updateBoard._id}`);
-		} catch (error) { 
-			alert(error.message)
-		}
-	}
 
-	return (
-		<BoardWriteUI
-			onChangeWriter={onChangeWriter}
-			onChangePassword={onChangePassword}
-			onChangeTitle={onChangeTitle}
-			onChangeContents={onChangeContents}
-			onClickSubmit={onClickSubmit}
-			writerError={writerError}
-			passwordError={passwordError}
-			titleError={titleError}
-			contentsError={contentsError}
-			isActive={isActive}
-			isEdit={props.isEdit}
-			onClickUpdate={onClickUpdate}
-			data={props.data}
-			onChangeYoutubeUrl={onChangeYoutubeUrl}
-			onClickAddressSearch={onClickAddressSearch}
-			isOpen={isOpen}
-			onChangeAddressDetail={onChangeAddressDetail}
-			onCompleteAddressSearch={onCompleteAddressSearch}
-			address={address}
-			zipcode={zipcode}
-		/>
-	);
+		return (
+			<BoardWriteUI
+				onChangeWriter={onChangeWriter}
+				onChangePassword={onChangePassword}
+				onChangeTitle={onChangeTitle}
+				onChangeContents={onChangeContents}
+				onClickSubmit={onClickSubmit}
+				writerError={writerError}
+				passwordError={passwordError}
+				titleError={titleError}
+				contentsError={contentsError}
+				isActive={isActive}
+				isEdit={props.isEdit}
+				onClickUpdate={onClickUpdate}
+				data={props.data}
+				onChangeYoutubeUrl={onChangeYoutubeUrl}
+				onClickAddressSearch={onClickAddressSearch}
+				isOpen={isOpen}
+				onChangeAddressDetail={onChangeAddressDetail}
+				onCompleteAddressSearch={onCompleteAddressSearch}
+				address={address}
+				zipcode={zipcode}
+			/>
+		);
 }

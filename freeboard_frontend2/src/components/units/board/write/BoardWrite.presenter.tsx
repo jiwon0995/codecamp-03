@@ -29,11 +29,15 @@ import Modal from 'antd/lib/modal/Modal';
 export default function BoardWriteUI(props) {
 	return (
 		<WrapperWrapper>
+			
+			{/* 주소검색 모달 */}
 			{props.isOpen && (
 				<Modal visible={true}>
+					          {/* 다음에서 만든 기능 */}
 					<DaumPostcode onComplete={props.onCompleteAddressSearch} autoClose />
 				</Modal>
 			)}
+
 			<Wrapper>
 				<Title>{props.isEdit ? '게시물 수정' : '게시물 등록'}</Title>
 				<WriterWrapper>
@@ -93,7 +97,11 @@ export default function BoardWriteUI(props) {
 						</SearchButton>
 					</ZipcodeWrapper>
 					<Address
+						//readOnly{true} 사용자가 수정 못함
 						readOnly
+						//주소검색해서 받은 데이터를 넣어준다. 
+						//작성하게 없으면 기존에 작성한 주소를 보여준다. 
+						//앞에 데이터가 있으면 앞에꺼, 없으면 뒤에꺼 둘다 없으면 빈칸
 						value={
 							props.address || props.data?.fetchBoard.boardAddress?.address
 						}

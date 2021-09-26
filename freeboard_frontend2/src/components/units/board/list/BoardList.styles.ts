@@ -15,10 +15,11 @@ export const Row = styled.div`
   height: 52px;
   line-height: 52px;
   border-bottom: 1px solid gray;
+  color: white;
   cursor: pointer;
   :hover {
-    background-color: #cccccc;
-    color : white;
+    /* background-color: #cccccc; */
+    color : yellow;
   }
 `;
 export const ColumnHeaderBasic = styled.div`
@@ -62,7 +63,7 @@ export const Button = styled.button`
 
   :hover {
     background-color: #cccccc;
-    color : white;
+    color : yellow;
   }
 `;
 export const TopInput = styled.div`

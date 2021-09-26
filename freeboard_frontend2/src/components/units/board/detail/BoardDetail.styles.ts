@@ -5,6 +5,7 @@ export const Wrapper2 = styled.div`
   width: 1200px;
   margin: 0px 100px;
   margin-top: 50px;
+  /* background-color: white; */
 `
 export const CardWrapper = styled.div`
   border: 1px solid black;
@@ -26,6 +27,7 @@ export const Header = styled.div`
   align-items: center;
   border-bottom: 1px solid #bdbdbd;
   padding-bottom: 20px;
+  color: white;
 `
 export const AvatarWrapper = styled.div`
   display: flex;
@@ -40,7 +42,9 @@ export const Info = styled.div`
   justify-content: center;
 `;
 export const Writer2 = styled.div``
-export const CreatedAt = styled.div``
+export const CreatedAt = styled.div`
+  color: white;
+`
 export const Body = styled.div`
   width: 100%;
   min-height: 800px;
@@ -52,6 +56,7 @@ export const Title2 = styled.h1`
 export const Contents2 = styled.div`
   padding-top: 40px;
   padding-bottom: 120px;
+  color: white;
 `;
 export const BottomWrapper = styled.div`
   display: flex;

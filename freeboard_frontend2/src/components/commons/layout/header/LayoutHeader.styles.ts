@@ -13,18 +13,32 @@ export const Nav = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
+  background-color: #000000;
 `
 export const Logo = styled.img`
   width: auto;
-  height: 25px;
+  height: 35px;
   padding-left: 50px;
   cursor: pointer;
 `
 export const Font = styled.div`
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 100;
   padding-right: 10px;
   padding-left: 10px;
+  color: white;
+  cursor: pointer;
+  :hover{
+    color: yellow;
+  }  
+    
+`
+export const Font2 = styled.div`
+  font-size: 18px;
+  font-weight: 100;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: yellow;
 `
 export const FontWrapper = styled.div`
   display: flex;

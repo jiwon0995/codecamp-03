@@ -1,20 +1,22 @@
+import { PropertySafetyFilled } from '@ant-design/icons'
 import { Menu } from '@material-ui/core'
-import { Logo, Nav, Wrapper, Font, FontWrapper } from './LayoutHeader.styles'
+import { Logo, Nav, Wrapper, Font, FontWrapper, Font2 } from './LayoutHeader.styles'
 
-export default function LayoutHeaderUI() { 
+export default function LayoutHeaderUI(props) { 
   
   return (
-    <Wrapper>
-      <Nav>
-        <Logo src="/samsunglogo.png"></Logo>
-        <FontWrapper>
-          <Font>제품</Font>
-          <Font>기획전</Font>
-          <Font>스토리</Font>
-          <Font>고객 서비스</Font>
-        </FontWrapper>
-      </Nav>
-    </Wrapper>
-  )
+		<Wrapper>
+			<Nav>
+				<Logo src="/jiologo.png"></Logo>
+				<FontWrapper>
+					<Font onClick={props.onClickMonvMain}>HOME</Font>
+					<Font2>|</Font2>
+					<Font onClick={props.onClickMoveNew}>NEWS</Font>
+					<Font2>|</Font2>
+					<Font onClick={props.onClickMoveBoards}>BOARD</Font>
+				</FontWrapper>
+			</Nav>
+		</Wrapper>
+	);
 
 }

@@ -10,6 +10,7 @@ export const WrapperWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  background-color: #000000;
 `
 export const Wrapper = styled.div`
   width: 1200px;
@@ -20,6 +21,7 @@ export const Wrapper = styled.div`
   align-items: center;
   box-shadow: 0px 0px 10px gray;
   margin: 100px;
+  background-color: #ffffff;
 `
 export const Title = styled.div`
   font-family: Arial, Helvetica, sans-serif;

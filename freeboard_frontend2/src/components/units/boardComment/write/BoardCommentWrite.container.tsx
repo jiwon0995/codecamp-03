@@ -7,7 +7,6 @@ import {
 	UPDATE_BOARD_COMMENT,
 } from './BoardCommentWrite.queried';
 import { FETCH_BOARD_COMMENTS } from '../list/BoardCommentList.queries';
-import { FETCH_BOARD } from '../../board/detail/BoardDetail.queries';
 import { IMutation, IMutationUpdateBoardCommentArgs } from '../../../../commons/types/generated/types';
 
 
@@ -74,7 +73,7 @@ export default function BoardCommentWrite(props) {
 		try { 
 			await updateBoardComment({
 				variables: {
-					updateBoardCommentInput: { contents: contents },
+					updateBoardCommentInput: { contents: contents, rating:Star },
 					password: password,
 					boardCommentId: event.target.id,
 				},
@@ -103,6 +102,7 @@ export default function BoardCommentWrite(props) {
 				el={props.el}
 				onClickUpdate={onClickUpdate}
 				isEdit={props.isEdit}
+				contents={contents}
 			/>
 		</>
 	);

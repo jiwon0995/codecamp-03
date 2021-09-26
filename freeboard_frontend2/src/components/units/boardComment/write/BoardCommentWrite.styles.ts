@@ -36,6 +36,7 @@ export const Contents = styled.input`
   min-height: 108px;
   padding: 20px;
   border: none;
+  background-color: white;
   /* border-bottom: 1px solid lightgrey; */
 `
 export const BottomWrapper = styled.div`
@@ -50,11 +51,13 @@ export const ContentsLength = styled.div`
   line-height: 51px;
   padding-left: 20px;
   color: gray;
+  background-color: white;
 `
 export const Button = styled.button`
   width: 91px;
   height: 51px;
-  background-color: black;
-  color: white;
+  background-color: yellow;
+  color: black;
+  border: none;
   cursor: pointer;
 `

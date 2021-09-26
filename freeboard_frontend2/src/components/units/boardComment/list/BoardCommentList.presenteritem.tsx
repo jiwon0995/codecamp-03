@@ -73,6 +73,7 @@ export default function BoardCommentListUIItem(props) {
 					></PasswordInput>
 				</Modal>
 			)}
+			{/* //댓글 리스트 */}
 			{!isEdit && (
 				<WrapperWrapper>
 					<ItemWrapper>
@@ -94,10 +95,13 @@ export default function BoardCommentListUIItem(props) {
 					</ItemWrapper>
 				</WrapperWrapper>
 			)}
+			{/* //댓글 수정하기 */}
 			{isEdit && (
 				<BoardCommentWrite
 					isEdit={isEdit}
+					//여러 댓글을 수정창을 열었을 때 수정된 댓글이 바로 보일 수 있게
 					setIsEdit={setIsEdit}
+					//넘겨주는 디폴트벨류
 					el={props.el}
 				/>
 			)}
