@@ -43,10 +43,10 @@ function solution(a,b) {
   }
   // 총 일수를 저장하는 변수
   let days = 0;
-  for( let i = 1; i<a; i++) {
+  for( let i = 1; i < a; i++) {
     days += month[i]
   }
-days +={b-1}
+days += {b-1}
       answer = seek[days%7]
 retunr answe
   
