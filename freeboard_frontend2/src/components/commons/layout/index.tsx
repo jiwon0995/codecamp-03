@@ -6,7 +6,7 @@ import { useRouter } from "next/dist/client/router";
 
 const hidden = ['/boards','/boards/new']
 
-export default function Layout(props) { 
+export default function Layout(props:any) { 
 	const router = useRouter()
 	const isHidden = hidden.includes(router.pathname)
   return (

@@ -12,7 +12,7 @@ export default function BoardList() {
   });
   
   
-  function onClickPage(event) {
+  function onClickPage(event:any) {
 		refetch({ page: Number(event.target.id) });
     
   }
@@ -24,7 +24,7 @@ export default function BoardList() {
 	}
 
 
-  function onClickMoveDetail(event) { 
+  function onClickMoveDetail(event:any) { 
     router.push(`/boards/${event.currentTarget.id}`)
 	}
 	

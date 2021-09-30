@@ -43,7 +43,7 @@ export default function APIPage() {
 	}; 
 	
 
-	function onChangeSearch(event) {
+	function onChangeSearch(event:any) {
 		setSearch(inputRef.current.value);
 	}	
 
@@ -54,7 +54,7 @@ export default function APIPage() {
 			<InputWrapper>
 				<InputSearch type="text" ref={inputRef} onChange={onChangeSearch}></InputSearch>
 				{/* <button>검색!</button> */}
-				{list && list.documents.map((data) => <ReactPlayer url={data.url}></ReactPlayer>)}
+				{list && list.documents.map((data:any) => <ReactPlayer url={data.url}></ReactPlayer>)}
 			</InputWrapper>
 		</WrapperWrapper>
 	);

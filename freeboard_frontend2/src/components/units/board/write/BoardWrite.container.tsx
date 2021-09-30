@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@apollo/client';
+ import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
 import { ChangeEvent, useState } from 'react';
 // import { ICreateBoardInput, IMutation } from '../../../../commons/types/generated/types';
@@ -8,7 +8,7 @@ import { IMyUpdateBoardInput,IMyCreateBoardInput } from './BoardWrite.types';
 import { Youtube } from './BordWrite.styles';
 
 
-export default function BoardWrite(props) {
+export default function BoardWrite(props:any) {
 	const router = useRouter();
 	//입력값 state에 저장, 빈문자열로 초기화
 	const [writer, setWriter] = useState('');
@@ -19,6 +19,7 @@ export default function BoardWrite(props) {
 	const [address, setAddress] = useState('')
 	const [zipcode, setZipcode] = useState('')
 	const [addressDetail, setAddressDetail] = useState('')
+	const [fileUrls, setFileUrls] = useState(['','',''])
 	//에러메세지 state에 저장
 	const [writerError, setWriterError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
@@ -32,7 +33,7 @@ export default function BoardWrite(props) {
 	const [createBoard] = useMutation(CREATE_BOARD);
 	const [updateBoard] = useMutation(UPDATE_BOARD);
 	//onchange함수
-	function onChangeWriter(event) {
+	function onChangeWriter(event:any) {
 		setWriter(event.target.value);
 		//작성자에 값이 들어오면 에러메세지가 빈문열로 바뀜
 		if (event.target.value !== '') {
@@ -50,7 +51,7 @@ export default function BoardWrite(props) {
 			setIsActive(false);
 		}
 	}
-	function onChangePassword(event) {
+	function onChangePassword(event:any) {
 		setPassword(event.target.value);
 		if (event.target.value !== '') {
 			setPasswordError('');
@@ -66,7 +67,7 @@ export default function BoardWrite(props) {
 			setIsActive(false);
 		}
 	}
-	function onChangeTitle(event) {
+	function onChangeTitle(event:any) {
 		setTitle(event.target.value);
 		if (event.target.value !== '') {
 			setTitleError('');
@@ -82,7 +83,7 @@ export default function BoardWrite(props) {
 			setIsActive(false);
 		}
 	}
-	function onChangeContents(event) {
+	function onChangeContents(event:any) {
 		setContents(event.target.value);
 		if (event.target.value !== '') {
 			setContentsError('');
@@ -130,6 +131,8 @@ export default function BoardWrite(props) {
 				address,
 				addressDetail,
 			},
+			images: [...fileUrls]
+			
 		};
 
 		async function onClickSubmit() {
@@ -197,6 +200,12 @@ export default function BoardWrite(props) {
 				alert(error.message)
 			}
 		}
+		
+	function onChangeFileUrls(fileUrl: string, index: number) { 
+		const newFileUrls = [...fileUrls]
+		newFileUrls[index] = fileUrl
+		setFileUrls(newFileUrls)
+	}
 	
 
 		return (
@@ -221,6 +230,8 @@ export default function BoardWrite(props) {
 				onCompleteAddressSearch={onCompleteAddressSearch}
 				address={address}
 				zipcode={zipcode}
+				onChangeFileUrls={onChangeFileUrls}
+				fileUrls={fileUrls}
 			/>
 		);
 }

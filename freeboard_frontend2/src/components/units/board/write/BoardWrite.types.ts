@@ -19,4 +19,5 @@ export interface IMyCreateBoardInput {
     address?: string
     addressDetail?: string
   }
+  images?: string[]
 }

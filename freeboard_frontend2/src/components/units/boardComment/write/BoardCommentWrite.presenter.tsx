@@ -1,7 +1,7 @@
 import { WrapperWrapper } from '../../board/write/BordWrite.styles';
 import { InputWrapper, Wrapper4, Input, ContentsWrapper, Contents, BottomWrapper, ContentsLength, Button, pencil, Star } from './BoardCommentWrite.styles'
 
-export default function BoardCommentWriteUI(props) { 
+export default function BoardCommentWriteUI(props:any) { 
 	return (
 		<WrapperWrapper>
 			<Wrapper4>

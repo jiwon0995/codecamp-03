@@ -22,7 +22,7 @@ import { IMutation, IMutationDeleteBoardCommentArgs } from '../../../../commons/
 import { DELET_BOARD_COMMNET, FETCH_BOARD_COMMENTS } from './BoardCommentList.queries'
 import { Modal } from 'antd'
 
-export default function BoardCommentListUIItem(props) { 
+export default function BoardCommentListUIItem(props:any) { 
 	const router = useRouter()
 	const [isEdit, setIsEdit] = useState(false)
 	const [deleteBoardComment] = useMutation <
@@ -37,7 +37,7 @@ export default function BoardCommentListUIItem(props) {
 	function onClickOpenEleteModal() { 
 		setisOpenDeleteModal(true)
 	}
-	function onChangeDeletePassword(event) {
+	function onChangeDeletePassword(event:any) {
     setPassword(event.target.value);
   }
 	async function onClickDelete() { 

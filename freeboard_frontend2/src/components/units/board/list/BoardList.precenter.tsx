@@ -20,7 +20,7 @@ import {
 } from './BoardList.styles';
 // import { FETCH_BOARDS } from './BoardList.queries';
 
-export default function BoardListUI(props) { 
+export default function BoardListUI(props:any) { 
 	// const [startPage, setStartPage] = useState(1);
 	// const { data, refetch } = useQuery(FETCH_BOARDS, {
 	// 	variables: {page:startPage},
@@ -54,7 +54,7 @@ export default function BoardListUI(props) {
 						<ColumnHeaderBasic>날짜</ColumnHeaderBasic>
 					</Row>
 				</TableTop>
-				{props.data?.fetchBoards.map((el, index) => (
+				{props.data?.fetchBoards.map((el:any, index:any) => (
 					<Row key={el._id} id={el._id} onClick={props.onClickMoveDetail}>
 						<ColumnBasic>{10 - index}</ColumnBasic>
 						<ColumnTitle>{el.title}</ColumnTitle>

@@ -1,4 +1,4 @@
-import { WrapperWrapper } from '../write/BordWrite.styles';
+import {  WrapperWrapper } from '../write/BordWrite.styles';
 import {
 	CardWrapper,
 	Wrapper2,
@@ -17,10 +17,12 @@ import {
 	IconWrapper,
 	LinkIcon,
 	LocationIcon,
+	ImageDetail,
+	ImageWrapper2,
 } from './BoardDetail.styles';
 import { Tooltip } from 'antd';
 
-export default function BoardDetailUI(props) { 
+export default function BoardDetailUI(props:any) { 
 	return (
 		<WrapperWrapper>
 			<Wrapper2>
@@ -47,6 +49,16 @@ export default function BoardDetailUI(props) {
 					</Header>
 					<Body>
 						<Title2>{props.data?.fetchBoard.title}</Title2>
+						<ImageWrapper2>
+							{props.data?.fetchBoard.images
+								?.filter((el:any) => el !== '')
+								.map((el:any) => (
+									<ImageDetail
+										key={el}
+										src={`https://storage.googleapis.com/${el}`}
+									/>
+								))}
+						</ImageWrapper2>
 						<Contents2>{props.data?.fetchBoard.contents}</Contents2>
 						<Youtube
 							url={props.data?.fetchBoard.youtubeUrl}

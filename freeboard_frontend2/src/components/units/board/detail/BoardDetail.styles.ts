@@ -87,3 +87,13 @@ export const IconWrapper = styled.div`
 `
 export const LinkIcon = styled.img``;
 export const LocationIcon = styled.img``
+
+export const ImageDetail = styled.img`
+  width: 400px;
+  height: auto;
+`
+export const ImageWrapper2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
