@@ -97,8 +97,8 @@ export const SearchButton2 = styled.button`
 `
 
 export const Pagenation = styled.span`
-  font-size: 20px;
-  color : gray;
+  font-size: 15px;
+  color : white;
   margin: 20px;
   cursor: pointer;
 `
@@ -110,4 +110,14 @@ export const PageWrapperWrapper = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+`
+interface Iprops {
+  isMatched: boolean;
+}
+export const Myword = styled.span`
+  color: ${((props: Iprops) => (props.isMatched ? 'yellow' : 'white'))};
+  :hover {
+    font-size: 25px;
+    color : yellow;
+  }
 `

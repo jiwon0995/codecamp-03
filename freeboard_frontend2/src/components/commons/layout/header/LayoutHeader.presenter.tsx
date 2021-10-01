@@ -1,19 +1,27 @@
-import { PropertySafetyFilled } from '@ant-design/icons'
-import { Menu } from '@material-ui/core'
 import { Logo, Nav, Wrapper, Font, FontWrapper, Font2 } from './LayoutHeader.styles'
 
-export default function LayoutHeaderUI(props) { 
+export default function LayoutHeaderUI(props:any) { 
   
   return (
 		<Wrapper>
 			<Nav>
-				<Logo src="/jiologo.png"></Logo>
+				<Logo src="/jiologo.png" id="/boards.main"></Logo>
 				<FontWrapper>
-					<Font onClick={props.onClickMonvMain}>HOME</Font>
+					<Font id="/boards/main" onClick={props.onClickMove}>
+						HOME
+					</Font>
 					<Font2>|</Font2>
-					<Font onClick={props.onClickMoveNew}>NEWS</Font>
+					<Font id="/boards/new" onClick={props.onClickMove}>
+						NEW
+					</Font>
 					<Font2>|</Font2>
-					<Font onClick={props.onClickMoveBoards}>BOARD</Font>
+					<Font id="/boards" onClick={props.onClickMove}>
+						BOARD
+					</Font>
+					<Font2>|</Font2>
+					<Font id="/boards/publicAPI" onClick={props.onClickMove}>
+						API
+					</Font>
 				</FontWrapper>
 			</Nav>
 		</Wrapper>

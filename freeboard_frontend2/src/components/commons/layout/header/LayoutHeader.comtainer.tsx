@@ -4,21 +4,12 @@ import LayoutHeaderUI from './LayoutHeader.presenter'
 export default function LayoutHeaderContainer() { 
   const router = useRouter()
 
+  const onClickMove = e => router.push(e.target.id)
 
-  function onClickMonvMain() { 
-    router.push('/boards/main')
-  }
-  function onClickMoveBoards() { 
-    router.push('/boards')
-  }
-  function onClickMoveNew() { 
-    router.push('/boards/new')
-  }
+  
   return (
 		<LayoutHeaderUI
-			onClickMonvMain={onClickMonvMain}
-			onClickMoveBoards={onClickMoveBoards}
-			onClickMoveNew={onClickMoveNew}
+			onClickMove={onClickMove}
 		/>
 	);
 }

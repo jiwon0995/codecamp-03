@@ -6,10 +6,9 @@ import {FETCH_BOARDS} from './BoardList.queries'
 export default function BoardList() { 
   const router = useRouter()
   // const { data } = useQuery(FETCH_BOARDS)
-  const [startPage, setStartPage] = useState(1);
-  const { data, refetch } = useQuery(FETCH_BOARDS, {
-		variables: { page: startPage },
-  });
+	const [startPage, setStartPage] = useState(1);
+	const [search, setSearch] = useState("")
+  const { data, refetch } = useQuery(FETCH_BOARDS)
   
   
   function onClickPage(event:any) {
@@ -31,6 +30,13 @@ export default function BoardList() {
 	function onClickNewBoard() {
 		router.push("/boards/new")
 	}
+	function onChangeSearch(event:any) { 
+		setSearch(event.target.value)
+	}
+	function onClickSearch() { 
+		refetch({ search: search });
+		console.log(search)
+	}
   return (
 		<>
 			<BoardListUI
@@ -41,6 +47,9 @@ export default function BoardList() {
 				onClickPrevPage={onClickPrevPage}
 				startPage={startPage}
 				onClickNewBoard={onClickNewBoard}
+				onChangeSearch={onChangeSearch}
+				onClickSearch={onClickSearch}
+				search={search}
 			/>
 		</>
 	);
