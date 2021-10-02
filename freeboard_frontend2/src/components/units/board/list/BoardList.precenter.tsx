@@ -19,6 +19,7 @@ import {
 	PageWrapper,
 	PageWrapperWrapper,
 	Myword,
+	MywordWrapper,
 } from './BoardList.styles';
 // import { FETCH_BOARDS } from './BoardList.queries';
 
@@ -64,15 +65,16 @@ export default function BoardListUI(props: any) {
 					<Row key={el._id} id={el._id} onClick={props.onClickMoveDetail}>
 						<ColumnBasic>{10 - index}</ColumnBasic>
 						<ColumnTitle>
+							{/* <MywordWrapper> */}
 							{el.title
 								.replaceAll(props.search, `#@${props.search}#@`)
-								.split('#@') 
+								.split('#@')
 								.map((el: any) => (
 									<Myword key={uuidv4()} isMatched={props.search === el}>
 										{el}
 									</Myword>
 								))}
-							
+							{/* </MywordWrapper> */}
 						</ColumnTitle>
 						<ColumnBasic>{el.writer}</ColumnBasic>
 						<ColumnBasic>{el.createdAt.slice(0, 10)}</ColumnBasic>
@@ -84,15 +86,17 @@ export default function BoardListUI(props: any) {
 						onClick={props.onClickPrevPage}
 					/>
 					<PageWrapper>
-						{ Array(10).fill(1).map((_, index) => (
-							<Pagenation
-								key={props.startPage + index}
-								onClick={props.onClickPage}
-								id={String(props.startPage + index)}
-							>
-								{props.startPage + index}
-							</Pagenation>
-						))}
+						{Array(10)
+							.fill(1)
+							.map((_, index) => (
+								<Pagenation
+									key={props.startPage + index}
+									onClick={props.onClickPage}
+									id={String(props.startPage + index)}
+								>
+									{props.startPage + index}
+								</Pagenation>
+							))}
 					</PageWrapper>
 					<RightOutlined
 						style={{ color: '#ffffff' }}

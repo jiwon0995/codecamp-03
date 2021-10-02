@@ -115,9 +115,21 @@ interface Iprops {
   isMatched: boolean;
 }
 export const Myword = styled.span`
+  /* background-color: blue;  */
+  /* display: inline; */
   color: ${((props: Iprops) => (props.isMatched ? 'yellow' : 'white'))};
+    :hover {
+    font-size: 25px;
+    color : yellow;
+  }
+  
+`
+export const MywordWrapper = styled.div`
+  /* display: inline; */
+  /* color: ${((props: Iprops) => (props.isMatched ? 'yellow' : 'white'))}; */
   :hover {
     font-size: 25px;
     color : yellow;
   }
 `
+

@@ -19,6 +19,12 @@ import {
 	LocationIcon,
 	ImageDetail,
 	ImageWrapper2,
+	LikeWrapper,
+	IconWrapper2,
+	LikeIcon,
+	DislikeIcon,
+	LikeCount,
+	DislikeCount,
 } from './BoardDetail.styles';
 import { Tooltip } from 'antd';
 
@@ -51,8 +57,8 @@ export default function BoardDetailUI(props:any) {
 						<Title2>{props.data?.fetchBoard.title}</Title2>
 						<ImageWrapper2>
 							{props.data?.fetchBoard.images
-								?.filter((el:any) => el !== '')
-								.map((el:any) => (
+								?.filter((el: any) => el !== '')
+								.map((el: any) => (
 									<ImageDetail
 										key={el}
 										src={`https://storage.googleapis.com/${el}`}
@@ -65,6 +71,18 @@ export default function BoardDetailUI(props:any) {
 							width="486px"
 							height="240px"
 						></Youtube>
+						<LikeWrapper>
+							<IconWrapper2>
+								<LikeIcon onClick={props.onClickLike} />
+								<LikeCount>{props.data?.fetchBoard.likeCount}</LikeCount>
+							</IconWrapper2>
+							<IconWrapper2>
+								<DislikeIcon onClick={props.onClickDislike} />
+								<DislikeCount>
+									{props.data?.fetchBoard.dislikeCount}
+								</DislikeCount>
+							</IconWrapper2>
+						</LikeWrapper>
 					</Body>
 				</CardWrapper>
 				<BottomWrapper>

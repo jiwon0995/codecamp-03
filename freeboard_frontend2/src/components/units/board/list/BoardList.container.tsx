@@ -8,6 +8,7 @@ export default function BoardList() {
   // const { data } = useQuery(FETCH_BOARDS)
 	const [startPage, setStartPage] = useState(1);
 	const [search, setSearch] = useState("")
+	const [myKeyword, setMyKeyword] = useState()
   const { data, refetch } = useQuery(FETCH_BOARDS)
   
   
@@ -35,7 +36,7 @@ export default function BoardList() {
 	}
 	function onClickSearch() { 
 		refetch({ search: search });
-		console.log(search)
+		
 	}
   return (
 		<>
