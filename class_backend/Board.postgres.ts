@@ -1,4 +1,4 @@
-import {BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {BaseEntity, Column, DeleteDateColumn, Entity, PrimaryGeneratedColumn, Timestamp } from 'typeorm'
 
 @Entity()
 export default class Board extends BaseEntity { 
@@ -13,4 +13,7 @@ export default class Board extends BaseEntity {
 
   @Column({type:"integer"})
   age!: number
+
+  @Column({ type: "timestamp", default: null, nullable: true })
+  deletedAt?: Date;
 }
