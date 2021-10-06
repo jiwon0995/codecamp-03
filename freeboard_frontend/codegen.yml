@@ -1,6 +1,6 @@
 schema: http://backend03.codebootcamp.co.kr/graphql
 generates:
-  ./src/types.d.ts:
+  ./src/commons/types/generated/types.d.ts:
     plugins:
       - typescript
     config:
