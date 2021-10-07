@@ -45,7 +45,6 @@ function solution(nums){
       pocket.length < (nums.length/2)) {
       pocket.push(monster)
     }
-      
   })
   return pocket.length
 }
