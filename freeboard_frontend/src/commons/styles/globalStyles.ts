@@ -10,4 +10,9 @@ export const globalStyles = css`
     font-family: "myfont";
     src: url("/fonts/Windows Regular.ttf");
   }
+  
+  @font-face {
+    font-family: "myfontko";
+    src: url("/fonts/DungGeunMo.ttf");
+  }
 `;
