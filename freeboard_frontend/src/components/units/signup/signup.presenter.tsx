@@ -20,11 +20,17 @@ import {
   ModalImage,
   ModalContents,
   ModalButton,
+  LoginTitle,
+  LoginBox,
+  CoinIcon,
+  LoginInput,
+  Logintext,
 } from "./signup.styles";
 import Input01 from "../../commons/inputs/01/Input";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+
 //modal style
 const style = {
   position: "absolute" as "absolute",
@@ -48,7 +54,7 @@ export default function SignupUI(props: any) {
       <BoxWrapper>
         <Top>
           <SmileOutlined />
-          <TopText>Welcome To Market!</TopText>
+          <TopText>Welcome to the Market!</TopText>
           <div>
             <MinusSquareOutlined />
             <CloseSquareOutlined />
@@ -56,8 +62,20 @@ export default function SignupUI(props: any) {
         </Top>
         {props.isEdit && (
           <Body>
-            <input type="text" onChange={props.onChangeEmail} />
-            <input type="password" onChange={props.onChangePassword} />
+            <LoginBox>
+              <CoinIcon src="/coin.gif" />
+              <LoginTitle>
+                Welcome to the market!
+                <br />
+                Login in to your account
+              </LoginTitle>
+                <LoginInput onChange={props.onChangeEmail} placeholder="ID"></LoginInput>
+                <LoginInput
+                  type="password"
+                onChange={props.onChangePassword}
+                placeholder="password"
+                ></LoginInput>
+            </LoginBox>
           </Body>
         )}
         {!props.isEdit && (
@@ -105,7 +123,7 @@ export default function SignupUI(props: any) {
         {props.isEdit ? (
           <div>
             <Signup onClick={props.onClickLogin}>Login</Signup>
-            <Signup onClick={props.onClickLogin}>SignUp</Signup>
+            <Signup onClick={props.MoveSignUpPage}>SignUp</Signup>
           </div>
         ) : (
           <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
@@ -126,7 +144,7 @@ export default function SignupUI(props: any) {
                     로그인 후 이용해주세요.
                   </ModalContents>
                   <ModalButton
-                    onClick={props.go}
+                    onClick={props.MoveLoginPage}
                     style={{ fontFamily: "myfontko" }}
                   >
                     Login

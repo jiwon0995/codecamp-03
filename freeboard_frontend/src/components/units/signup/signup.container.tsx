@@ -12,22 +12,23 @@ import {
 } from "../../../commons/types/generated/types";
 import { CREATE_USER, LOGIN_USER } from "./signup.queries";
 import { useContext, useState } from "react";
-import { GlobalContext } from '../../../../pages/_app'
+import { GlobalContext } from "../../../../pages/_app";
 
 export default function SignUp(props: Iprops) {
+  //@ts-ignore
   const { setAccessToken } = useContext(GlobalContext);
   const router = useRouter();
   const [IsOpen, setIsOpen] = useState(false);
-  const [email, setEmail] = useState("")
-  const [password, setpassword] = useState("")
-  
-  const onChangeEmail = (e) => { 
-    setEmail(e.target.value)
-  }
-  const onChangePassword = (e) => { 
-    setpassword(e.target.value)
-  }
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
 
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setpassword(e.target.value);
+  };
+  console.log(email, password);
   const [createUser] = useMutation<
     Pick<IMutation, "createUser">,
     IMutationCreateUserArgs
@@ -42,9 +43,12 @@ export default function SignUp(props: Iprops) {
     resolver: yupResolver(schema),
   });
 
-  const go = () => {
+  const MoveLoginPage = () => {
     router.push("/login");
     setIsOpen(false);
+  };
+  const MoveSignUpPage = () => {
+    router.push("/signup");
   };
 
   const onClickSignUp = async (data: any) => {
@@ -64,19 +68,26 @@ export default function SignUp(props: Iprops) {
       });
       setIsOpen(true);
     } catch (error) {
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
   const onClickLogin = async () => {
-    const result = await loginUser({
-      variables: {
-        email: email,
-        password: password,
-      },
-    });
-    console.log(result.data?.loginUser.accessToken)
-    setAccessToken(result.data?.loginUser.accessToken);
+    try {
+      const result = await loginUser({
+        variables: {
+          email: email,
+          password: password,
+        },
+      });
+      console.log(result);
+      //@ts-ignore
+      localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
+      setAccessToken(result.data?.loginUser.accessToken);
+      router.push("/market/new");
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
@@ -87,7 +98,8 @@ export default function SignUp(props: Iprops) {
       register={register}
       formState={formState}
       IsOpen={IsOpen}
-      go={go}
+      MoveLoginPage={MoveLoginPage}
+      MoveSignUpPage={MoveSignUpPage}
       onClickLogin={onClickLogin}
       onChangeEmail={onChangeEmail}
       onChangePassword={onChangePassword}

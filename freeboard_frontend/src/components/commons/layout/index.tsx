@@ -4,8 +4,8 @@ import LayoutHeaderContainer from './header/LayoutHeader.comtainer';
 import { useRouter } from "next/dist/client/router";
 
 
-const hidden = ['/boards','/boards/new','/signup','/login']
-const hidden2 = ['/signup', '/login'];
+const hidden = ['/boards','/boards/new','/signup','/login','/market/new']
+const hidden2 = ['/signup', '/login','/market/new'];
 export default function Layout(props:any) { 
 	const router = useRouter()
 	const isHidden = hidden.includes(router.pathname)

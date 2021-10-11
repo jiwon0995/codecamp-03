@@ -5,17 +5,24 @@ import { Global } from "@emotion/react";
 import { globalStyles } from '../src/commons/styles/globalStyles'
 import Layout from '../src/components/commons/layout'
 import { createUploadLink } from 'apollo-upload-client'
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 export const GlobalContext = createContext("")
 
 function MyApp({ Component, pageProps }) {
   const [accessToken, setAccessToken] = useState("")
+  const [userInfo, setUserInfo] = useState({});
 
   const value = {
     accessToken: accessToken,
     setAccessToken: setAccessToken,
+    userInfo: userInfo,
+    setUserInfo: setUserInfo,
   }
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken") || "";
+    setAccessToken(accessToken);
+  }, []);
 
   const uploadLink = createUploadLink({
     uri: "http://backend03.codebootcamp.co.kr/graphql",

@@ -13,8 +13,9 @@ export const BoxWrapper = styled.div`
   width: 750px;
   height: 550px;
   background-color: #d3f705;
-  padding: 0px 5px 5px 5px;
-  box-shadow: 10px 10px 8px lightgray;
+  padding: 0px 0px;
+  border: 2px solid lightgray;
+  /* box-shadow: 10px 10px 8px gray; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,6 +27,7 @@ export const Top = styled.div`
   align-items: center;
   height: 25px;
   width: 100%;
+  padding: 0px 10px;
 
 `
 export const TopText = styled.div`
@@ -38,10 +40,9 @@ export const TopText = styled.div`
 
 `
 export const Body = styled.div`
-  width: 730px;
-  background-color: white;
+  width: 100%;
   height: 400px;
-  box-shadow: inset 0 0 0 1px gray;
+  /* box-shadow: inset 0 0 0 1px gray; */
   background-color: lightgray;
   padding: 20px 20px;
   display: flex;
@@ -109,5 +110,35 @@ export const ModalContents = styled.div`
 `
 export const ModalButton = styled.button`
   font-family: "myfont";
-  font-size: 12px;  
+  font-size: 12px;
+`
+
+export const LoginTitle = styled.div`
+  font-family: "myfont";
+  font-size: 25px;
+  padding-bottom: 30px;
+  text-align: center;
+`
+export const LoginBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`
+export const CoinIcon = styled.img`
+  width: 100px;
+  height: auto;
+  display: block;
+  padding-top: 30px;
+`
+
+export const LoginInput = styled.input`
+  font-family: 'myfont';
+  margin-bottom: 30px;
+`
+export const Logintext = styled.span`
+  font-family: 'myfont';
+  margin-right: 15px;
+  font-size: 18px;
 `

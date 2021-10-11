@@ -1,4 +1,4 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
 const InputWrapper = styled.div`
   padding-top: 30px;
@@ -19,12 +19,16 @@ export const Label = styled.div`
   width: 80px;
 `;
 
-export default function Input01(props:any) { 
-
+export default function Input01(props: any) {
+  console.log(props);
   return (
-  <>
+    <>
       <Label>{props.name}</Label>
-      <MyInput type={props.type} {...props.register} />
-  </>
+      <MyInput
+        onChange={props.onChangePassword}
+        type={props.type}
+        {...props.register}
+      />
+    </>
   );
 }
