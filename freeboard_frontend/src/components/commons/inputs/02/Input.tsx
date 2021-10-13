@@ -17,13 +17,23 @@ export const Subject = styled.input`
   border: 1px solid gray;
   font-family: "myfontko";
 `
-
+const ErrorMessage = styled.div`
+  margin-top: 5px;
+  color: red;
+  font-family: 'myfontko';
+`
 export default function Input02(props:any) { 
 
   return (
     <InputWrapper>
       <Label>{props.name}</Label>
-      <Subject type="text" placeholder={`${props.name}을/를 입력해주세요`}></Subject>
+      <Subject
+        type={props.type}
+        {...props.register}
+        placeholder={`${props.name}을/를 입력해주세요`}
+        onChange={props.onChange}
+      ></Subject>
+      <ErrorMessage>{props.formState}</ErrorMessage>
     </InputWrapper>
-  )
+  );
 }

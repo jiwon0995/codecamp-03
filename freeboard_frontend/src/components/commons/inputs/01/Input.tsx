@@ -25,7 +25,7 @@ export default function Input01(props: any) {
     <>
       <Label>{props.name}</Label>
       <MyInput
-        onChange={props.onChangePassword}
+        onChange={props.onChange}
         type={props.type}
         {...props.register}
       />

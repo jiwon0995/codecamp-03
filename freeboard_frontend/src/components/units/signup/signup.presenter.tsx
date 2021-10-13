@@ -60,6 +60,7 @@ export default function SignupUI(props: any) {
             <CloseSquareOutlined />
           </div>
         </Top>
+        {/* 로그인 화면 */}
         {props.isEdit && (
           <Body>
             <LoginBox>
@@ -69,15 +70,19 @@ export default function SignupUI(props: any) {
                 <br />
                 Login in to your account
               </LoginTitle>
-                <LoginInput onChange={props.onChangeEmail} placeholder="ID"></LoginInput>
-                <LoginInput
-                  type="password"
+              <LoginInput
+                onChange={props.onChangeEmail}
+                placeholder="ID"
+              ></LoginInput>
+              <LoginInput
+                type="password"
                 onChange={props.onChangePassword}
                 placeholder="password"
-                ></LoginInput>
+              ></LoginInput>
             </LoginBox>
           </Body>
         )}
+        {/* 회원가입 화면 */}
         {!props.isEdit && (
           <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
             <Body>
@@ -134,7 +139,6 @@ export default function SignupUI(props: any) {
         )}
         {/* Modal */}
         {props.IsOpen && (
-          <div>
             <Modal open={open} onClose={handleClose}>
               <Box sx={style}>
                 <ModalBox>
@@ -152,7 +156,6 @@ export default function SignupUI(props: any) {
                 </ModalBox>
               </Box>
             </Modal>
-          </div>
         )}
       </BoxWrapper>
     </Wrapper>

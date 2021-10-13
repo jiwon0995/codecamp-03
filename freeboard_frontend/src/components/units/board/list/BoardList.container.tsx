@@ -2,7 +2,8 @@ import { useMutation, useQuery } from '@apollo/client'
 import { useRouter } from 'next/dist/client/router'
 import { useState } from 'react'
 import BoardListUI from './BoardList.precenter'
-import {FETCH_BOARDS} from './BoardList.queries'
+import { FETCH_BOARDS } from './BoardList.queries'
+
 export default function BoardList() { 
   const router = useRouter()
   // const { data } = useQuery(FETCH_BOARDS)

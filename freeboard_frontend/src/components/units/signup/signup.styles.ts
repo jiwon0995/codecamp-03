@@ -4,9 +4,11 @@ import styled from '@emotion/styled'
 
 export const Wrapper = styled.div`
   width: 100%;
+  /* height: 100%; */
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  /* align-items: center; */
+  margin-top: 100px;
 `
 
 export const BoxWrapper = styled.div`
@@ -15,7 +17,7 @@ export const BoxWrapper = styled.div`
   background-color: #d3f705;
   padding: 0px 0px;
   border: 2px solid lightgray;
-  /* box-shadow: 10px 10px 8px gray; */
+  box-shadow: 10px 10px 8px #ccc;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +42,7 @@ export const TopText = styled.div`
 
 `
 export const Body = styled.div`
-  width: 100%;
+  width: 750px;
   height: 400px;
   /* box-shadow: inset 0 0 0 1px gray; */
   background-color: lightgray;
@@ -112,7 +114,6 @@ export const ModalButton = styled.button`
   font-family: "myfont";
   font-size: 12px;
 `
-
 export const LoginTitle = styled.div`
   font-family: "myfont";
   font-size: 25px;
@@ -132,7 +133,6 @@ export const CoinIcon = styled.img`
   display: block;
   padding-top: 30px;
 `
-
 export const LoginInput = styled.input`
   font-family: 'myfont';
   margin-bottom: 30px;
