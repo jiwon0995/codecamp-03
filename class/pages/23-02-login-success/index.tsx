@@ -17,6 +17,7 @@ const FETCH_USER_LOGGED_IN = gql`
 export default function LoginSuccessPage() { 
   const {setUserInfo,userInfo} = useContext(GlobalContext)
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
+  
   useEffect(() => { 
     if (userInfo.email) return
     setUserInfo({
