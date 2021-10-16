@@ -7,6 +7,7 @@ export const USEDITEM = gql`
       createdAt
       updatedAt
       remarks
+      images
     }
   }
 `

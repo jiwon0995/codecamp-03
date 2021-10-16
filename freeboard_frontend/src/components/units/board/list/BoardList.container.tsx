@@ -39,6 +39,7 @@ export default function BoardList() {
 		refetch({ search: search });
 		
 	}
+	
   return (
 		<>
 			<BoardListUI

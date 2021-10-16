@@ -10,11 +10,9 @@ export default function Uploads01(props:any) {
   
   function onClickUpload() { 
     fileRef.current?.click()
-    console.log('바보바보')
   }
   
   async function onChangeFile(event:ChangeEvent<HTMLInputElement>) {
-    console.log('QN')
     const file = event?.target.files?.[0];
 		if (!file?.size) {
 			Modal.error({ content: '파일이 없습니다.' });

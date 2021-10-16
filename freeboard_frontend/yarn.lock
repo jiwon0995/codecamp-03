@@ -1427,10 +1427,24 @@
   dependencies:
     parchment "^1.1.2"
 
+"@types/react-infinite-scroller@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@types/react-infinite-scroller/-/react-infinite-scroller-1.2.2.tgz#ee00ea8f5a03d3b6bf30842bd559283f8a7fdec9"
+  integrity sha512-3Tu/wspMKAOH/YkGmTrXgfYizL9DnMb4opksrl+m5jiESxGkRN4tiKf6lr7SN0FUgoFyQyK9o+yMKn1bWMTVmA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-is@^16.7.1 || ^17.0.0":
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-17.0.2.tgz#abc4d910bff5b0bc6b3e1bec57575f6b63fd4e05"
   integrity sha512-2+L0ilcAEG8udkDnvx8B0upwXFBbNnVwOsSCTxW3SDOkmar9NyEeLG0ZLa3uOEw9zyYf/fQapcnfXAVmDKlyHw==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react-slick@^0.23.6":
+  version "0.23.6"
+  resolved "https://registry.yarnpkg.com/@types/react-slick/-/react-slick-0.23.6.tgz#d9e7e2cfc6f250da3db2d74c54dc7f1e8bb7ceb4"
+  integrity sha512-dSsiEWatKtI5HvmCmE3g5chAaMMosR9krZwtMryXeDuKSgFxzgtH1wh4+QqXT9Eq87HJ948w6vFKD0loc9X26Q==
   dependencies:
     "@types/react" "*"
 

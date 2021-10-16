@@ -12,11 +12,12 @@ import {
   Row,
   ColumnBasic,
   MapWrapper,
+  ColumnImg,
+  ImgX,
 } from "./boardlist.styles";
+import InfiniteScroll from "react-infinite-scroller";
 
-
-export default function MarketBoardListUI(props) { 
-
+export default function MarketBoardListUI(props: any) {
   return (
     <KingWrapper>
       <Window>
@@ -36,15 +37,31 @@ export default function MarketBoardListUI(props) {
           </ListTop>
           <Body>
             <MapWrapper>
-              {props.data?.fetchUseditems.map((el, index) => (
-                <Row key={el._id} id={el._id}>
-                  <ColumnBasic>{10 - index}</ColumnBasic>
-                  <ColumnBasic>{el.name}</ColumnBasic>
-                  <ColumnBasic>{el.seller.name}</ColumnBasic>
-                  <ColumnBasic>{el.remarks}</ColumnBasic>
-                  <ColumnBasic>{el.price}</ColumnBasic>
-                </Row>
-              ))}
+              <InfiniteScroll
+                pageStart={0}
+                loadMore={props.onLoadeMore}
+                hasMore={true}
+                useWindow={false}
+              >
+                {props.data?.fetchUseditems.map((el: any, index: any) => (
+                  <Row
+                    key={index}
+                    id={el._id}
+                    onClick={props.onClickMoveDetail}
+                  >
+                    {el.images[0] ? (
+                      <ColumnImg
+                        src={`https://storage.googleapis.com/${el.images[0]}`}
+                      />
+                    ):<ImgX>NoneImage</ImgX>}
+                    <ColumnBasic>{index}</ColumnBasic>
+                    <ColumnBasic>{el.name}</ColumnBasic>
+                    <ColumnBasic>{el.seller.name}</ColumnBasic>
+                    <ColumnBasic>{el.remarks}</ColumnBasic>
+                    <ColumnBasic>{el.price}</ColumnBasic>
+                  </Row>
+                ))}
+              </InfiniteScroll>
             </MapWrapper>
           </Body>
         </ListBody>

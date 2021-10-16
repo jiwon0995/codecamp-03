@@ -16,6 +16,8 @@ export default function MarketBoardDetail() {
   console.log(data)
   
 
-
-  return <MarketBoardDetailUI data={data} />;
+  
+  return (
+    <MarketBoardDetailUI data={data}  />
+  );
 }

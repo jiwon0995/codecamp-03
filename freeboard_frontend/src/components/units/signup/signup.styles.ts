@@ -8,19 +8,23 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   /* align-items: center; */
-  margin-top: 100px;
+  /* margin-top: 100px; */
+  background-color: #008080;
 `
 
 export const BoxWrapper = styled.div`
   width: 750px;
   height: 550px;
+  margin: 100px 0px;
   background-color: #d3f705;
-  padding: 0px 0px;
-  border: 2px solid lightgray;
-  box-shadow: 10px 10px 8px #ccc;
+  box-shadow: 6px 6px 8px #444;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-left: 3px solid #fff;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
+  border-bottom: 3px solid #7f7f7f;
 `
 
 export const Top = styled.div`
@@ -49,6 +53,8 @@ export const Body = styled.div`
   padding: 20px 20px;
   display: flex;
   align-items: center;
+  border-left: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
 `
 export const SideImg = styled.div`
   height: 100%;
@@ -109,10 +115,12 @@ export const ModalContents = styled.div`
   font-family: "myfontko";
   text-align: center;
   padding: 15px 0px 15px 0px;
+  color: white;
 `
 export const ModalButton = styled.button`
   font-family: "myfont";
-  font-size: 12px;
+  font-size: 15px;
+  background-color: #d3f705;
 `
 export const LoginTitle = styled.div`
   font-family: "myfont";

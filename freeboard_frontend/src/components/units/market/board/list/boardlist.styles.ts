@@ -14,10 +14,14 @@ export const Wrapper = styled.div`
 export const ListBody = styled.div`
   width: 1000px;
   /* height: 700px; */
-  box-shadow: 0px 0px 10px gray;
+  box-shadow: 0px 8px 12px #333;
   margin: 100px;
   background-color: #d3f705;
   border: 2px solid lightgray;
+  border-left: 3px solid #fff;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
+  border-bottom: 3px solid #7f7f7f;
 `
 export const ListTop = styled.div`
   width: 100%;
@@ -68,25 +72,41 @@ export const KingWrapper = styled.div`
   background-color: #008080;
 `
 export const MapWrapper = styled.div`
-  width: 800px;
-  /* background-color: white; */
-  
+  width: 930px;
+  height: 600px;
+  padding: 15px 15px;
+  border-left: 3px solid #fff;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
+  border-bottom: 3px solid #7f7f7f;
+  overflow: scroll;
 `
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  height: 52px;
-  line-height: 52px;
+  height: 80px;
+  line-height: 80px;
   /* border-bottom: 1px solid gray; */
-  border: 1px solid gray;
+  border: 1px solid lightgray;
   /* border-image: linear-gradient(to top,  #555, #bbb, #eee); */
   border-image-slice: 1;
   color: gray;
-  cursor: pointer;
-  margin-top:5px;
+  background-color: white;
+  cursor: pointer; 
 `
 export const ColumnBasic = styled.div`
   width: 20%;
   text-align: center;
   font-family: 'myfontko';
 `;
+export const ColumnImg = styled.img`
+  height: 78px;
+  width: 78px;
+`
+export const ImgX = styled.div`
+  height: 78px;
+  width: 78px;
+  background-color: #d3f705;
+  font-family: 'myfont';
+  text-align: center;
+`

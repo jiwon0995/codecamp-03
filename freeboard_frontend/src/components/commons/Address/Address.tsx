@@ -38,7 +38,6 @@ export const GPSInput = styled.input`
 export const GPSBox = styled.div`
   display: flex;
   margin-bottom: 25px;
- 
 `;
 export const RightBox = styled.div`
   display: flex;

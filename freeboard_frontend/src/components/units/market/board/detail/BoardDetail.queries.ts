@@ -10,6 +10,9 @@ export const FETCH_BOARD = gql`
       price
       seller{name}
       createdAt
+      images
+      pickedCount
+
     }
   }
 `

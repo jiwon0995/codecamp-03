@@ -7,6 +7,7 @@ import Layout from '../src/components/commons/layout'
 import { createUploadLink } from 'apollo-upload-client'
 import { createContext, useState, useEffect } from 'react'
 
+
 export const GlobalContext = createContext("")
 
 function MyApp({ Component, pageProps }) {
@@ -28,7 +29,7 @@ function MyApp({ Component, pageProps }) {
     uri: "http://backend03.codebootcamp.co.kr/graphql",
     headers: { authorization: `Bearer ${accessToken}` },
   })
-
+  
   const client = new ApolloClient({
     link: ApolloLink.from([uploadLink]),
     cache: new InMemoryCache()
@@ -38,6 +39,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <GlobalContext.Provider value={value}>
         <Global styles={globalStyles} />
+        {/* 모든 컴포넌트에서 mutation, query 사용하기 위해서 */}
         <ApolloProvider client={client}>
           <Layout>
             <Component {...pageProps} />

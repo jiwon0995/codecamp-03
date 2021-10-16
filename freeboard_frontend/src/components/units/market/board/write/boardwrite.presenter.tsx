@@ -21,7 +21,7 @@ import {
 } from "./boardwrite.styles";
 import Input02 from "../../../../commons/inputs/02/Input";
 import Address from "../../../../commons/Address/Address";
-
+import Uploads02 from '../../../../commons/uploads/02/Upload02.container'
 
 export default function BoardWritePageUI(props: any) {
   return (
@@ -69,21 +69,22 @@ export default function BoardWritePageUI(props: any) {
             <Img>
               <Label>Img</Label>
               <ImgWrapper>
-                <ImgBox>
-                  <div>+</div>
-                  <div>Upload</div>
-                </ImgBox>
-                <ImgBox>
-                  <div>+</div>
-                  <div>Upload</div>
-                </ImgBox>
+                {/* 몇 번째 이미지인지 구분하기 위해서 index사용 */}
+                {props.fileUrls.map((el, index) => (
+                  <Uploads02
+                    key={`${el}_${index}`}
+                    index={index}
+                    fileUrl={el}
+                    onChangeFileUrls={props.onChangeFileUrls}
+                  />
+                ))}
               </ImgWrapper>
             </Img>
             <RadioWrpper>
               <Label>Main Image</Label>
-              <RadioButton type="radio"></RadioButton>
+              <RadioButton type="radio" name="img"></RadioButton>
               <RadioLabel>Image 1</RadioLabel>
-              <RadioButton type="radio"></RadioButton>
+              <RadioButton type="radio" name="img"></RadioButton>
               <RadioLabel>Image 2</RadioLabel>
             </RadioWrpper>
             <SubmitButton type="submit">SUBMIT</SubmitButton>

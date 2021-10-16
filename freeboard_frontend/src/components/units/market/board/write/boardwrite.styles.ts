@@ -16,9 +16,6 @@ export const BoardWrapper = styled.div`
   display: flex;
   justify-content: center;
   background-color: #008080;
-  background-image: url('/Windows98.png');
-  background-repeat: no-repeat;
-  /* background-size: cover; */
 `
 export const ContentsWrapper = styled.div`
   width: 1200px;
@@ -30,17 +27,25 @@ export const ContentsWrapper = styled.div`
   box-shadow: 0px 0px 10px gray;
   margin: 100px;
   background-color: #d3f705;
-  border: 2px solid lightgray;
+  /* border: 2px solid lightgray; */
+  box-shadow: 0 0 15px #333;
+  border-left: 3px solid #fff;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
+  
 `
 
 export const ContentsBox = styled.div`
   width: 1200px;
   height: 100%;
-  background-color: lightgray;
+  background-color: #c6c6c6;
   padding: 50px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-left: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
+  border-bottom: 3px solid #7f7f7f;
 `
 export const Title = styled.div`
   font-family: "myfont";
@@ -90,6 +95,7 @@ export const ImgBox = styled.div`
   justify-content: center;
   font-family: "myfont";
   margin-right: 20px;
+  cursor: pointer;
 `
 export const ImgWrapper = styled.div`
   display: flex;

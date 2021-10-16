@@ -6,6 +6,7 @@ import {
 } from "@ant-design/icons";
 
 
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -15,32 +16,39 @@ export const PageWrapper = styled.div`
   width: 760px;
   /* height: 1200px; */
   margin: 100px 0px;
-  background-color: #d3f705;
+  background-color: #c6c6c6;
   border: 2px solid lightgray;
   box-shadow: 0px 10px 20px #333;
+  border-left: 3px solid #fff;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
+  border-bottom: 3px solid #7f7f7f;
 `
 export const MapWrapper = styled.div`
   width: 350px;
   height: 250px;
   margin-top: 150px;
   margin-left: 50px;
-  background-color: #d3f705;
+  background-color: #c6c6c6;
   border: 2px solid lightgray;
   box-shadow: 0px 10px 20px #333;
+  border-left: 3px solid #fff;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
+  border-bottom: 3px solid #7f7f7f;
 `
 export const ContentsWrapper = styled.div`
   width: 758px;
-  background-color: lightgray;
   padding: 20px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `
 export const MapContentsWrapper = styled.div`
-  width: 348px;
-  background-color: lightgray;
+  width: 100%;
+  /* background-color: lightgray; */
   /* padding: 20px 20px; */
-  height: 218px;
+  height: 100%;
 `
 export const TopBar = styled.div`
   width: 100%;
@@ -49,6 +57,7 @@ export const TopBar = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #d3f705;
 `
 export const Name = styled.span`
   margin-left: 15px;
@@ -84,17 +93,18 @@ export const ProfileWrpper = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 15px 15px;
-  border: 2px solid;
-  border-image: linear-gradient(to top,  #555, #bbb, #eee);
-  border-image-slice: 1;
+  border-left: 3px solid #fff;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
+  border-bottom: 3px solid #7f7f7f;
   font-family: 'myfontko';
   margin-bottom: 20px;
 `
 export const Profile = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  /* justify-content: space-between;
+  width: 100%; */
 `
 export const Writer = styled.div`
   font-size: 25px;
@@ -120,7 +130,6 @@ export const Price = styled.div`
 `
 export const Wrp = styled.div`
   display: flex;
-
 `
 export const Text = styled.div`
   display: flex;
@@ -128,15 +137,30 @@ export const Text = styled.div`
 export const PriceWrapper = styled.div`
   width: 200px;
   height: 52px;
-  /* padding: 15px 15px; */
-  border: 2px solid;
-  border-image: linear-gradient(to top,  #555, #bbb, #eee);
-  border-image-slice: 1;
   font-family: 'myfontko';
   margin-bottom: 20px;
   font-size: 22px;
-  text-align: center;
+  /* text-align: center; */
   line-height: 52px;
-  /* margin-left: 450px; */
+  border-left: 3px solid #fff;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #7f7f7f;
+  border-bottom: 3px solid #7f7f7f;
+  display: flex;
+  align-items: center;
 `
-
+export const SliderImg = styled.img`
+  width: 250px;
+  height: 250px;
+  margin: 0px auto;
+`
+export const PicDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+export const Label = styled.div`
+  font-family: 'myfont';
+  font-size: 20px;
+  margin-bottom: 8px;
+`
