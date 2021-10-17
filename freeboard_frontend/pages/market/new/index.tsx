@@ -2,5 +2,5 @@ import BoardWritePage from '../../../src/components/units/market/board/write/boa
 
 export default function BoardWrite() { 
   
-  return <BoardWritePage />;
+  return <BoardWritePage isEdit={true} />;
 }

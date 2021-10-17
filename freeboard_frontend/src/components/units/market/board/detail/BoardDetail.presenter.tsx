@@ -21,6 +21,7 @@ import {
   SliderImg,
   PicDiv,
   Label,
+  EditButton,
 } from "./BoardDetail.styles";
 import DOMPurify from "dompurify";
 import React from "react";
@@ -39,7 +40,7 @@ const SliderDiv = styled(Slider)`
   border-bottom: 3px solid #7f7f7f;
 `;
 
-export default function MarketBoardDetailUI(props) {
+export default function MarketBoardDetailUI(props:any) {
   const settings = {
     dots: true,
     infinite: true,
@@ -110,6 +111,10 @@ export default function MarketBoardDetailUI(props) {
               )}
             </ProfileWrpper>
           </ContentsBody>
+          <div>
+            <EditButton onClick={props.onClickMoveList}>LIST</EditButton>
+            <EditButton onClick={props.onClickMoveEdit}>EDITE</EditButton>
+          </div>
         </ContentsWrapper>
       </PageWrapper>
       {/* map */}

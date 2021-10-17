@@ -7,9 +7,7 @@ import {
   IconX,
   TopBar,
   IconY,
-  ProductBox,
   Label,
-  ImgBox,
   ImgWrapper,
   Img,
   RadioButton,
@@ -21,39 +19,49 @@ import {
 } from "./boardwrite.styles";
 import Input02 from "../../../../commons/inputs/02/Input";
 import Address from "../../../../commons/Address/Address";
-import Uploads02 from '../../../../commons/uploads/02/Upload02.container'
+import Uploads02 from "../../../../commons/uploads/02/Upload02.container";
 
 export default function BoardWritePageUI(props: any) {
   return (
     <BoardWrapper>
       <ContentsWrapper>
         <TopBar>
-          <Title>
-            <SmileOutlined /> New Product
-          </Title>
+          <SmileOutlined />
+          <Title>{props.isEdit ? "New Product" : "Edit Product"}</Title>
           <div>
             <IconY />
             <IconX />
           </div>
         </TopBar>
-        <form onSubmit={props.handleSubmit(props.onClickUsedItem)}>
+        <form
+          onSubmit={
+            props.isEdit
+              ? props.handleSubmit(props.onClickUsedItem)
+              : props.handleSubmit(props.onClickUpdate)
+          }
+        >
           <ContentsBox>
-            <Title>NEW PRODUCT</Title>
+            <Title>{props.isEdit ? "NEW PRODUCT" : "EDIT PRODUCT"}</Title>
             <Input02
               name="Product Name"
               type="text"
               register={props.register("name")}
               formState={props.formState.errors.name?.message}
+              defaultValue={props.data?.fetchUseditem.name}
             ></Input02>
             <Input02
               name="Simple explanation"
               type="text"
               register={props.register("remarks")}
               formState={props.formState.errors.remarks?.message}
+              defaultValue={props.data?.fetchUseditem.remarks}
             ></Input02>
             <div>
               <Label>Product</Label>
-              <ReactQuillStyled onChange={props.onChangeMyEditer} />
+              <ReactQuillStyled
+                onChange={props.onChangeMyEditer}
+                defaultValue={props.data?.fetchUseditem.contents}
+              />
               <ErrorMessage>
                 {props.formState.errors.contents?.message}
               </ErrorMessage>
@@ -63,8 +71,12 @@ export default function BoardWritePageUI(props: any) {
               type="text"
               register={props.register("price")}
               formState={props.formState.errors.price?.message}
+              defaultValue={props.data?.fetchUseditem.price}
             ></Input02>
-            <Input02 name="Tag"></Input02>
+            <Input02
+              name="Tag"
+              defaultValue={props.data?.fetchUseditem.tags}
+            ></Input02>
             <Address />
             <Img>
               <Label>Img</Label>
@@ -76,6 +88,7 @@ export default function BoardWritePageUI(props: any) {
                     index={index}
                     fileUrl={el}
                     onChangeFileUrls={props.onChangeFileUrls}
+                    defaultValue={props.data?.fetchUseditem.images}
                   />
                 ))}
               </ImgWrapper>
@@ -87,7 +100,11 @@ export default function BoardWritePageUI(props: any) {
               <RadioButton type="radio" name="img"></RadioButton>
               <RadioLabel>Image 2</RadioLabel>
             </RadioWrpper>
-            <SubmitButton type="submit">SUBMIT</SubmitButton>
+            {props.isEdit ? (
+              <SubmitButton type="submit">SUBMIT</SubmitButton>
+            ) : (
+              <SubmitButton type="submit">EDIT</SubmitButton>
+            )}
           </ContentsBox>
         </form>
       </ContentsWrapper>

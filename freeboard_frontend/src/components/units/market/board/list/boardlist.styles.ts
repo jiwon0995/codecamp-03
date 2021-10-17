@@ -47,7 +47,7 @@ export const Title = styled.div`
 `
 export const Body = styled.div`
   width: 100%;
-  height: 668px;
+  height: 700px;
   background-color: lightgray;
   display: flex;
   flex-direction: column;
@@ -57,16 +57,25 @@ export const Body = styled.div`
 
 export const Window = styled.div`
   position: relative;
-  top: 30px;
-  left: 60px;
+  top: 50px;
+  left: 80px;
   z-index: 1;
   font-family: 'myfont';
+  color: white;
   background-color: #008080;
+  height: 60px;
+  width: 60px;
+`
+export const IconWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 export const WindowIcon = styled.img`
   display: block;
   cursor: pointer;
-  
+  height: 60px;
+  width: 60px;
 `
 export const KingWrapper = styled.div`
   background-color: #008080;
@@ -95,7 +104,7 @@ export const Row = styled.div`
   cursor: pointer; 
 `
 export const ColumnBasic = styled.div`
-  width: 20%;
+  width: 149px;
   text-align: center;
   font-family: 'myfontko';
 `;
@@ -104,9 +113,36 @@ export const ColumnImg = styled.img`
   width: 78px;
 `
 export const ImgX = styled.div`
-  height: 78px;
   width: 78px;
   background-color: #d3f705;
   font-family: 'myfont';
   text-align: center;
+`
+export const ListTitle = styled.div`
+  font-family: "myfont";
+  font-size: 18px;
+  width: 100%;
+  height: 25px;
+  line-height: 20px;
+`
+export const SearchBar = styled.input`
+  font-family: 'myfontko';
+  height: 40px;
+  width: 870px;
+`
+export const SearchDiv = styled.div`
+  display: flex;
+`
+export const Search = styled.div`
+width: 60px;
+height: 40px;
+font-family: 'myfont';
+font-weight: 500;
+font-size: 15px;
+border: 1px solid gray;
+text-align: center;
+line-height: 40px;
+border-left: 3px solid #fff;
+border-top: 3px solid #fff;
+border-right: 3px solid #7f7f7f;
 `

@@ -13,11 +13,19 @@ export default function MarketBoardDetail() {
       useditemId: router.query.boardId,
     },
   });
-  console.log(data)
-  
+  const onClickMoveEdit = () => {
+    router.push(`/market/${router.query.boardId}/edit`)
+  }
+  const onClickMoveList = () => {
+    router.push('/market/list')
+  }
 
   
   return (
-    <MarketBoardDetailUI data={data}  />
+    <MarketBoardDetailUI
+      data={data}
+      onClickMoveList={onClickMoveList}
+      onClickMoveEdit={onClickMoveEdit}
+    />
   );
 }

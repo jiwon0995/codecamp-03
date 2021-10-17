@@ -135,7 +135,7 @@ export const Text = styled.div`
   display: flex;
 `
 export const PriceWrapper = styled.div`
-  width: 200px;
+  width: auto;
   height: 52px;
   font-family: 'myfontko';
   margin-bottom: 20px;
@@ -163,4 +163,13 @@ export const Label = styled.div`
   font-family: 'myfont';
   font-size: 20px;
   margin-bottom: 8px;
+`
+export const EditButton = styled.button`
+  width: 179px;
+  height: 52px;
+  font-family: 'myfont';
+  font-size: 20px;
+  background-color: #d3f705;
+  cursor: pointer;
+  margin: 0px 10px;
 `

@@ -85,7 +85,7 @@ export default function SignUp(props: Iprops) {
       //@ts-ignore
       localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken);
-      router.push("/market/new");
+      router.push("/market/list");
     } catch (error) {
       alert(error.message);
     }

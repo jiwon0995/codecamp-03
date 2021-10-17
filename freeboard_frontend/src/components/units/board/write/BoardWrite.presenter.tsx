@@ -26,6 +26,7 @@ import {
 import DaumPostcode from 'react-daum-postcode';
 import Modal from 'antd/lib/modal/Modal';
 import Uploads01 from '../../../commons/uploads/01/Upload01.container';
+
 export default function BoardWriteUI(props:any) {
 	return (
 		<WrapperWrapper>
