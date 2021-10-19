@@ -1,7 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { useRef } from "react";
 import { useState } from "react";
-
+// 3번 
 const UPLOAD_FILE = gql`
   mutation uploadFile($file: Upload!) {
     uploadFile(file: $file) {
@@ -22,7 +22,8 @@ export default function ImageUploadPage() {
   const [imageUrl, setImageUrl] = useState("");
   const [createBoard] = useMutation(CREATE_BOARD)
   const fileRef = useRef<HTMLInputElement>()
-
+  
+  // 2번
   async function onChangeFile(event) {
     const myfile = event.target.files[0];
     console.log(myfile);
@@ -45,7 +46,7 @@ export default function ImageUploadPage() {
 
     console.log(myfile);
     const result = await uploadfile({
-      variables: {
+      variables: { 
         file: myfile,
       },
     });
@@ -88,6 +89,7 @@ export default function ImageUploadPage() {
   }
   return (
     <div style={{ width: "1000px", height: "1000px" }}>
+      {/* 1 */}
       <div>이미지 업로드!!</div>
       <div
         style={{
@@ -100,6 +102,7 @@ export default function ImageUploadPage() {
       >
         IMG
       </div>
+      {/* 1 */}
       <input
         ref={fileRef}
         style={{ display: "none" }}

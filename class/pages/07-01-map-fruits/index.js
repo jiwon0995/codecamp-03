@@ -20,6 +20,6 @@ export default function mapFruitsPage() {
 
 
   return (
-   <div></div>
+  <div></div>
   )
 }

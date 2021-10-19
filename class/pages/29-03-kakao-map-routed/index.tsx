@@ -35,10 +35,10 @@ export default function KakaoMapPage() {
         window.kakao.maps.event.addListener(map, "click", function (mouseEvent) {
           // 클릭한 위도, 경도 정보를 가져옵니다
           const latlng = mouseEvent.latLng;
-
+          console.log(latlng)
           // 마커 위치를 클릭한 위치로 옮깁니다
           marker.setPosition(latlng);
-
+          
           // var message = "클릭한 위치의 위도는 " + latlng.getLat() + " 이고, ";
           // message += "경도는 " + latlng.getLng() + " 입니다";
 
