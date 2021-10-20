@@ -1,7 +1,7 @@
 import { useMutation } from "@apollo/client";
 import { useState } from "react"
 import { useRef } from "react"
-import { fileValidation } from "../../src/commons/libraies/validation"
+import { fileValidation } from "../../src/commons/ libraries/validation"
 import { gql } from '@apollo/client'
 
 const CREATE_BOARD = gql`

@@ -15,7 +15,7 @@ import { createContext, useEffect, useState } from "react";
 import { onError } from "@apollo/client/link/error";
 import Head from "next/head";
 // import getAccessToken from '../src/commons/libraies/getAccessToken'
-import { getAccessToken } from "../src/commons/libraies/getAccessToken";
+import { getAccessToken } from "../src/commons/ libraries/getAccessToken";
 
 export const firebaseApp = initializeApp({
   apiKey: "AIzaSyB2B72_d-oKpVZBLuWR6fD9oTWGEe5AAMA",
