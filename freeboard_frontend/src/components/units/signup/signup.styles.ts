@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 
 
-
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -13,6 +12,7 @@ export const BoxWrapper = styled.div`
   width: 750px;
   height: 550px;
   margin-top: 100px;
+  margin-bottom: 100px;
   background-color: #d3f705;
   box-shadow: 6px 6px 8px #444;
   display: flex;

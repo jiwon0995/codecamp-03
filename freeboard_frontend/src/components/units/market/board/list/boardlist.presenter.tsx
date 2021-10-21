@@ -19,10 +19,10 @@ import {
   SearchDiv,
   Search,
   IconWrapper,
-  Button,
 } from "./boardlist.styles";
 import InfiniteScroll from "react-infinite-scroller";
 import { v4 as uuidv4 } from "uuid";
+import BestProductPage from "../bestProduct/bestProduct";
 
 export default function MarketBoardListUI(props: any) {
   return (
@@ -36,6 +36,7 @@ export default function MarketBoardListUI(props: any) {
           <div>Write</div>
         </IconWrapper>
       </Window>
+      <BestProductPage />
       <Wrapper>
         <ListBody>
           <ListTop>
@@ -55,42 +56,44 @@ export default function MarketBoardListUI(props: any) {
               ></SearchBar>
             </SearchDiv>
             <MapWrapper>
-              <InfiniteScroll
-                pageStart={0}
-                loadMore={props.onLoadeMore}
-                hasMore={true}
-                useWindow={false}
-              >
-                {props.data?.fetchUseditems.map((el: any, index: any) => (
-                  <Row
-                    key={index}
-                    id={el._id}
-                    onClick={props.onClickMoveDetail}
-                  >
-                    {el.images[0] ? (
-                      <ColumnImg
-                        src={`https://storage.googleapis.com/${el.images[0]}`}
-                      />
-                    ) : (
-                      <ImgX>NoneImage</ImgX>
-                    )}
-                    <ColumnBasic>{index}</ColumnBasic>
-                    <ColumnBasic>
-                      {el.name
-                        .replaceAll(props.search, `#@${props.search}#@`)
-                        .split("#@")
-                        .map((el: any) => (
-                          <div key={uuidv4()} isMatched={props.search === el}>
-                            {el}
-                          </div>
-                        ))}
-                    </ColumnBasic>
-                    <ColumnBasic>{el.seller.name}</ColumnBasic>
-                    <ColumnBasic>{el.remarks}</ColumnBasic>
-                    <ColumnBasic>{el.price}</ColumnBasic>
-                  </Row>
-                ))}
-              </InfiniteScroll>
+              {props.data?.fetchUseditems &&
+                <InfiniteScroll
+                  pageStart={0}
+                  loadMore={props.onLoadeMore}
+                  hasMore={true}
+                  useWindow={false}
+                >
+                  {props.data?.fetchUseditems.map((el: any, index: any) => (
+                    <Row
+                      key={index}
+                      id={el._id}
+                      onClick={props.onClickMoveDetail}
+                    >
+                      {el.images[0] ? (
+                        <ColumnImg
+                          src={`https://storage.googleapis.com/${el.images[0]}`}
+                        />
+                      ) : (
+                          <ImgX>NoneImage</ImgX>
+                        )}
+                      <ColumnBasic>{index}</ColumnBasic>
+                      <ColumnBasic>
+                        {el.name
+                          .replaceAll(props.search, `#@${props.search}#@`)
+                          .split("#@")
+                          .map((el: any) => (
+                            <div key={uuidv4()} isMatched={props.search === el}>
+                              {el}
+                            </div>
+                          ))}
+                      </ColumnBasic>
+                      <ColumnBasic>{el.seller.name}</ColumnBasic>
+                      <ColumnBasic>{el.remarks}</ColumnBasic>
+                      <ColumnBasic>{el.price}</ColumnBasic>
+                    </Row>
+                  ))}
+                </InfiniteScroll>
+              }
             </MapWrapper>
           </Body>
         </ListBody>

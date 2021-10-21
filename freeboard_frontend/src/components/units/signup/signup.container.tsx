@@ -52,7 +52,7 @@ export default function SignUp(props: Iprops) {
   const MoveSignUpPage = () => router.push("/signup");
   
 //회원가입 함수
-  const onClickSignUp = async (data: any) => {
+  const onClickSignUp = async (data: string | any) => {
     if (data.password !== data.password2) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
@@ -61,7 +61,7 @@ export default function SignUp(props: Iprops) {
       await createUser({
         variables: {
           createUserInput: {
-            name: data.name,
+            name: String(data.name),
             email: data.email,
             password: data.password,
           },

@@ -57,11 +57,7 @@ export default function BoardCommentListUIItem(props:any) {
 		} catch (error) { 
 			alert(error.message)
 		}
-		
-	
 	}
-	
-	
 	return (
 		<>
 			{isOpenDeleteModal && (

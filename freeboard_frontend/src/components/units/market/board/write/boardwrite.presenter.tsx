@@ -60,7 +60,7 @@ export default function BoardWritePageUI(props: any) {
               <Label>Product</Label>
               <ReactQuillStyled
                 onChange={props.onChangeMyEditer}
-                defaultValue={props.data?.fetchUseditem.contents}
+                value={props.contents || ""}
               />
               <ErrorMessage>
                 {props.formState.errors.contents?.message}
@@ -77,18 +77,22 @@ export default function BoardWritePageUI(props: any) {
               name="Tag"
               defaultValue={props.data?.fetchUseditem.tags}
             ></Input02>
-            <Address />
+            {/* <Address
+              name="address"
+              register={props.register("address")}
+              defaultValue={props.data?.fetchUseditem.address}
+            /> */}
             <Img>
               <Label>Img</Label>
               <ImgWrapper>
                 {/* 몇 번째 이미지인지 구분하기 위해서 index사용 */}
-                {props.fileUrls.map((el, index) => (
+                {new Array(3).fill(1).map((el, index) => (
                   <Uploads02
                     key={`${el}_${index}`}
                     index={index}
                     fileUrl={el}
-                    onChangeFileUrls={props.onChangeFileUrls}
-                    defaultValue={props.data?.fetchUseditem.images}
+                    onChangeFiles={props.onChangeFiles}
+                    defaultFileUrl={props.data?.fetchUseditem.images?.[index]}
                   />
                 ))}
               </ImgWrapper>

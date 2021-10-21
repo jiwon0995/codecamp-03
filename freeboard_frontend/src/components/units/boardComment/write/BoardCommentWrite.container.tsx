@@ -11,6 +11,7 @@ import { IMutation, IMutationUpdateBoardCommentArgs } from '../../../../commons/
 
 
 export default function BoardCommentWrite(props) {
+	
 	const router = useRouter();
 	const [createBoardComment] = useMutation(CREATE_COMMENT);
 	const [updateBoardComment] = useMutation <

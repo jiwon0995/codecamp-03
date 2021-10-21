@@ -1,70 +1,123 @@
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
 
-export const Wrapper = styled.div`
+declare const window: typeof globalThis & {
+  kakao: any;
+};
+
+const Wrapper = styled.div`
   width: 996px;
-  
+
   display: flex;
   justify-content: space-between;
-  /* align-items:  */
   margin-top: 30px;
 `;
-export const AddressInput = styled.input`
+const AddressInput = styled.input`
   width: 588px;
   height: 52px;
   margin: 10px 0px;
 `;
-export const Label = styled.div`
+const Label = styled.div`
   padding-bottom: 16px;
   font-size: 16px;
   font-weight: 500;
   font-family: "myfont";
 `;
-export const Map = styled.div`
+const Map = styled.div`
   width: 384px;
   height: 252px;
   background-color: #6c6c6c;
 `;
-export const ContentsBox = styled.div`
+const ContentsBox = styled.div`
   display: flex;
   flex-direction: column;
   /* background-color: red; */
 `;
 
-export const GPSInput = styled.input`
+const GPSInput = styled.input`
   width: 108px;
   height: 52px;
   margin-right: 15px;
 `;
-export const GPSBox = styled.div`
+const GPSBox = styled.div`
   display: flex;
   margin-bottom: 25px;
 `;
-export const RightBox = styled.div`
+const RightBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 300px;
 `;
-export default function Address() {
+export default function Address(props: any) {
+  const [LatLng, setLatLng] = useState({});
+  
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=8dc314c391c1ad5fbb51d3d1c894435e";
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      window.kakao.maps.load(() => {
+        const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
+        const options = {
+          //지도를 생성할 때 필요한 기본 옵션
+          center: new window.kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+          level: 3, //지도의 레벨(확대, 축소 정도)
+        };
+
+        const map = new window.kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+        console.log(map);
+
+        // 지도를 클릭한 위치에 표출할 마커입니다
+        const marker = new window.kakao.maps.Marker({
+          // 지도 중심좌표에 마커를 생성합니다
+          position: map.getCenter(),
+        });
+        // 지도에 마커를 표시합니다
+        marker.setMap(map);
+
+        // 지도에 클릭 이벤트를 등록합니다
+        // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+        window.kakao.maps.event.addListener(
+          map,
+          "click",
+          function (mouseEvent: { latLng: any }) {
+            // 클릭한 위도, 경도 정보를 가져옵니다
+            const latlng = mouseEvent.latLng;
+            setLatLng(latlng)
+            // 마커 위치를 클릭한 위치로 옮깁니다
+            marker.setPosition(latlng);
+
+            // var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+            // message += '경도는 ' + latlng.getLng() + ' 입니다';
+
+            // var resultDiv = document.getElementById('clickLatlng');
+            // resultDiv.innerHTML = message;
+          }
+        );
+      });
+    };
+  }, []);
+
   return (
     <Wrapper>
       <ContentsBox>
         <Label>Location</Label>
-        <Map></Map>
+        <Map id="map"></Map>
       </ContentsBox>
       <ContentsBox>
-        
-          <Label>GPS</Label>
-          <GPSBox>
-            <GPSInput />
-            <GPSInput />
-          </GPSBox>
-          <ContentsBox>
-            <Label>Address</Label>
-            <AddressInput />
-            <AddressInput />
-          </ContentsBox>
-        
+        <Label>GPS</Label>
+        <GPSBox>
+          <GPSInput name="lat" type="text" defaultValue={LatLng.La} />
+          <GPSInput name="lng" type="text" defaultValue={LatLng.Ma} />
+        </GPSBox>
+        <ContentsBox>
+          <Label>Address</Label>
+          <AddressInput name="address" type="text"/>
+          <AddressInput name="addressDetail" type="text"/>
+        </ContentsBox>
       </ContentsBox>
     </Wrapper>
   );

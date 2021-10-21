@@ -173,3 +173,25 @@ export const EditButton = styled.button`
   cursor: pointer;
   margin: 0px 10px;
 `
+export const WindowIcon = styled.img`
+  display: block;
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+`
+export const Window = styled.div`
+  position: relative;
+  top: 50px;
+  right: 70px;
+  z-index: 1;
+  font-family: 'myfont';
+  color: white;
+  background-color: #008080;
+  height: 60px;
+  width: 60px;
+`
+export const IconWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`

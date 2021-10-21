@@ -25,6 +25,7 @@ import {
   CoinIcon,
   LoginInput,
   Logintext,
+  KingWrapper
 } from "./signup.styles";
 import Input01 from "../../commons/inputs/01/Input";
 import * as React from "react";
@@ -50,95 +51,95 @@ export default function SignupUI(props: any) {
   const handleClose = () => setOpen(false);
 
   return (
-    <Wrapper>
-      <BoxWrapper>
-        <Top>
-          <SmileOutlined />
-          <TopText>Welcome to the Market!</TopText>
-          <div>
-            <MinusSquareOutlined />
-            <CloseSquareOutlined />
-          </div>
-        </Top>
-        {/* 로그인 화면 */}
-        {props.isEdit && (
-          <Body>
-            <LoginBox>
-              <CoinIcon src="/coin.gif" />
-              <LoginTitle>
-                Welcome to the market!
-                <br />
-                Login in to your account
-              </LoginTitle>
-              <LoginInput
-                onChange={props.onChangeEmail}
-                placeholder="ID"
-              ></LoginInput>
-              <LoginInput
-                type="password"
-                onChange={props.onChangePassword}
-                placeholder="password"
-              ></LoginInput>
-            </LoginBox>
-          </Body>
-        )}
-        {/* 회원가입 화면 */}
-        {!props.isEdit && (
-          <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
+      <Wrapper>
+        <BoxWrapper>
+          <Top>
+            <SmileOutlined />
+            <TopText>Welcome to the Market!</TopText>
+            <div>
+              <MinusSquareOutlined />
+              <CloseSquareOutlined />
+            </div>
+          </Top>
+          {/* 로그인 화면 */}
+          {props.isEdit && (
             <Body>
-              <SideImg></SideImg>
-              <Contents>
-                <Title>User Information</Title>
-                <InputWrapper>
-                  <Input01
-                    name="email :"
-                    type="text"
-                    register={props.register("email")}
-                  />
-                  <Error2>{props.formState.errors.email?.message}</Error2>
-                </InputWrapper>
-                <InputWrapper>
-                  <Input01
-                    name="name:"
-                    type="text"
-                    register={props.register("name")}
-                  />
-                  <Error2>{props.formState.errors.name?.message}</Error2>
-                </InputWrapper>
-                <InputWrapper>
-                  <Input01
-                    name="password:"
-                    type="password"
-                    register={props.register("password")}
-                  />
-                  <Error2>{props.formState.errors.password?.message}</Error2>
-                </InputWrapper>
-                <InputWrapper>
-                  <Input01
-                    name="password:"
-                    type="password"
-                    register={props.register("password2")}
-                  />
-                  <Error2>{props.formState.errors.password2?.message}</Error2>
-                </InputWrapper>
-              </Contents>
+              <LoginBox>
+                <CoinIcon src="/coin.gif" />
+                <LoginTitle>
+                  Welcome to the market!
+                  <br />
+                  Login in to your account
+                </LoginTitle>
+                <LoginInput
+                  onChange={props.onChangeEmail}
+                  placeholder="ID"
+                ></LoginInput>
+                <LoginInput
+                  type="password"
+                  onChange={props.onChangePassword}
+                  placeholder="password"
+                ></LoginInput>
+              </LoginBox>
             </Body>
-          </form>
-        )}
-        {props.isEdit ? (
-          <div>
-            <Signup onClick={props.onClickLogin}>Login</Signup>
-            <Signup onClick={props.MoveSignUpPage}>SignUp</Signup>
-          </div>
-        ) : (
-          <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
-            <Signup type="submit" isValid={props.formState.isValid}>
-              SignUp
-            </Signup>
-          </form>
-        )}
-        {/* Modal */}
-        {props.IsOpen && (
+          )}
+          {/* 회원가입 화면 */}
+          {!props.isEdit && (
+            <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
+              <Body>
+                <SideImg></SideImg>
+                <Contents>
+                  <Title>User Information</Title>
+                  <InputWrapper>
+                    <Input01
+                      name="email :"
+                      type="text"
+                      register={props.register("email")}
+                    />
+                    <Error2>{props.formState.errors.email?.message}</Error2>
+                  </InputWrapper>
+                  <InputWrapper>
+                    <Input01
+                      name="name:"
+                      type="text"
+                      register={props.register("name")}
+                    />
+                    <Error2>{props.formState.errors.name?.message}</Error2>
+                  </InputWrapper>
+                  <InputWrapper>
+                    <Input01
+                      name="password:"
+                      type="password"
+                      register={props.register("password")}
+                    />
+                    <Error2>{props.formState.errors.password?.message}</Error2>
+                  </InputWrapper>
+                  <InputWrapper>
+                    <Input01
+                      name="password:"
+                      type="password"
+                      register={props.register("password2")}
+                    />
+                    <Error2>{props.formState.errors.password2?.message}</Error2>
+                  </InputWrapper>
+                </Contents>
+              </Body>
+            </form>
+          )}
+          {props.isEdit ? (
+            <div>
+              <Signup onClick={props.onClickLogin}>Login</Signup>
+              <Signup onClick={props.MoveSignUpPage}>SignUp</Signup>
+            </div>
+          ) : (
+            <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
+              <Signup type="submit" isValid={props.formState.isValid}>
+                SignUp
+              </Signup>
+            </form>
+          )}
+          {/* Modal */}
+          {props.IsOpen && (
             <Modal open={open} onClose={handleClose}>
               <Box sx={style}>
                 <ModalBox>
@@ -156,8 +157,8 @@ export default function SignupUI(props: any) {
                 </ModalBox>
               </Box>
             </Modal>
-        )}
-      </BoxWrapper>
-    </Wrapper>
+          )}
+        </BoxWrapper>
+      </Wrapper>
   );
 }

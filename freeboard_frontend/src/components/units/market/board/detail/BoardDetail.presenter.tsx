@@ -22,6 +22,9 @@ import {
   PicDiv,
   Label,
   EditButton,
+  WindowIcon,
+  Window,
+  IconWrapper,
 } from "./BoardDetail.styles";
 import DOMPurify from "dompurify";
 import React from "react";
@@ -55,6 +58,15 @@ export default function MarketBoardDetailUI(props:any) {
 
   return (
     <Wrapper>
+      <Window>
+        <IconWrapper>
+          <WindowIcon
+            src={"/recycle.png"}
+            onClick={props.onClickDeleteUseditem}
+          />
+          <div>Delete</div>
+        </IconWrapper>
+      </Window>
       <PageWrapper>
         <TopBar>
           <div>
@@ -87,7 +99,11 @@ export default function MarketBoardDetailUI(props:any) {
                 </div>
               </Profile>
               <PicDiv>
-                <img src={"/h.ico"} style={{ width: "50px" }} />
+                <img
+                  src={"/h.ico"}
+                  style={{ width: "50px" }}
+                  onClick={props.onCLickUseditemPick}
+                />
                 <div>{props.data?.fetchUseditem.pickedCount}</div>
               </PicDiv>
             </ProfileWrpper>

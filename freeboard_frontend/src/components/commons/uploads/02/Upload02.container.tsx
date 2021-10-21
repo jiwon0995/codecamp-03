@@ -1,60 +1,49 @@
-import Uploads02UI from "./Upload02.presenter";
-import { useMutation } from "@apollo/client";
-import { ChangeEvent, useRef, useState } from "react";
-import { UPLOAD_FILE } from "./Upload02.queries";
-
-// modal
-import Modal from "@mui/material/Modal";
-import * as React from "react";
-import Box from "@mui/material/Box";
-
-//modal style
-const style = {
-  position: "absolute" as "absolute",
-  top: "30%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import { UploadImage, UploadButton, UploadFileHidden } from "./Upload02.styles";
+import { checkValidationImage } from '../../../../commons/libraries/validationImage'
+import { ChangeEvent, useRef, useState} from "react";
 
 export default function Uploads02(props:any) {
   const fileRef = useRef<HTMLInputElement>();
-  const [uploadFile] = useMutation(UPLOAD_FILE);
+  const [fileUrl, setFileUrl] = useState("")
   
-
-  const onChangeFile = async (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e?.target.files?.[0];
-    if (!file?.size) {
-      return;
-    }
-    if (file.size > 5 * 1024 * 1024) {
-      return;
-    }
-    if (!file.type.includes("png") && !file.type.includes("jpeg")) {
-      return;
-    }
-    try {
-      const result = await uploadFile({
-        variables: { file },
-      });
-      props.onChangeFileUrls(result.data.uploadFile.url, props.index);
-    } catch (error) {}
-  };
-
-  const onClickUploadk = () => {
+  const onClickUpload = () => {
     fileRef.current?.click()
   }
 
+  const onChangeFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = checkValidationImage(e?.target.files?.[0]);
+    if(!file) return
+    
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = (data) => { 
+      setFileUrl(data.target?.result as string)
+      props.onChangeFiles(file, props.index)
+    }
+  };
+
   return (
-    <Uploads02UI
-      fileRef={fileRef}
-      onChangeFile={onChangeFile}
-      onClickUploadk={onClickUploadk}
-      fileUrl={props.fileUrl}
-    />
+    <>
+      {/* 이미지가 있으면 보여주고 아니면 빈 문자열 */}
+      {fileUrl || props.defaultFileUrl ? (
+        <UploadImage
+          onClick={onClickUpload}
+          src={
+            fileUrl ||
+            `https://storage.googleapis.com/${props.defaultFileUrl}`
+          }
+        />
+      ) : (
+        <UploadButton onClick={onClickUpload} type="button">
+          <>+</>
+          <>Upload</>
+        </UploadButton>
+      )}
+      <UploadFileHidden
+        ref={fileRef}
+        type="file"
+        onChange={onChangeFile}
+      />
+    </>
   );
 }

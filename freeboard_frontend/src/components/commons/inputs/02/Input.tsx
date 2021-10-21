@@ -23,7 +23,6 @@ const ErrorMessage = styled.div`
   font-family: "myfontko";
 `;
 export default function Input02(props: any) {
-  console.log(props,'tt')
   return (
     <InputWrapper>
       <Label>{props.name}</Label>
@@ -33,6 +32,7 @@ export default function Input02(props: any) {
         placeholder={`${props.name}을/를 입력해주세요`}
         onChange={props.onChange}
         defaultValue={props.defaultValue}
+        // value={props.value}
       ></Subject>
       <ErrorMessage>{props.formState}</ErrorMessage>
     </InputWrapper>

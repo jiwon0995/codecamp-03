@@ -4,6 +4,10 @@ import { useState } from "react";
 import MarketBoardListUI from "./boardlist.presenter";
 import { FETCH_USED_ITEMS } from "./boardlist.queries";
 import _ from "lodash";
+import {
+  IQuery,
+  IQueryFetchUseditemArgs,
+} from "../../../../../commons/types/generated/types";
 
 export default function MarketBoardList() {
   const router = useRouter();
@@ -28,12 +32,14 @@ export default function MarketBoardList() {
     fetchMore({
       variables: { page: Math.ceil(data?.fetchUseditems.length / 10) + 1 },
       updateQuery: (prev, { fetchMoreResult }) => {
-        return {
-          fetchUseditems: [
-            ...prev.fetchUseditems,
-            ...fetchMoreResult.fetchUseditems,
-          ],
-        };
+        // if (Array.isArray(prev)) {
+          return {
+            fetchUseditems: [
+              ...prev.fetchUseditems,
+              ...fetchMoreResult.fetchUseditems,
+            ],
+          };
+        // }
       },
     });
   };
