@@ -8,7 +8,7 @@ import {
   DELETE_USEDITEM,
   USEDITEM_PICK,
 } from "./BoardDetail.queries";
-
+import CommnetListPage from '../../comment/list/commentList.container'
 
 
 export default function MarketBoardDetail() {
@@ -41,23 +41,23 @@ export default function MarketBoardDetail() {
     
   }
   const onCLickUseditemPick = () => {
-    
     toggleUseditemPick({
       variables: { useditemId: String(router.query.boardId) },
-      refetchQueries: [{ query: FETCH_BOARD, variables: { useditemId: router.query.boardId } }],
+      refetchQueries: [{ query: FETCH_BOARD, variables: { useditemId: String(router.query.boardId) } }],
     });
 console.log(router.query.boardId);
   } 
   return (
     <>
-    <MarketBoardDetailUI
-      data={data}
-      onClickMoveList={onClickMoveList}
-      onClickMoveEdit={onClickMoveEdit}
-      onClickDeleteUseditem={onClickDeleteUseditem}
-      onCLickUseditemPick={onCLickUseditemPick}
-    />
+      <MarketBoardDetailUI
+        data={data}
+        onClickMoveList={onClickMoveList}
+        onClickMoveEdit={onClickMoveEdit}
+        onClickDeleteUseditem={onClickDeleteUseditem}
+        onCLickUseditemPick={onCLickUseditemPick}
+      />
       <CommentWrite />
+      <CommnetListPage/>
     </>
   );
 }

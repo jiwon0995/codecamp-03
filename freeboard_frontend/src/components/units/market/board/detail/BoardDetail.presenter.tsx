@@ -32,7 +32,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
-
+import CommentWrite from '../../comment/write/commentWrit';
 
 const SliderDiv = styled(Slider)`
   width: 250px;
@@ -80,7 +80,7 @@ export default function MarketBoardDetailUI(props:any) {
         </TopBar>
         <ContentsWrapper>
           <SliderDiv {...settings}>
-            {props.data?.fetchUseditem.images.map((el: any) => (
+            {props.data?.fetchUseditem.images?.filter((el) => el).map((el: any) => (
               <div key={el}>
                 <SliderImg src={`https://storage.googleapis.com/${el}`} />
               </div>

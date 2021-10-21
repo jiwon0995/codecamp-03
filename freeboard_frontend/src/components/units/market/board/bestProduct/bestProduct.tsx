@@ -14,7 +14,8 @@ import { useRouter } from "next/router";
 
 const FETCH_USEDITEMS_OF_THE_BEST = gql`
   query fetchUseditemsOfTheBest {
-    fetchUseditemsOfTheBest {
+    fetchUseditemsOfTheBest{
+      _id
       name
       remarks
       price
@@ -30,12 +31,13 @@ export default function BestProductPage() {
     Pick<IQuery, "fetchUseditemsOfTheBest">
   >(FETCH_USEDITEMS_OF_THE_BEST);
 
-  const onClickMoceDetail =()=> router.push(`/market/${router.query.boradId}`)
-
+  const onClickMoveDetail = (e: any) =>
+    router.push(`/market/${e.currentTarget.id}`);
+  
   return (
     <Wrapper>
       {data?.fetchUseditemsOfTheBest.map((el: any | string, index: string) => (
-        <BestitemWrapper onClick={onClickMoceDetail}>
+        <BestitemWrapper onClick={onClickMoveDetail} id={el._id} key={index}>
           <Top>{el.name}</Top>
           <BodyDiv>
             <BestitemImg
