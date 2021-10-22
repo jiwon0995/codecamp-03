@@ -47,7 +47,7 @@ export default function MarketBoardListUI(props: any) {
             </div>
           </ListTop>
           <Body>
-            <ListTitle>Image number Title Seller Name Price</ListTitle>
+            <ListTitle></ListTitle>
             <SearchDiv>
               <Search>Search</Search>
               <SearchBar

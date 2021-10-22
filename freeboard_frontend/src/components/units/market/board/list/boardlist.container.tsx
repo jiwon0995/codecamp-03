@@ -11,7 +11,7 @@ import {
 
 export default function MarketBoardList() {
   const router = useRouter();
-  const { data, fetchMore, refetch } = useQuery(FETCH_USED_ITEMS);
+  const { data, fetchMore, refetch } = useQuery(FETCH_USED_ITEMS, { variables: {isSoldout:false}});
   const [search, setSearch] = useState("");
 
   const getDebounce = _.debounce((data) => {

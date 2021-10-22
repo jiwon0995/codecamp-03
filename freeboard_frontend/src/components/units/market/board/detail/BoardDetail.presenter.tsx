@@ -74,8 +74,8 @@ export default function MarketBoardDetailUI(props:any) {
             <Name>{props.data?.fetchUseditem.name}</Name>
           </div>
           <div>
-            <IconX />
             <IconY />
+            <IconX />
           </div>
         </TopBar>
         <ContentsWrapper>
@@ -139,8 +139,8 @@ export default function MarketBoardDetailUI(props:any) {
           <IconSmile />
           <Name>Location</Name>
           <div>
-            <IconX />
             <IconY />
+            <IconX />
           </div>
         </TopBar>
         <MapContentsWrapper></MapContentsWrapper>

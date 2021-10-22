@@ -18,14 +18,14 @@ export const CommentWrapper = styled.div`
   background-color: #c6c6c6;
   padding: 15px;
 `
-export const ProfileImg = styled.div`
+export const ProfileImg = styled.img`
   width: 60px;
   height: 60px;
-  background-color: yellow;
+  background-color: #d3f705;
   border-radius: 100%;
 `
 export const Contents = styled.div`
-  width: 500px;
+  width: 600px;
   height: 100px;
   margin-left: 20px;
   line-height: 100px;
@@ -34,4 +34,12 @@ export const Text = styled.span`
   font-family: 'myfontko';
   font-size: 18px;
   margin-left: 20px;
+`
+export const CommentButton = styled.button`
+  width: 60px;
+  height: 40px;
+  background-color: #d3f705;
+  font-family: 'myfont';
+  font-size: 18px;
+  margin-right: 15px;
 `

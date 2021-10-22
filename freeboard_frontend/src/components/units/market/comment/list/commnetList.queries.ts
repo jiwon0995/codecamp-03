@@ -10,3 +10,8 @@ export const FETCH_USEDITEM_QUESTIONS = gql`
     }
   }
 `
+export const DELETE_QUESTION = gql`
+  mutation deleteUseditemQuestion($useditemQuestionId:ID!){
+    deleteUseditemQuestion(useditemQuestionId:$useditemQuestionId)
+  }
+`

@@ -8,12 +8,8 @@ import CommemtListUI from './commentList.presenter'
 
 export default function CommnetListPage() { 
   const router = useRouter()
-  const { data, fetchMore } = useQuery<
-    Pick<IQuery, "fetchUseditemQuestions">,
-    IQueryFetchUseditemQuestionsArgs
-  >(FETCH_USEDITEM_QUESTIONS, {
-    variables: { useditemId: String(router.query.boardId) },
-  });
+  const { data, fetchMore } = useQuery<Pick<IQuery, "fetchUseditemQuestions">, IQueryFetchUseditemQuestionsArgs>
+    (FETCH_USEDITEM_QUESTIONS, { variables: {useditemId: String(router.query.boardId)}});
   
   
   const onLodeMore =()=>{
