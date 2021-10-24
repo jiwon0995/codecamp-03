@@ -19,7 +19,7 @@ export default function Layout(props: any) {
   return (
     <>
       {!isHidden2 && <LayoutHeaderContainer />} 
-      {!isHidden && <LayoutBanner />} 
+      {/* {!isHidden && <LayoutBanner />}  */}
       <div>{props.children}</div>
     </>
   );

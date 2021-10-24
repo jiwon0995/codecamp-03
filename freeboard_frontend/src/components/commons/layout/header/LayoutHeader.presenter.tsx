@@ -12,11 +12,68 @@ import {
   Login,
   PointDiv,
 } from "./LayoutHeader.styles";
+import Head from "next/head";
+import { useState } from "react";
+import { Modal } from 'antd'
 
+declare const window: typeof globalThis & {
+  IMP: any;
+};
 export default function LayoutHeaderUI(props: any) {
-  
+  const [isOpen, setIsOpen] = useState(false)
+  const [amount, setAmount] = useState("")
+
+  const onClickIsOpen = () => {
+    setIsOpen(true)
+  }
+  const onClickCancel = () => {
+    setIsOpen(false)
+  }
+  const onChangeAmount = (e) => { 
+    setAmount(e.target.value)
+  }
+  const onClickPayment = () => {
+    setIsOpen(false)
+    var IMP = window.IMP; // 생략 가능
+    IMP.init("imp49910675"); // 예: imp00000000
+    // IMP.request_pay(param, callback) 결제창 호출
+    IMP.request_pay(
+      {
+        // param
+        pg: "html5_inicis",
+        pay_method: "card",
+        amount: Number(amount),
+      },
+      function (rsp) {
+        // callback
+        if (rsp.success) {
+          console.log(rsp);
+          alert("포인트 충전 완료!")
+          // mutation()=> createPointTragactionOfLoading
+          // ...,
+          // 결제 성공 시 로직,
+          // ...
+        } else {
+          alert("결제 실패!")
+          // ...,
+          // 결제 실패 시 로직,
+          // ...
+        }
+      }
+    );
+  };
   return (
     <Wrapper>
+      <Head>
+        <script
+          type="text/javascript"
+          src="https://code.jquery.com/jquery-1.12.4.min.js"
+        />
+        <script
+          type="text/javascript"
+          src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"
+        />
+      </Head>
       <Nav>
         <div style={{ width: "600px", display: "flex" }}>
           <LogoWrapper>
@@ -36,7 +93,7 @@ export default function LayoutHeaderUI(props: any) {
             </Font>
           </FontWrapper>
         </div>
-        <div style={{ display: "flex", alignItems:"center" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           {props.data?.fetchUserLoggedIn.picture ? (
             <ProfileImg>{props.data?.fetchUserLoggedIn.picture}</ProfileImg>
           ) : (
@@ -54,12 +111,21 @@ export default function LayoutHeaderUI(props: any) {
             <Login onClick={props.onClickLogin}>로그인</Login>
           )}
           {props.data?.fetchUserLoggedIn.userPoint?.amount ? (
-            <ProfileName>{props.data?.fetchUserLoggedIn.userPoint.amount} point </ProfileName>
-            ) : (
+            <ProfileName>
+              {props.data?.fetchUserLoggedIn.userPoint.amount} point{" "}
+            </ProfileName>
+          ) : (
             <ProfileName>0 point </ProfileName>
-            )}
-          <PointDiv>Point 충전하기</PointDiv>
-          </div>
+          )}
+          <PointDiv onClick={onClickIsOpen}>Point 충전하기</PointDiv>
+          <Modal
+            visible={isOpen}
+            onOk={onClickPayment}
+            onCancel={onClickCancel}
+          >
+            충전금액 : <input onChange={onChangeAmount}></input>
+          </Modal>
+        </div>
       </Nav>
     </Wrapper>
   );
