@@ -1,19 +1,23 @@
 // import '../styles/globals.css'
-import { ApolloClient, ApolloLink, ApolloProvider, InMemoryCache } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloLink,
+  ApolloProvider,
+  InMemoryCache,
+} from "@apollo/client";
 import "antd/dist/antd.css";
 import { Global } from "@emotion/react";
-import { globalStyles } from '../src/commons/styles/globalStyles'
-import Layout from '../src/components/commons/layout'
-import { createUploadLink } from 'apollo-upload-client'
-import { createContext, useState, useEffect } from 'react'
-import { onError } from '@apollo/client/link/error'
-import { getAccessToken } from '../src/commons/libraries/getAccessToken'
-import { AppProps } from 'next/dist/shared/lib/router/router';
+import { globalStyles } from "../src/commons/styles/globalStyles";
+import Layout from "../src/components/commons/layout";
+import { createUploadLink } from "apollo-upload-client";
+import { createContext, useState, useEffect } from "react";
+import { onError } from "@apollo/client/link/error";
+import { getAccessToken } from "../src/commons/libraries/getAccessToken";
+import { AppProps } from "next/dist/shared/lib/router/router";
 
-
-export const GlobalContext = createContext("")
-function MyApp({ Component, pageProps }:AppProps) {
-  const [accessToken, setAccessToken] = useState("")
+export const GlobalContext = createContext("");
+function MyApp({ Component, pageProps }: AppProps) {
+  const [accessToken, setAccessToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
 
   const value = {
@@ -21,7 +25,7 @@ function MyApp({ Component, pageProps }:AppProps) {
     setAccessToken: setAccessToken,
     userInfo: userInfo,
     setUserInfo: setUserInfo,
-  }
+  };
   useEffect(() => {
     // const accessToken = localStorage.getItem("accessToken") || "";
     // setAccessToken(accessToken);
@@ -73,7 +77,7 @@ function MyApp({ Component, pageProps }:AppProps) {
         </ApolloProvider>
       </GlobalContext.Provider>
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

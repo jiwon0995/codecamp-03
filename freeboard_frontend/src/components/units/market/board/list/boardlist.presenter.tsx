@@ -19,6 +19,8 @@ import {
   SearchDiv,
   Search,
   IconWrapper,
+  Selling,
+  Soldout,
 } from "./boardlist.styles";
 import InfiniteScroll from "react-infinite-scroller";
 import { v4 as uuidv4 } from "uuid";
@@ -47,7 +49,20 @@ export default function MarketBoardListUI(props: any) {
             </div>
           </ListTop>
           <Body>
-            <ListTitle></ListTitle>
+            <Selling>
+              <Soldout
+                onClick={props.onClickSelling}
+                isSoldout={props.isSoldout}
+              >
+                Selling
+              </Soldout>
+              <Soldout
+                onClick={props.onClickSoldOut}
+                isSoldout={props.isSoldout}
+              >
+                Sold Out
+              </Soldout>
+            </Selling>
             <SearchDiv>
               <Search>Search</Search>
               <SearchBar
@@ -56,7 +71,7 @@ export default function MarketBoardListUI(props: any) {
               ></SearchBar>
             </SearchDiv>
             <MapWrapper>
-              {props.data?.fetchUseditems &&
+              {props.data?.fetchUseditems && (
                 <InfiniteScroll
                   pageStart={0}
                   loadMore={props.onLoadeMore}
@@ -74,8 +89,8 @@ export default function MarketBoardListUI(props: any) {
                           src={`https://storage.googleapis.com/${el.images[0]}`}
                         />
                       ) : (
-                          <ImgX>NoneImage</ImgX>
-                        )}
+                        <ImgX>NoneImage</ImgX>
+                      )}
                       <ColumnBasic>{index}</ColumnBasic>
                       <ColumnBasic>
                         {el.name
@@ -93,7 +108,7 @@ export default function MarketBoardListUI(props: any) {
                     </Row>
                   ))}
                 </InfiniteScroll>
-              }
+              )}
             </MapWrapper>
           </Body>
         </ListBody>

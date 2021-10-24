@@ -18,7 +18,7 @@ export default function SignUp(props: Iprops) {
   //@ts-ignore
   const { setAccessToken } = useContext(GlobalContext);
   const router = useRouter();
-  //modal 
+  //modal
   const [IsOpen, setIsOpen] = useState(false);
 
   const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ export default function SignUp(props: Iprops) {
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setpassword(e.target.value);
   };
-  
+
   const [createUser] = useMutation<
     Pick<IMutation, "createUser">,
     IMutationCreateUserArgs
@@ -50,8 +50,8 @@ export default function SignUp(props: Iprops) {
     setIsOpen(false);
   };
   const MoveSignUpPage = () => router.push("/signup");
-  
-//회원가입 함수
+
+  //회원가입 함수
   const onClickSignUp = async (data: string | any) => {
     if (data.password !== data.password2) {
       alert("비밀번호가 일치하지 않습니다.");
@@ -72,20 +72,22 @@ export default function SignUp(props: Iprops) {
       alert(error.message);
     }
   };
-//로그인 함수
-  const onClickLogin = async () => {
+  //로그인 함수
+  const onClickLogin = () => {
     try {
-      const result = await loginUser({
+      const result = loginUser({
         variables: {
           email: email,
           password: password,
         },
       });
-      console.log(result);
       //@ts-ignore
-      localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
+      // localStorage.setItem("refreshToken", result.data?.loginUser.accessToken);
+      // localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken);
+      localStorage.setItem("refreshToken", "true");
       router.push("/market/list");
+
     } catch (error) {
       alert(error.message);
     }

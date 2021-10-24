@@ -6,6 +6,10 @@ import {
   BestitemImg,
   Price,
   BodyDiv,
+  LeftDiv,
+  Remark,
+  PickWrapper,
+  ImgX,
 } from "./bestProduct.styled";
 import { gql, useQuery } from "@apollo/client";
 import { IQuery } from "../../../../../commons/types/generated/types";
@@ -38,15 +42,29 @@ export default function BestProductPage() {
     <Wrapper>
       {data?.fetchUseditemsOfTheBest.map((el: any | string, index: string) => (
         <BestitemWrapper onClick={onClickMoveDetail} id={el._id} key={index}>
-          <Top>{el.name}</Top>
+          <Top>
+            Best Item {index + 1} : {el.name}
+          </Top>
           <BodyDiv>
-            <BestitemImg
-              src={`https://storage.googleapis.com/${el.images[0]}`}
-            />
-            <Price>{el.price}원</Price>
+            {el.images[0] ? (
+              <BestitemImg
+                src={`https://storage.googleapis.com/${el.images[0]}`}
+              />
+            ) : (
+              <ImgX>NoneImage</ImgX>
+            )}
+            <LeftDiv>
+              <Remark>{el.remarks}</Remark>
+              <PickWrapper>
+                <img
+                  src="/h.ico"
+                  style={{ width: "20px", marginRight: "5px" }}
+                ></img>
+                {el.pickedCount}
+              </PickWrapper>
+              <Price>{el.price}원</Price>
+            </LeftDiv>
           </BodyDiv>
-            <div>{el.pickedCount}</div>
-            <div>{el.remarks}</div>
         </BestitemWrapper>
       ))}
     </Wrapper>

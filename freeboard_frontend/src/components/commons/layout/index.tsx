@@ -10,6 +10,7 @@ const hidden = [
   "/login",
   "/market/new",
   "/market/detail",
+  "/market/list"
 ];
 const hidden2 = ["/signup", "/login", "/market/new", "/market/detail"];
 export default function Layout(props: any) {
@@ -18,8 +19,8 @@ export default function Layout(props: any) {
   const isHidden2 = hidden2.includes(router.pathname);
   return (
     <>
-      {/* {!isHidden2 && <LayoutHeaderContainer />}
-      {!isHidden && <LayoutBanner />} */}
+      {!isHidden2 && <LayoutHeaderContainer />} 
+      {!isHidden && <LayoutBanner />} 
       <div>{props.children}</div>
     </>
   );

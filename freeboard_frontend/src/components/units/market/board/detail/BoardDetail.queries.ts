@@ -8,7 +8,10 @@ export const FETCH_BOARD = gql`
       remarks
       contents
       price
-      seller{name}
+      seller{
+        name
+        _id
+      }
       createdAt
       images
       pickedCount

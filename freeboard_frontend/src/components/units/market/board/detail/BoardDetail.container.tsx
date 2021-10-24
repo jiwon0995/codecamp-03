@@ -9,10 +9,14 @@ import {
   USEDITEM_PICK,
 } from "./BoardDetail.queries";
 import CommnetListPage from '../../comment/list/commentList.container'
+import { useContext } from 'react';
+import {GlobalContext } from '../../../../../../pages/_app'
 
 
 export default function MarketBoardDetail() {
   const router = useRouter()
+  const { userInfo } = useContext(GlobalContext)
+  console.log("ii",userInfo)
   const [deleteUseditem] = useMutation<
     Pick<IMutation, "deleteUseditem">,
     IMutationDeleteUseditemArgs
@@ -47,6 +51,8 @@ export default function MarketBoardDetail() {
     });
 console.log(router.query.boardId);
   } 
+  console.log("u", userInfo)
+  console.log("f",data?.fetchUseditem.seller?._id)
   return (
     <>
       <MarketBoardDetailUI
@@ -55,9 +61,10 @@ console.log(router.query.boardId);
         onClickMoveEdit={onClickMoveEdit}
         onClickDeleteUseditem={onClickDeleteUseditem}
         onCLickUseditemPick={onCLickUseditemPick}
+        userInfo={userInfo}
       />
       <CommentWrite />
-      <CommnetListPage/>
+      <CommnetListPage />
     </>
   );
 }

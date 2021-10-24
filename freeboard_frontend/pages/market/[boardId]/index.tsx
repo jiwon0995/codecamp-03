@@ -1,7 +1,9 @@
 import MarketBoardDetail from '../../../src/components/units/market/board/detail/BoardDetail.container'
+import { withAuth } from "../../../src/components/commons/hocs/withAuth";
 
-
-export default function MarketBoardDetailPage() {
+const MarketBoardDetailPage=()=> {
   
   return(<MarketBoardDetail />)
 }
+
+export default withAuth(MarketBoardDetailPage);

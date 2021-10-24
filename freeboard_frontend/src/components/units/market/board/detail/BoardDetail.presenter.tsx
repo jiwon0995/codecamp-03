@@ -32,7 +32,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
-import CommentWrite from '../../comment/write/commentWrit';
+import CommentWrite from "../../comment/write/commentWrit";
 
 const SliderDiv = styled(Slider)`
   width: 250px;
@@ -43,7 +43,7 @@ const SliderDiv = styled(Slider)`
   border-bottom: 3px solid #7f7f7f;
 `;
 
-export default function MarketBoardDetailUI(props:any) {
+export default function MarketBoardDetailUI(props: any) {
   const settings = {
     dots: true,
     infinite: true,
@@ -80,11 +80,13 @@ export default function MarketBoardDetailUI(props:any) {
         </TopBar>
         <ContentsWrapper>
           <SliderDiv {...settings}>
-            {props.data?.fetchUseditem.images?.filter((el) => el).map((el: any) => (
-              <div key={el}>
-                <SliderImg src={`https://storage.googleapis.com/${el}`} />
-              </div>
-            ))}
+            {props.data?.fetchUseditem.images
+              ?.filter((el) => el)
+              .map((el: any) => (
+                <div key={el}>
+                  <SliderImg src={`https://storage.googleapis.com/${el}`} />
+                </div>
+              ))}
           </SliderDiv>
           <ContentsBody>
             <Label>Seller</Label>
@@ -129,7 +131,12 @@ export default function MarketBoardDetailUI(props:any) {
           </ContentsBody>
           <div>
             <EditButton onClick={props.onClickMoveList}>LIST</EditButton>
-            <EditButton onClick={props.onClickMoveEdit}>EDITE</EditButton>
+            {props.userInfo?.fetchUserLoggedIn?._id ===
+            props.data?.fetchUseditem.seller?._id ? (
+              <EditButton onClick={props.onClickMoveEdit}>EDITE</EditButton>
+            ) : (
+              <EditButton>BUY</EditButton>
+            )}
           </div>
         </ContentsWrapper>
       </PageWrapper>

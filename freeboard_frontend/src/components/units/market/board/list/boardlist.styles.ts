@@ -23,6 +23,10 @@ export const ListBody = styled.div`
   border-right: 3px solid #7f7f7f;
   border-bottom: 3px solid #7f7f7f;
 `
+export const Selling = styled.div`
+  display: flex;
+  margin-right: 690px;
+`
 export const ListTop = styled.div`
   width: 100%;
   height: 30px;
@@ -57,7 +61,7 @@ export const Body = styled.div`
 
 export const Window = styled.div`
   position: relative;
-  top: 50px;
+  top: 300px;
   left: 80px;
   z-index: 1;
   font-family: 'myfont';
@@ -145,4 +149,21 @@ line-height: 40px;
 border-left: 3px solid #fff;
 border-top: 3px solid #fff;
 border-right: 3px solid #7f7f7f;
+`
+export const Soldout = styled.div`
+width: 60px;
+height: 40px;
+font-family: 'myfont';
+font-weight: 500;
+font-size: 15px;
+border: 1px solid gray;
+text-align: center;
+line-height: 40px;
+border-left: 3px solid #fff;
+border-top: 3px solid #fff;
+border-right: 3px solid #7f7f7f;
+cursor: pointer;
+:hover{
+  background-color: #d3f705;
+}
 `
