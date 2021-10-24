@@ -16,7 +16,6 @@ export const Nav = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #c6c6c6;
-  padding-right: 50px;
 `
 export const Logo = styled.img`
   width: auto;
@@ -83,5 +82,17 @@ export const Login = styled.div`
   font-family: 'myfontko';
   font-size: 12px;
   margin-right: 7px;
+  cursor: pointer;
+`
+export const PointDiv = styled.div`
+  font-family: 'myfontko';
+  font-size: 12px;
+  margin-right: 7px;
+  cursor: pointer;
+  border-left: 1px solid #fff;
+  border-top: 1px solid #fff;
+  border-right: 1px solid #7f7f7f;
+  border-bottom: 1px solid #7f7f7f;
+  padding: 3px;
   cursor: pointer;
 `

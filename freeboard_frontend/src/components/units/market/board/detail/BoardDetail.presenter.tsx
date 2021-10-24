@@ -136,7 +136,7 @@ export default function MarketBoardDetailUI(props: any) {
             props.data?.fetchUseditem.seller?._id ? (
               <EditButton onClick={props.onClickMoveEdit}>EDITE</EditButton>
             ) : (
-              <EditButton>BUY</EditButton>
+              <EditButton onClick={props.onClickBuyItem}>BUY</EditButton>
             )}
           </div>
         </ContentsWrapper>

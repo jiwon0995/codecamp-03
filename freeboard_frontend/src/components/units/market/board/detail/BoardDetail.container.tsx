@@ -1,12 +1,13 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
-import { IMutation, IMutationDeleteUseditemArgs, IMutationToggleUseditemPickArgs, IQuery, IQueryFetchUseditemArgs } from '../../../../../commons/types/generated/types';
+import { IMutation, IMutationCreatePointTransactionOfBuyingAndSellingArgs, IMutationDeleteUseditemArgs, IMutationToggleUseditemPickArgs, IQuery, IQueryFetchUseditemArgs } from '../../../../../commons/types/generated/types';
 import CommentWrite from '../../comment/write/commentWrit';
 import MarketBoardDetailUI from './BoardDetail.presenter'
 import {
   FETCH_BOARD,
   DELETE_USEDITEM,
   USEDITEM_PICK,
+  ITEM_BUYING_AND_SELLING,
 } from "./BoardDetail.queries";
 import CommnetListPage from '../../comment/list/commentList.container'
 import { useContext } from 'react';
@@ -24,13 +25,16 @@ export default function MarketBoardDetail() {
     >(DELETE_USEDITEM);
   const [toggleUseditemPick] = useMutation<Pick<IMutation, "toggleUseditemPick">, IMutationToggleUseditemPickArgs>
     (USEDITEM_PICK);
-  
+  const [createPointTransactionOfBuyingAndSelling] = useMutation<Pick<IMutation,"createPointTransactionOfBuyingAndSelling">,IMutationCreatePointTransactionOfBuyingAndSellingArgs>(
+    ITEM_BUYING_AND_SELLING
+  );
   const { data } = useQuery<Pick<IQuery, "fetchUseditem">,IQueryFetchUseditemArgs>(FETCH_BOARD, {
     variables: {
       useditemId: String(router.query.boardId),
     },
   });
-  console.log("fetch",data)
+  console.log("fetch", data)
+  
   const onClickMoveEdit = () => {
     router.push(`/market/${router.query.boardId}/edit`)
   }
@@ -51,10 +55,23 @@ export default function MarketBoardDetail() {
       variables: { useditemId: String(router.query.boardId) },
       refetchQueries: [{ query: FETCH_BOARD, variables: { useditemId: String(router.query.boardId) } }],
     });
-console.log(router.query.boardId);
+
   } 
   console.log("u", userInfo)
-  console.log("f",data?.fetchUseditem.seller?._id)
+
+  const onClickBuyItem = () => {
+    try { 
+      createPointTransactionOfBuyingAndSelling({
+        variables: {
+          useritemId: String(router.query.boardId),
+        },
+      });
+      alert("구매 완료!");
+      router.push("/market/list")
+    } catch (error) {console.log(error.message) }
+    
+  }
+
   return (
     <>
       <MarketBoardDetailUI
@@ -64,6 +81,7 @@ console.log(router.query.boardId);
         onClickDeleteUseditem={onClickDeleteUseditem}
         onCLickUseditemPick={onCLickUseditemPick}
         userInfo={userInfo}
+        onClickBuyItem={onClickBuyItem}
       />
       <CommentWrite />
       <CommnetListPage />

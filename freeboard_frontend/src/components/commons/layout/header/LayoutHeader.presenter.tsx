@@ -10,9 +10,11 @@ import {
   ProfileImg,
   ProfileName,
   Login,
+  PointDiv,
 } from "./LayoutHeader.styles";
 
 export default function LayoutHeaderUI(props: any) {
+  
   return (
     <Wrapper>
       <Nav>
@@ -34,14 +36,13 @@ export default function LayoutHeaderUI(props: any) {
             </Font>
           </FontWrapper>
         </div>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", alignItems:"center" }}>
           {props.data?.fetchUserLoggedIn.picture ? (
-            <ProfileImg>
-            {props.data?.fetchUserLoggedIn.picture}
-          </ProfileImg>): (
+            <ProfileImg>{props.data?.fetchUserLoggedIn.picture}</ProfileImg>
+          ) : (
             <ProfileImg src="/msagent.png"></ProfileImg>
           )}
-          
+
           {props.data?.fetchUserLoggedIn.name ? (
             <ProfileName>{props.data?.fetchUserLoggedIn.name} 님</ProfileName>
           ) : (
@@ -52,7 +53,13 @@ export default function LayoutHeaderUI(props: any) {
           ) : (
             <Login onClick={props.onClickLogin}>로그인</Login>
           )}
-        </div>
+          {props.data?.fetchUserLoggedIn.userPoint?.amount ? (
+            <ProfileName>{props.data?.fetchUserLoggedIn.userPoint.amount} point </ProfileName>
+            ) : (
+            <ProfileName>0 point </ProfileName>
+            )}
+          <PointDiv>Point 충전하기</PointDiv>
+          </div>
       </Nav>
     </Wrapper>
   );

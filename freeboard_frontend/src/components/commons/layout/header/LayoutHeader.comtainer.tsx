@@ -18,7 +18,7 @@ export default function LayoutHeaderContainer() {
   }, []);
 
   console.log("i", userInfo);
-  console.log("i", accessToken);
+
 
   const onClickMove = (e) => router.push(e.target.id);
 

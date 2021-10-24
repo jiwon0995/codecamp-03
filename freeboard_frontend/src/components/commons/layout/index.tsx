@@ -9,10 +9,9 @@ const hidden = [
   "/signup",
   "/login",
   "/market/new",
-  "/market/detail",
   "/market/list"
 ];
-const hidden2 = ["/signup", "/login", "/market/new", "/market/detail"];
+const hidden2 = ["/signup", "/login" ];
 export default function Layout(props: any) {
   const router = useRouter();
   const isHidden = hidden.includes(router.pathname);
