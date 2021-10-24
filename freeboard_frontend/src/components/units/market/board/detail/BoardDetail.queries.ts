@@ -12,6 +12,12 @@ export const FETCH_BOARD = gql`
         name
         _id
       }
+      useditemAddress {
+        address
+        addressDetail
+        lat
+        lng
+      }
       createdAt
       images
       pickedCount

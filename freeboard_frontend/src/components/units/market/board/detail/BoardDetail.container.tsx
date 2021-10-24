@@ -16,7 +16,8 @@ import {GlobalContext } from '../../../../../../pages/_app'
 export default function MarketBoardDetail() {
   const router = useRouter()
   const { userInfo } = useContext(GlobalContext)
-  console.log("ii",userInfo)
+
+
   const [deleteUseditem] = useMutation<
     Pick<IMutation, "deleteUseditem">,
     IMutationDeleteUseditemArgs
@@ -29,6 +30,7 @@ export default function MarketBoardDetail() {
       useditemId: String(router.query.boardId),
     },
   });
+  console.log("fetch",data)
   const onClickMoveEdit = () => {
     router.push(`/market/${router.query.boardId}/edit`)
   }

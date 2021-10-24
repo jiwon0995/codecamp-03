@@ -33,6 +33,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
 import CommentWrite from "../../comment/write/commentWrit";
+import KakaoMapDetail from "../../../../commons/Address/AddressDetail";
 
 const SliderDiv = styled(Slider)`
   width: 250px;
@@ -141,17 +142,7 @@ export default function MarketBoardDetailUI(props: any) {
         </ContentsWrapper>
       </PageWrapper>
       {/* map */}
-      <MapWrapper>
-        <TopBar>
-          <IconSmile />
-          <Name>Location</Name>
-          <div>
-            <IconY />
-            <IconX />
-          </div>
-        </TopBar>
-        <MapContentsWrapper></MapContentsWrapper>
-      </MapWrapper>
+      <KakaoMapDetail data={props.data} />
     </Wrapper>
   );
 }

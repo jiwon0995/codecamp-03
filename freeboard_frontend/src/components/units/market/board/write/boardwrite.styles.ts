@@ -139,3 +139,8 @@ export const ReactQuillStyled = styled(ReactQuill)`
   padding-bottom : 40px;
 
 `
+export const AddressInput = styled.input`
+  width: 588px;
+  height: 52px;
+  margin: 10px 0px;
+`;

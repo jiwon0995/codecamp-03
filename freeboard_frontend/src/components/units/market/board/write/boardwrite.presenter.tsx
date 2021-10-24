@@ -16,6 +16,7 @@ import {
   SubmitButton,
   ErrorMessage,
   ReactQuillStyled,
+  AddressInput,
 } from "./boardwrite.styles";
 import Input02 from "../../../../commons/inputs/02/Input";
 import Address from "../../../../commons/Address/Address";
@@ -77,11 +78,15 @@ export default function BoardWritePageUI(props: any) {
               name="Tag"
               defaultValue={props.data?.fetchUseditem.tags}
             ></Input02>
-            {/* <Address
-              name="address"
-              register={props.register("address")}
-              defaultValue={props.data?.fetchUseditem.address}
-            /> */}
+            <Address
+              onChangeLat={props.onChangeLat}
+              onChangeLng={props.onChangeLng}
+              LAT={props.LAT}
+              LNG={props.LNG}
+              data={props.data}
+              setAddress={props.setAddress}
+              setAddressDetail={props.setAddressDetail}
+            />
             <Img>
               <Label>Img</Label>
               <ImgWrapper>

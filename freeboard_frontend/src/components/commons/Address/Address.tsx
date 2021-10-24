@@ -50,7 +50,16 @@ const RightBox = styled.div`
   height: 300px;
 `;
 export default function Address(props: any) {
+  
+  const onChangeAddress = (e) => {
+    props.setAddress(e.target.value)
+  }
+  const onChangeAddressDetail = (e) => {
+    props.setAddressDetail(e.target.value)
+  }
+  
   const [LatLng, setLatLng] = useState({});
+  
   
   useEffect(() => {
     const script = document.createElement("script");
@@ -63,7 +72,10 @@ export default function Address(props: any) {
         const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
         const options = {
           //지도를 생성할 때 필요한 기본 옵션
-          center: new window.kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+          center: new window.kakao.maps.LatLng(
+            props.LAT || 33.450701,
+            props.LNG || 126.570667
+          ), //지도의 중심좌표.
           level: 3, //지도의 레벨(확대, 축소 정도)
         };
 
@@ -86,10 +98,17 @@ export default function Address(props: any) {
           function (mouseEvent: { latLng: any }) {
             // 클릭한 위도, 경도 정보를 가져옵니다
             const latlng = mouseEvent.latLng;
-            setLatLng(latlng)
+            setLatLng(latlng);
             // 마커 위치를 클릭한 위치로 옮깁니다
+
             marker.setPosition(latlng);
 
+            props.onChangeLat(latlng.Ma);
+            props.onChangeLng(latlng.La);
+
+            console.log("좌표", latlng);
+            console.log("좌표1", latlng.Ma);
+            console.log("whk", props.LAT);
             // var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
             // message += '경도는 ' + latlng.getLng() + ' 입니다';
 
@@ -100,7 +119,6 @@ export default function Address(props: any) {
       });
     };
   }, []);
-
   return (
     <Wrapper>
       <ContentsBox>
@@ -110,13 +128,13 @@ export default function Address(props: any) {
       <ContentsBox>
         <Label>GPS</Label>
         <GPSBox>
-          <GPSInput name="lat" type="text" defaultValue={LatLng.La} />
-          <GPSInput name="lng" type="text" defaultValue={LatLng.Ma} />
+          <GPSInput type="text" placeholder="위도(LAT)" value={props.LAT} />
+          <GPSInput type="text" placeholder="경도(LNG)" value={props.LNG} />
         </GPSBox>
         <ContentsBox>
           <Label>Address</Label>
-          <AddressInput name="address" type="text"/>
-          <AddressInput name="addressDetail" type="text"/>
+          <AddressInput onChange={onChangeAddress} />
+          <AddressInput type="text" onChange={onChangeAddressDetail} />
         </ContentsBox>
       </ContentsBox>
     </Wrapper>

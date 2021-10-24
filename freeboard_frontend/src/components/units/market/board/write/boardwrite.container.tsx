@@ -25,8 +25,10 @@ export default function BoardWritePage(props: any) {
   const [uploadFile] = useMutation(UPLOAD_FILE)
 
   //imgurl state
-  const [files, setFiles] = useState < (File | null)[]>([null,null,null]);
-
+  const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
+  
+  const [address, setAddress] = useState("")
+  const [addressDetail, setAddressDetail] = useState("")
   //useForm 
   const { handleSubmit, register, formState, setValue, trigger, watch } = useForm({
     mode: "onChange",
@@ -41,6 +43,19 @@ export default function BoardWritePage(props: any) {
     //onChange가 됐는지 react-hook-form에 알려주는 기능
     trigger("contents");
   };
+  const onChangeLat = (value:any) => {
+    setValue("LAT", value || "")
+    trigger("LAT")
+  }
+
+  const onChangeLng = (value:any) => {
+    setValue("LNG", value || "")
+    trigger("LNG")
+  }
+  const onChangeAddress = (value) => { 
+    setValue("Address", value || "")
+    trigger("Address")
+  }
 // 중고마켓 상품등록
   const onClickUsedItem = async (data: any) => {
     const uploadFiles = files.map((el) =>
@@ -58,12 +73,12 @@ export default function BoardWritePage(props: any) {
             price: Number(data.price),
             remarks: data.remarks,
             images: myImages,
-            // useditemAddress: {
-            //   address: data.address,
-            //   addressDetail: data.addressDetail,
-            //   lat: data.lat,
-            //   lng: data.lng
-            // }
+            useditemAddress: {
+              address: address,
+              addressDetail: addressDetail,
+              lat: Number(data.LAT),
+              lng: Number(data.LNG)
+            }
           },
         },
       });
@@ -140,6 +155,12 @@ export default function BoardWritePage(props: any) {
       data={props.data}
       contents={watch("contents") || ""}
       setValue={setValue}
+      onChangeLat={onChangeLat}
+      onChangeLng={onChangeLng}
+      LAT={watch("LAT")}
+      LNG={watch("LNG")}
+      setAddress={setAddress}
+      setAddressDetail={setAddressDetail}
     />
   );
 }

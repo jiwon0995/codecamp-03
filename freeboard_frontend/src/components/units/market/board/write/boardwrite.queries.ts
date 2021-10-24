@@ -10,6 +10,7 @@ export const CREATEE_USED_ITEM = gql`
       updatedAt
       remarks
       images
+      
     }
   }
 `
