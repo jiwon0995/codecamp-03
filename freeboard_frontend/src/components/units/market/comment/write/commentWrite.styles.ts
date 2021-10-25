@@ -30,7 +30,7 @@ export const ButtonBox = styled.div`
   justify-content: space-around;
 `
 export const TextCount = styled.div`
-  width: 695px;
+  width: 697px;
   height: 40px;
   background-color:#c6c6c6;
   font-family: 'myfont';

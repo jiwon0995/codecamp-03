@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import SignupUI from "./signup.presenter";
 import { schema } from "./singup.validation";
 import { Iprops } from "./signup.types";
-import { useMutation } from "@apollo/client";
+import { useApolloClient, useMutation } from "@apollo/client";
 import {
   IMutation,
   IMutationCreateUserArgs,
@@ -13,6 +13,7 @@ import {
 import { CREATE_USER, LOGIN_USER } from "./signup.queries";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../../../../pages/_app";
+import { FETCH_USER_LOGGEDIN } from "../../commons/layout/header/LayoutHeader.queries";
 
 export default function SignUp(props: Iprops) {
   //@ts-ignore
@@ -23,6 +24,9 @@ export default function SignUp(props: Iprops) {
 
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
+  
+  const client = useApolloClient();
+  const { setUserInfo } = useContext(GlobalContext)
 
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -72,22 +76,33 @@ export default function SignUp(props: Iprops) {
       alert(error.message);
     }
   };
+
   //로그인 함수
-  const onClickLogin = () => {
+  const onClickLogin = async () => {
     try {
-      const result = loginUser({
+      const result = await loginUser({
         variables: {
           email: email,
           password: password,
         },
       });
+      const userInfo = await client.query({
+        query: FETCH_USER_LOGGEDIN,
+        context: {
+          headers: {
+            authorization: `Bearer ${result.data?.loginUser.accessToken}`,
+          },
+        },
+      })
+      console.log("ii",userInfo)
       //@ts-ignore
       // localStorage.setItem("refreshToken", result.data?.loginUser.accessToken);
       // localStorage.setItem("accessToken", result.data?.loginUser.accessToken);
       setAccessToken(result.data?.loginUser.accessToken);
       localStorage.setItem("refreshToken", "true");
       router.push("/market/list");
-
+      setUserInfo(userInfo);
+      console.log("login", userInfo);
     } catch (error) {
       alert(error.message);
     }

@@ -15,6 +15,8 @@ import {
 import Head from "next/head";
 import { useState } from "react";
 import { Modal } from 'antd'
+import { POINT } from "./LayoutHeader.queries";
+import { useMutation } from "@apollo/client";
 
 declare const window: typeof globalThis & {
   IMP: any;
@@ -22,7 +24,8 @@ declare const window: typeof globalThis & {
 export default function LayoutHeaderUI(props: any) {
   const [isOpen, setIsOpen] = useState(false)
   const [amount, setAmount] = useState("")
-
+  const [createPointTransactionOfLoading] = useMutation(POINT);
+  
   const onClickIsOpen = () => {
     setIsOpen(true)
   }
@@ -43,11 +46,18 @@ export default function LayoutHeaderUI(props: any) {
         pg: "html5_inicis",
         pay_method: "card",
         amount: Number(amount),
+        name: "포인트",
       },
       function (rsp) {
         // callback
         if (rsp.success) {
           console.log(rsp);
+
+          createPointTransactionOfLoading({
+            variables: {
+              impUid: String(rsp.imp_uid),
+            },
+          });
           alert("포인트 충전 완료!")
           // mutation()=> createPointTragactionOfLoading
           // ...,
@@ -81,7 +91,7 @@ export default function LayoutHeaderUI(props: any) {
             <LogoText>Start</LogoText>
           </LogoWrapper>
           <FontWrapper>
-            <Font id="/boards/list" onClick={props.onClickMove}>
+            <Font id="/boards" onClick={props.onClickMove}>
               자유게시판
             </Font>
             <Font id="/market/list" onClick={props.onClickMove}>

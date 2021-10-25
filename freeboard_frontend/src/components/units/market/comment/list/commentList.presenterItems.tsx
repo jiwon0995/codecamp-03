@@ -11,15 +11,17 @@ import {
   FETCH_USEDITEM_QUESTIONS,
 } from "./commnetList.queries";
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useMutation } from "@apollo/client";
 import { IMutation, IMutationDeleteUseditemQuestionArgs } from "../../../../../commons/types/generated/types";
 import CommentWrite from '../write/commentWrit'
+import { GlobalContext } from "../../../../../../pages/_app";
 
 export default function CommentListUIItem(props:any) { 
   const router = useRouter()
   const [isEdite, setIsEdite] = useState(false)
-
+  const { userInfo } = useContext(GlobalContext)
+  
   const [deleteUseditemQuestion] = useMutation<Pick<IMutation,"deleteUseditemQuestion">,IMutationDeleteUseditemQuestionArgs>(DELETE_QUESTION);
 
   const onClickUpdate = () => {
@@ -52,18 +54,20 @@ export default function CommentListUIItem(props:any) {
               <Text>{props.el?.user.name} :</Text>
               <Text>{props.el?.contents}</Text>
             </Contents>
-            <CommentButton onClick={onClickUpdate}>Edit</CommentButton>
-            <CommentButton onClick={onClickQuestionDelete}>
-              Delete
-            </CommentButton>
+            {props.el?.user._id ===
+              userInfo?.fetchUserLoggedIn?._id ? (
+                <>
+                <CommentButton onClick={onClickUpdate}>Edit</CommentButton>
+                <CommentButton onClick={onClickQuestionDelete}>Delete</CommentButton>
+                </>
+              ): (<img src="/question.png"></img>)}
+            
           </CommentWrapper>
         </Wrapper>
       )}
       {isEdite && (
-        <CommentWrite
-        isEdite={isEdite}
-        setIsEdite={setIsEdite}
-        el={props.el} />)}
+        <CommentWrite isEdite={isEdite} setIsEdite={setIsEdite} el={props.el} />
+      )}
     </>
   );
 }

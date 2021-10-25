@@ -93,7 +93,12 @@ export default function MarketBoardDetailUI(props: any) {
             <Label>Seller</Label>
             <ProfileWrpper>
               <Profile>
-                <ProfileImg />
+                {props.data?.fetchUseditem.seller.picture ? (
+                  <ProfileImg src={props.data?.fetchUseditem.seller?.picture} />
+                ) : (
+                  <ProfileImg src={"/msagent.png"} />
+                )}
+
                 <div>
                   <Writer>{props.data?.fetchUseditem.seller.name}</Writer>
                   <Date>

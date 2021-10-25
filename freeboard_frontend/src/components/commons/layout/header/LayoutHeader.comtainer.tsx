@@ -4,21 +4,20 @@ import { useContext, useEffect } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
 import LayoutHeaderUI from "./LayoutHeader.presenter";
 import { FETCH_USER_LOGGEDIN } from "./LayoutHeader.queries";
-
+import { isEmpty } from 'lodash'
 export default function LayoutHeaderContainer() {
   const router = useRouter();
   const { accessToken, setAccessToken, setUserInfo, userInfo } =
     useContext(GlobalContext);
+
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
 
-  console.log("d", data?.fetchUserLoggedIn);
+  console.log("d", data);
 
   useEffect(() => {
+    if (!isEmpty(userInfo)) return;
     setUserInfo(data);
-  }, []);
-
-  console.log("i", userInfo);
-
+  }, [data]);
 
   const onClickMove = (e) => router.push(e.target.id);
 
@@ -29,14 +28,14 @@ export default function LayoutHeaderContainer() {
     setAccessToken("");
     localStorage.removeItem("refreshToken");
   };
-
+  console.log("i", userInfo);
   return (
     <LayoutHeaderUI
       onClickMove={onClickMove}
       accessToken={accessToken}
-      data={data}
       onClickLogin={onClickLogin}
       onClickLogout={onClickLogout}
+      data={data}
     />
   );
 }

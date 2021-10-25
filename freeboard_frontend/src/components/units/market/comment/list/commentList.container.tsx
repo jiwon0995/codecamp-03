@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { IQuery, IQueryFetchUseditemQuestionsArgs } from '../../../../../commons/types/generated/types';
 import { FETCH_USEDITEM_QUESTIONS } from './commnetList.queries'
 import CommemtListUI from './commentList.presenter'
+import { useContext } from 'react';
+import { GlobalContext } from '../../../../../../pages/_app';
 
 
 
@@ -10,7 +12,7 @@ export default function CommnetListPage() {
   const router = useRouter()
   const { data, fetchMore } = useQuery<Pick<IQuery, "fetchUseditemQuestions">, IQueryFetchUseditemQuestionsArgs>
     (FETCH_USEDITEM_QUESTIONS, { variables: {useditemId: String(router.query.boardId)}});
-  
+  const {userInfo } = useContext(GlobalContext)
   
   const onLodeMore =()=>{
     fetchMore({
@@ -28,5 +30,7 @@ export default function CommnetListPage() {
   }
 
 
-  return <CommemtListUI data={data} onLodeMore={onLodeMore} />;
+  return (
+    <CommemtListUI data={data} onLodeMore={onLodeMore} userInfo={userInfo} />
+  );
 }

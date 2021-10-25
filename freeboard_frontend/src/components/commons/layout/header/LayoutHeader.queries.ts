@@ -14,3 +14,10 @@ export const FETCH_USER_LOGGEDIN = gql`
     }
   }
 `
+export const POINT = gql`
+  mutation createPointTransactionOfLoading($impUid:ID!){
+    createPointTransactionOfLoading(impUid:$impUid){
+      _id
+    }
+  }
+`

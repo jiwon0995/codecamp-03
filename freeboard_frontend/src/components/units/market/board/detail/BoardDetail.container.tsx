@@ -17,7 +17,8 @@ import {GlobalContext } from '../../../../../../pages/_app'
 export default function MarketBoardDetail() {
   const router = useRouter()
   const { userInfo } = useContext(GlobalContext)
-
+  
+  console.log("detail", userInfo)
 
   const [deleteUseditem] = useMutation<
     Pick<IMutation, "deleteUseditem">,

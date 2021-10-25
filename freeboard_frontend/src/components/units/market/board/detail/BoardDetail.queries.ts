@@ -11,6 +11,7 @@ export const FETCH_BOARD = gql`
       seller{
         name
         _id
+        picture
       }
       useditemAddress {
         address

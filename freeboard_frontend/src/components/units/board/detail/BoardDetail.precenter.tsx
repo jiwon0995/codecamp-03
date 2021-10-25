@@ -35,6 +35,7 @@ export default function BoardDetailUI(props:any) {
 				<CardWrapper>
 					<Header>
 						<AvatarWrapper>
+							
 							<Avatar src="/profile.png" />
 							<Info>
 								<Writer2>{props.data?.fetchBoard.writer}</Writer2>

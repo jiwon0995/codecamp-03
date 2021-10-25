@@ -18,6 +18,7 @@ export default function MarketBoardList() {
     variables: { isSoldout: isSoldout },
   });
   const { accessToken } = useContext(GlobalContext);
+  
   const getDebounce = _.debounce((data): any => {
     refetch({ search: data });
     setSearch(data);

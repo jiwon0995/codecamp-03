@@ -114,15 +114,12 @@ export const Date = styled.div`
   font-size: 15px;
   font-family: 'myfontko';
 `
-export const ProfileImg = styled.div`
+export const ProfileImg = styled.img`
   width: 60px;
   height: 60px;
   background-color: #008080;
   border-radius: 100%;
   margin-right: 30px;
-  background-image: url('/profile.png');
-  background-repeat: no-repeat;
-  background-size: cover;
 `
 export const Price = styled.div`
   font-size: 30px;
