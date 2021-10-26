@@ -114,7 +114,6 @@ export default function BoardWritePage(props: any) {
     if (data.price) myupdateUseditem.price = Number(data.price)
     if (data.remarks) myupdateUseditem.remarks = data.remarks
     if (data.images) myupdateUseditem.images = data.images
-    if (data.LAT) myupdateUseditem.useditemAddress.lat = data.LAT
     
     const uploadFiles = files
       .map((el) => (el ? uploadFile({ variables: { file: el } }) : null))

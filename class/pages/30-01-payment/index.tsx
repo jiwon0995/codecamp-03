@@ -4,6 +4,7 @@ declare const window: typeof globalThis & {
   IMP:any
 }
 export default function PaymentPage() {
+  
   const onClickPayment = () => {
     var IMP = window.IMP; // 생략 가능
     IMP.init("imp49910675"); // 예: imp00000000
@@ -52,6 +53,8 @@ export default function PaymentPage() {
         />
       </Head>
       결제금액: <input type="text"></input>
+
+      
       <br />
       <button onClick={onClickPayment}>결제하기!</button>
     </>

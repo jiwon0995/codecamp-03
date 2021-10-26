@@ -16,7 +16,7 @@ import {GlobalContext } from '../../../../../../pages/_app'
 
 export default function MarketBoardDetail() {
   const router = useRouter()
-  const { userInfo } = useContext(GlobalContext)
+  const { userInfo }:any = useContext(GlobalContext)
   
   console.log("detail", userInfo)
 

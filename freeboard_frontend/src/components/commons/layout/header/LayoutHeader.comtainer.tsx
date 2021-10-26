@@ -5,21 +5,22 @@ import { GlobalContext } from "../../../../../pages/_app";
 import LayoutHeaderUI from "./LayoutHeader.presenter";
 import { FETCH_USER_LOGGEDIN } from "./LayoutHeader.queries";
 import { isEmpty } from 'lodash'
+import { IQuery } from "../../../../commons/types/generated/types";
 export default function LayoutHeaderContainer() {
   const router = useRouter();
   const { accessToken, setAccessToken, setUserInfo, userInfo } =
     useContext(GlobalContext);
 
-  const { data } = useQuery(FETCH_USER_LOGGEDIN);
+  const { data } = useQuery<Pick<IQuery,"fetchUserLoggedIn">>(FETCH_USER_LOGGEDIN);
 
   console.log("d", data);
 
   useEffect(() => {
-    if (!isEmpty(userInfo)) return;
+    if(!isEmpty(userInfo)) return;
     setUserInfo(data);
   }, [data]);
 
-  const onClickMove = (e) => router.push(e.target.id);
+  const onClickMove = (e:any) => router.push(e.target.id);
 
   const onClickLogin = () => {
     router.push("/login");

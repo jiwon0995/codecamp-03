@@ -20,7 +20,8 @@ import { GlobalContext } from "../../../../../../pages/_app";
 export default function CommentListUIItem(props:any) { 
   const router = useRouter()
   const [isEdite, setIsEdite] = useState(false)
-  const { userInfo } = useContext(GlobalContext)
+  
+  const { userInfo } : any = useContext(GlobalContext)
   
   const [deleteUseditemQuestion] = useMutation<Pick<IMutation,"deleteUseditemQuestion">,IMutationDeleteUseditemQuestionArgs>(DELETE_QUESTION);
 

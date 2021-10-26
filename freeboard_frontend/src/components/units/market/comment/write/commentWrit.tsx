@@ -22,7 +22,7 @@ import {
   UPDATE_USEDITEM_QUESTION,
 } from "./commentWrite.queries";
 
-export default function CommentWrite(props) {
+export default function CommentWrite(props:any) {
   const [createUseditemQuestion] = useMutation<
     Pick<IMutation, "createUseditemQuestion">,
     IMutationCreateUseditemQuestionArgs

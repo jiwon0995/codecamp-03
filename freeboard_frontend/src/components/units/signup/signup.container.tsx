@@ -26,7 +26,7 @@ export default function SignUp(props: Iprops) {
   const [password, setpassword] = useState("");
   
   const client = useApolloClient();
-  const { setUserInfo } = useContext(GlobalContext)
+  const { setUserInfo } : any= useContext(GlobalContext)
 
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);

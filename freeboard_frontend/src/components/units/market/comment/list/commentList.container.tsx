@@ -12,12 +12,12 @@ export default function CommnetListPage() {
   const router = useRouter()
   const { data, fetchMore } = useQuery<Pick<IQuery, "fetchUseditemQuestions">, IQueryFetchUseditemQuestionsArgs>
     (FETCH_USEDITEM_QUESTIONS, { variables: {useditemId: String(router.query.boardId)}});
-  const {userInfo } = useContext(GlobalContext)
-  
+  const { userInfo }:any = useContext(GlobalContext)
+
   const onLodeMore =()=>{
     fetchMore({
       variables: { page: Math.ceil(data?.fetchUseditemQuestions.length / 10) + 1 },
-      updateQuery: (prev, { fetchMoreResult }) => {
+      updateQuery: (prev:any, { fetchMoreResult }) => {
         return {
           fetchBoardComments: [
             ...prev.fetchUseditemQuestions,
