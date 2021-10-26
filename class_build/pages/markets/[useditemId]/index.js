@@ -1,5 +1,5 @@
 import Head from 'next'
-import {gql, request } from 'graphql-request'
+import { gql, request } from 'graphql-request'
 
 
 export default function MarketsPage(props) {
@@ -15,13 +15,14 @@ export default function MarketsPage(props) {
         <meta property="og:image" content={props.fetchUseditem.images[0]}/>
       </Head>
       <div>마켓페이지 입니다.</div>
+
     </>
   )
 }
 
 const FETCH_USEDITEM = gql`
   query fetchUseditem($useditemId:ID!){
-    fetchUsedittem(useditemId:$useditemId){
+    fetchUseditem(useditemId:$useditemId){
       name
       remarks
       images
@@ -38,6 +39,7 @@ export const getServerSideProps = async(context) => {
   // 2. 요청받은 데이터를 페이지로 넘겨준다
   return {
     props: {
+      // key : value
       fetchUseditem: result.fetchUseditem
     }
   }
