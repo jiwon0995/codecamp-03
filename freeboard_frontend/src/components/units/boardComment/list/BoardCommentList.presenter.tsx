@@ -13,4 +13,4 @@ export default function BoardCommentListUI(props:any) {
 	);
 }
 
-//구별
+// 구별

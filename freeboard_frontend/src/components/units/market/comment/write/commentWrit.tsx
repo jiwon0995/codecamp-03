@@ -6,15 +6,13 @@ import {
   TextCount,
   SubmitButton,
 } from "./commentWrite.styles";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import {
   IMutation,
   IMutationCreateUseditemQuestionArgs,
   IMutationUpdateUseditemQuestionArgs,
-  IQuery,
-  IQueryFetchUseditemQuestionsArgs,
 } from "../../../../../commons/types/generated/types";
 import {
   CREATE_USEDITEM_QUESTION,
@@ -32,10 +30,9 @@ export default function CommentWrite(props:any) {
   const [contents, setContenst] = useState("");
 
   const router = useRouter();
-  const onChangeContents = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeContents = (e) => {
     setContenst(e.target.value);
   };
-  const { data }= useQuery<Pick<IQuery,"fetchUseditemQuestions">,IQueryFetchUseditemQuestionsArgs>(FETCH_USEDITEM_QUESTIONS)
 
   const onClickComment = async () => {
     try { 

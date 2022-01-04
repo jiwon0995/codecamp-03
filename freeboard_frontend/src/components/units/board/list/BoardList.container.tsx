@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useRouter } from 'next/dist/client/router'
 import { useState } from 'react'
 import BoardListUI from './BoardList.precenter'
@@ -9,7 +9,6 @@ export default function BoardList() {
   // const { data } = useQuery(FETCH_BOARDS)
 	const [startPage, setStartPage] = useState(1);
 	const [search, setSearch] = useState("")
-	const [myKeyword, setMyKeyword] = useState()
   const { data, refetch } = useQuery(FETCH_BOARDS)
   
   
@@ -35,7 +34,8 @@ export default function BoardList() {
 	function onChangeSearch(event:any) { 
 		setSearch(event.target.value)
 	}
-	function onClickSearch() { 
+	function onClickSearch() {
+
 		refetch({ search: search });
 		
 	}

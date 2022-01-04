@@ -13,14 +13,14 @@ import { createUploadLink } from "apollo-upload-client";
 import { createContext, useState, useEffect } from "react";
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../src/commons/libraries/getAccessToken";
-import { AppProps } from "next/dist/shared/lib/router/router";
+import { AppProps } from "next/app";
 
 export const GlobalContext = createContext("");
 function MyApp({ Component, pageProps }: AppProps) {
   const [accessToken, setAccessToken] = useState("");
   const [userInfo, setUserInfo] = useState({});
 
-  const value = {
+  const value:any = {
     accessToken: accessToken,
     setAccessToken: setAccessToken,
     userInfo: userInfo,
@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 
   const uploadLink = createUploadLink({
-    uri: "https://backend03.codebootcamp.co.kr/graphql",
+    uri: "http://backend03.codebootcamp.co.kr/graphql",
     headers: { authorization: `Bearer ${accessToken}` }, // Bearer ""하면 비회원으로 처리됨
     credentials: "include", // 중요한 정보들을 포함시켜줘. 이거 해야 쿠키에 저장됨
   }); // 필요한 부분만 따로 만들어서 조립하는 방식

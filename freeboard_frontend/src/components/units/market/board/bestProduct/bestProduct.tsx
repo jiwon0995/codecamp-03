@@ -1,6 +1,5 @@
 import {
   Wrapper,
-  NonImg,
   BestitemWrapper,
   Top,
   BestitemImg,

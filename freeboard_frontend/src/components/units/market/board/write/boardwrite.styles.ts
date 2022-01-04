@@ -1,7 +1,6 @@
 import {
   CloseSquareOutlined,
   MinusSquareOutlined,
-  SmileOutlined,
 } from "@ant-design/icons";
 import styled from '@emotion/styled'
 import "react-quill/dist/quill.snow.css"; // reactQuill CSS

@@ -19,7 +19,7 @@ const InputSearch = styled.input`
 
 export default function APIPage() {
 	const [search, setSearch] = useState('세븐틴')
-	const [list, setList] = useState();
+	const [list, setList] : any = useState();
 	const inputRef = useRef<HTMLInputElement>()
 
 	useEffect(() => {
@@ -54,6 +54,7 @@ export default function APIPage() {
 			<InputWrapper>
 				<InputSearch type="text" ref={inputRef} onChange={onChangeSearch}></InputSearch>
 				{/* <button>검색!</button> */}
+				{/* eslint-disable-next-line */}
 				{list && list.documents.map((data:any) => <ReactPlayer url={data.url}></ReactPlayer>)}
 			</InputWrapper>
 		</WrapperWrapper>

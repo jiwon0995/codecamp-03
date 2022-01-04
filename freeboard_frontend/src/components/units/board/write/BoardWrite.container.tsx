@@ -1,16 +1,15 @@
- import { useMutation, useQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/dist/client/router';
 import { ChangeEvent, useState } from 'react';
 // import { ICreateBoardInput, IMutation } from '../../../../commons/types/generated/types';
 import BoardWriteUI from './BoardWrite.presenter';
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries';
 import { IMyUpdateBoardInput,IMyCreateBoardInput } from './BoardWrite.types';
-import { Youtube } from './BordWrite.styles';
 
 
 export default function BoardWrite(props:any) {
 	const router = useRouter();
-	//입력값 state에 저장, 빈문자열로 초기화
+	// 입력값 state에 저장, 빈문자열로 초기화
 	const [writer, setWriter] = useState('');
 	const [password, setPassword] = useState('');
 	const [title, setTitle] = useState('');
@@ -20,26 +19,26 @@ export default function BoardWrite(props:any) {
 	const [zipcode, setZipcode] = useState('')
 	const [addressDetail, setAddressDetail] = useState('')
 	const [fileUrls, setFileUrls] = useState(['','',''])
-	//에러메세지 state에 저장
+	// 에러메세지 state에 저장
 	const [writerError, setWriterError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
 	const [titleError, setTitleError] = useState('');
 	const [contentsError, setContentsError] = useState('');
-	//등록하기 버튼 조건에 맞으면 버튼 색 변화주기
+	// 등록하기 버튼 조건에 맞으면 버튼 색 변화주기
 	const [isActive, setIsActive] = useState(false);
 	const [isOpen, setIsOpen] = useState(false)
-	//mutation으로 createBoard하기
-	//함수 사용할 떄는 createBoard(variables)
+	// mutation으로 createBoard하기
+	// 함수 사용할 떄는 createBoard(variables)
 	const [createBoard] = useMutation(CREATE_BOARD);
 	const [updateBoard] = useMutation(UPDATE_BOARD);
-	//onchange함수
+	// onchange함수
 	function onChangeWriter(event:any) {
 		setWriter(event.target.value);
-		//작성자에 값이 들어오면 에러메세지가 빈문열로 바뀜
+		// 작성자에 값이 들어오면 에러메세지가 빈문열로 바뀜
 		if (event.target.value !== '') {
 			setWriterError('');
 		}
-		//모든 내용이 입력됐는지 확인
+		// 모든 내용이 입력됐는지 확인
 		if (
 			event.target.value !== '' &&
 			password !== '' &&
@@ -105,21 +104,21 @@ export default function BoardWrite(props:any) {
 		function onChangeAddressDetail(event: any) {
 			setAddressDetail(event.target.value)
 		}
-		//우편번호 검색 버튼을 누르면 모달창이 열리게하는 함수
+		// 우편번호 검색 버튼을 누르면 모달창이 열리게하는 함수
 		function onClickAddressSearch() {
 			setIsOpen(true)
 		}
-		//다음 주소 검색에서 나온 데이터 저장하는 함수
-		//라이브러리에서 제공하는 타입이 없을 경우 any로 해준다
+		// 다음 주소 검색에서 나온 데이터 저장하는 함수
+		// 라이브러리에서 제공하는 타입이 없을 경우 any로 해준다
 		function onCompleteAddressSearch(data: any) {
 			setAddress(data.address)
 			setZipcode(data.zonecode)
-			//모달종료
+			// 모달종료
 			setIsOpen(false)
 		}
-		//등록버튼 함수
+		// 등록버튼 함수
 
-		//타입스크립트 지정해주기
+		// 타입스크립트 지정해주기
 		const mycreateBoardInput: IMyCreateBoardInput = {
 			writer,
 			title,
@@ -192,7 +191,7 @@ export default function BoardWrite(props:any) {
 					variables: {
 						boardId: router.query.boardId,
 						password: password,
-						updateBoardInput: myUpdateboardIuput, //바뀐것만 보내기
+						updateBoardInput: myUpdateboardIuput, // 바뀐것만 보내기
 					},
 				});
 				router.push(`/boards/${result.data.updateBoard._id}`);

@@ -4,7 +4,6 @@ import {
   Wrapper,
   Font,
   FontWrapper,
-  Font2,
   LogoWrapper,
   LogoText,
   ProfileImg,
@@ -37,7 +36,7 @@ export default function LayoutHeaderUI(props: any) {
   }
   const onClickPayment = () => {
     setIsOpen(false)
-    var IMP = window.IMP; // 생략 가능
+    const IMP = window.IMP; // 생략 가능
     IMP.init("imp49910675"); // 예: imp00000000
     // IMP.request_pay(param, callback) 결제창 호출
     IMP.request_pay(

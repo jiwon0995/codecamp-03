@@ -1,24 +1,18 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import MarketBoardListUI from "./boardlist.presenter";
 import { FETCH_USED_ITEMS } from "./boardlist.queries";
 import _ from "lodash";
-import {
-  IQuery,
-  IQueryFetchUseditemArgs,
-} from "../../../../../commons/types/generated/types";
-import { GlobalContext } from "../../../../../../pages/_app";
 
 export default function MarketBoardList() {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [isSoldout, setIsSoldout] = useState(false);
-  const { data, fetchMore, refetch } = useQuery(FETCH_USED_ITEMS, {
+  const { data, fetchMore, refetch } :any= useQuery(FETCH_USED_ITEMS, {
     variables: { isSoldout: isSoldout },
   });
-  const { accessToken } = useContext(GlobalContext);
-  
+  console.log(search)
   const getDebounce = _.debounce((data): any => {
     refetch({ search: data });
     setSearch(data);
@@ -37,7 +31,7 @@ export default function MarketBoardList() {
   const onClickSelling = () => {
     setIsSoldout(false);
   };
-  //infinitiscroll
+  // infinitiscroll
   const onLoadeMore = () => {
     fetchMore({
       variables: { page: Math.ceil(data?.fetchUseditems.length / 10) + 1 },

@@ -8,7 +8,7 @@ import { isEmpty } from 'lodash'
 import { IQuery } from "../../../../commons/types/generated/types";
 export default function LayoutHeaderContainer() {
   const router = useRouter();
-  const { accessToken, setAccessToken, setUserInfo, userInfo } =
+  const { accessToken, setAccessToken, setUserInfo, userInfo } :any=
     useContext(GlobalContext);
 
   const { data } = useQuery<Pick<IQuery,"fetchUserLoggedIn">>(FETCH_USER_LOGGEDIN);

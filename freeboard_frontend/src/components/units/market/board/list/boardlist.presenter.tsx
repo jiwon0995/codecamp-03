@@ -14,7 +14,6 @@ import {
   MapWrapper,
   ColumnImg,
   ImgX,
-  ListTitle,
   SearchBar,
   SearchDiv,
   Search,
@@ -52,13 +51,12 @@ export default function MarketBoardListUI(props: any) {
             <Selling>
               <Soldout
                 onClick={props.onClickSelling}
-                isSoldout={props.isSoldout}
+
               >
                 Selling
               </Soldout>
               <Soldout
                 onClick={props.onClickSoldOut}
-                isSoldout={props.isSoldout}
               >
                 Sold Out
               </Soldout>
@@ -97,7 +95,7 @@ export default function MarketBoardListUI(props: any) {
                           .replaceAll(props.search, `#@${props.search}#@`)
                           .split("#@")
                           .map((el: any) => (
-                            <div key={uuidv4()} isMatched={props.search === el}>
+                            <div key={uuidv4()}>
                               {el}
                             </div>
                           ))}

@@ -1,9 +1,7 @@
 import styled from '@emotion/styled'
-import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { WrapperWrapper } from '../../../units/board/write/BordWrite.styles';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 
 const Slider2 = styled(Slider)`
@@ -20,14 +18,9 @@ const Back = styled.div`
 	display: flex;
 	justify-content: center;
 `
-const ButtonRigth = styled(RightOutlined)`
-	
-`
-
-
 export default function LayoutBanner() { 
   
-  var settings = {
+  const settings = {
 		autoplay: true,
 		autoplaySpeed: 5000,
 		dots: true,

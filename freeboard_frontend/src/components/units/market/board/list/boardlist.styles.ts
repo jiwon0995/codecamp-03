@@ -2,8 +2,8 @@ import styled from '@emotion/styled'
 import {
   CloseSquareOutlined,
   MinusSquareOutlined,
-  SmileOutlined,
 } from "@ant-design/icons";
+
 
 export const Wrapper = styled.div`
   display: flex;

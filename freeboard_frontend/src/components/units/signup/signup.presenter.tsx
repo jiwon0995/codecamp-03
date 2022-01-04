@@ -24,15 +24,13 @@ import {
   LoginBox,
   CoinIcon,
   LoginInput,
-  Logintext,
-  KingWrapper
 } from "./signup.styles";
 import Input01 from "../../commons/inputs/01/Input";
-import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { useState } from "react";
 
-//modal style
+// modal style
 const style = {
   position: "absolute" as "absolute",
   top: "30%",
@@ -46,8 +44,8 @@ const style = {
 };
 
 export default function SignupUI(props: any) {
-  const [open, setOpen] = React.useState(true);
-  const handleOpen = () => setOpen(true);
+  const [open, setOpen] = useState(true);
+  // const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
@@ -133,7 +131,9 @@ export default function SignupUI(props: any) {
             </div>
           ) : (
             <form onSubmit={props.handleSubmit(props.onClickSignUp)}>
-              <Signup type="submit" isValid={props.formState.isValid}>
+              <Signup type="submit"
+                // isValid={props.formState.isValid}
+              >
                 SignUp
               </Signup>
             </form>

@@ -4,7 +4,7 @@ export interface IMyupdateUseditem {
   price?: number
   remarks?: string
   images?: string[]
-  useditemAddress: {
+  useditemAddress?: {
     lat?: number
     
   }

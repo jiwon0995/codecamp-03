@@ -45,9 +45,6 @@ const CardContents = styled.div`
 	font-weight: 200;
 	/* text-align: center; */
 `
-const CardFooter = styled.div`
-	width: 100%;
-`
 const CardTitle = styled.div`
 	font-size: 25px;
 	color: white;

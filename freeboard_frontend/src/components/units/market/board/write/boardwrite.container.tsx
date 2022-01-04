@@ -24,23 +24,23 @@ export default function BoardWritePage(props: any) {
   const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
   const [uploadFile] = useMutation(UPLOAD_FILE)
 
-  //imgurl state
+  // imgurl state
   const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
   
   const [address, setAddress] = useState("")
   const [addressDetail, setAddressDetail] = useState("")
-  //useForm 
+  // useForm 
   const { handleSubmit, register, formState, setValue, trigger, watch } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
-  //editer 설정
+  // editer 설정
   const onChangeMyEditer = (value:any) => {
     console.log(value);
-    //register로 등록하지 않고, 강제로 값을 넣어주는 기능
-    //<p><br></p>일 때 빈값(false)을 value에 넣어주기
+    // register로 등록하지 않고, 강제로 값을 넣어주는 기능
+    // <p><br></p>일 때 빈값(false)을 value에 넣어주기
     setValue("contents", value === "<p><br></p>" ? "" : value);
-    //onChange가 됐는지 react-hook-form에 알려주는 기능
+    // onChange가 됐는지 react-hook-form에 알려주는 기능
     trigger("contents");
   };
   const onChangeLat = (value:any) => {
@@ -52,10 +52,10 @@ export default function BoardWritePage(props: any) {
     setValue("LNG", value || "")
     trigger("LNG")
   }
-  const onChangeAddress = (value) => { 
-    setValue("Address", value || "")
-    trigger("Address")
-  }
+  // const onChangeAddress = (value) => { 
+  //   setValue("Address", value || "")
+  //   trigger("Address")
+  // }
 // 중고마켓 상품등록
   const onClickUsedItem = async (data: any) => {
     const uploadFiles = files.map((el) =>
@@ -90,9 +90,9 @@ export default function BoardWritePage(props: any) {
   };
   //
   function onChangeFiles(file: File, index: number) {
-    //1. 기존 fileUrls를 가져온다
+    // 1. 기존 fileUrls를 가져온다
     const newFiles = [...files];
-    //이미지를 넣으면 이미지가 바뀜
+    // 이미지를 넣으면 이미지가 바뀜
     newFiles[index] = file;
     setFiles(newFiles);
   }

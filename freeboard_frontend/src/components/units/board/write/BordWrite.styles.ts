@@ -3,9 +3,6 @@ import styled from '@emotion/styled'
 interface IsActive {
   isActive: boolean
 }
-interface IsEdit {
-  isEdit: boolean;
-}
 export const WrapperWrapper = styled.div`
   width: 100%;
   display: flex;

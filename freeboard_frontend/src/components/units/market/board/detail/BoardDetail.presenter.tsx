@@ -1,9 +1,7 @@
 import {
   Wrapper,
   PageWrapper,
-  MapWrapper,
   ContentsWrapper,
-  MapContentsWrapper,
   TopBar,
   IconX,
   IconY,
@@ -14,8 +12,6 @@ import {
   Writer,
   Date,
   ProfileImg,
-  Price,
-  Wrp,
   Name,
   PriceWrapper,
   SliderImg,
@@ -27,12 +23,10 @@ import {
   IconWrapper,
 } from "./BoardDetail.styles";
 import DOMPurify from "dompurify";
-import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styled from "@emotion/styled";
-import CommentWrite from "../../comment/write/commentWrit";
 import KakaoMapDetail from "../../../../commons/Address/AddressDetail";
 
 const SliderDiv = styled(Slider)`
@@ -137,12 +131,12 @@ export default function MarketBoardDetailUI(props: any) {
           </ContentsBody>
           <div>
             <EditButton onClick={props.onClickMoveList}>LIST</EditButton>
-            {props.userInfo?.fetchUserLoggedIn?._id ===
-            props.data?.fetchUseditem.seller?._id ? (
+            {/* {props.userInfo?.fetchUserLoggedIn?._id ===
+            props.data?.fetchUseditem.seller?._id ? ( */}
               <EditButton onClick={props.onClickMoveEdit}>EDITE</EditButton>
-            ) : (
+            {/* ) : ( */}
               <EditButton onClick={props.onClickBuyItem}>BUY</EditButton>
-            )}
+            {/* )} */}
           </div>
         </ContentsWrapper>
       </PageWrapper>

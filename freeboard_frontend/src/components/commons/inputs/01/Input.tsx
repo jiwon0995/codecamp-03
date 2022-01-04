@@ -1,12 +1,5 @@
 import styled from "@emotion/styled";
 
-const InputWrapper = styled.div`
-  padding-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 const MyInput = styled.input`
   width: 200px;
   font-family: "myfont";
